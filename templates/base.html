@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise Tours</title>
+    <!-- Bootstrap link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+
+<body>
+    <header>
+        <div class="bg-info">
+            <h1 class="text-center pt-2 text-success display-1">SURPRISE TOURS</h1>
+            <h3 class="text-center pb-2 text-success">Don't waste one more minute</h3>
+        </div>
+    </header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid row">
+            <div class="col-4">
+                <form method="GET" action="">
+                    <div class="input-group">
+                        <input class="form-control border border-black rounded" type="text" name="q"
+                            placeholder="Search for dates, countries or price">
+                        <div>
+                            <button class="form-control btn" type="submit">
+                                <span class="icon">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-8 d-flex">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse text-end justify-content-end" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Destinations
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Europe</a></li>
+                                <li><a class="dropdown-item" href="#">Africa</a></li>
+                                <li><a class="dropdown-item" href="#">Asia</a></li>
+                                <li><a class="dropdown-item" href="#">Oceania</a></li>
+                                <li><a class="dropdown-item" href="#">North America</a></li>
+                                <li><a class="dropdown-item" href="#">South America</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            {% if user.is_authenticated %}
+                            <a class="nav-link" href="#">Log out</a>
+                            {% else %}
+                            <a class="nav-link" href="#">Log in or Register</a>
+                            {% endif %}
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-plane-departure"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+
+<div>
+<div class="row bg-info text-center d-flex justify-content-center">
+    <h4 class="my-4">Why book through us?</h4>
+    <div class="col-3">
+        <h5>Guaranteed Safety</h5>
+        <p>All our tour guides are certified and out tours are always placed in safe zones to ensure the maximum comfort and enjoyment of our guests</p>
+    </div>
+    <div class="col-3">
+        <h5>Cheapest rates available</h5>
+        <p>At surprise tours, even though you don't know exactly where you'll go, we can guarantee that for each of the activities you will always get the best privileges possible according to the tour prices</p>
+    </div>
+    <div class="col-3">
+        <h5>What makes us different?</h5>
+        <p>With surprise tours, you don ́t know exactly where you'll go... But you know where it begins and ends!</p>
+    </div>
+    <div class="row border-top border-black pt-3">
+        <div class="col-4 text-start">
+            <a href="#" class="nav-link"><strong>Contact us!</strong></a>
+        </div>
+        <div class="col-4 text-center">
+            <p><strong>Surprise Tours</strong></p>
+        </div>
+        <div class="col-4 text-end">
+                <i class="fa-brands fa-facebook px-2 fa-2x"></i>
+                <i class="fa-brands fa-instagram px-2 fa-2x"></i>
+                <i class="fa-brands fa-twitter px-2 fa-2x"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Bootstrap link -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <!-- Fontawesome link -->
+    <script src="https://kit.fontawesome.com/8b45f7f3ca.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
