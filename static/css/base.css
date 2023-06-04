@@ -1,7 +1,3 @@
-body {
-    
-}
-
 #index-container {
     height: 50vh;
     background: url('/media/index_bg.jpg') no-repeat center center fixed;
@@ -21,3 +17,6 @@ body {
     background: url('/media/world.png') no-repeat center center;
     background-size: cover;
 }
+
+
+style="background-image: url('{{ continent.image.url }}'); background-repeat: no-repeat; background-size: cover;"
