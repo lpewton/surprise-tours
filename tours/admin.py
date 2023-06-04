@@ -1,3 +1,10 @@
 from django.contrib import admin
+from .models import Continent
 
-# Register your models here.
+class ContinentAdmin(admin.ModelAdmin):
+    list_display = (
+        'continent',
+    )
+
+admin.site.register(Continent, ContinentAdmin)
+
