@@ -1,0 +1,9 @@
+#index-container {
+    background: url('/media/index_bg.png') no-repeat center center fixed;
+    background-size: cover;
+    height: 50vh;
+}
+
+#index-text-div {
+    background-color: rgba(128, 128, 128, 0.5);
+}
