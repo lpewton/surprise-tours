@@ -1,6 +1,9 @@
-#index-container {
+body {
     background: url('/media/index_bg.png') no-repeat center center fixed;
     background-size: cover;
+}
+
+#index-container {
     height: 50vh;
 }
 
@@ -10,5 +13,10 @@
 
 .continent-div {
     height: 200px;
-    width: 25%;
+    padding-top: 80px;
+}
+
+#anywhere-div {
+    background: url('/media/world.png') no-repeat center center;
+    background-size: cover;
 }
