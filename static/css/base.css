@@ -1,14 +1,15 @@
 body {
-    background: url('/media/index_bg.png') no-repeat center center fixed;
-    background-size: cover;
+    
 }
 
 #index-container {
     height: 50vh;
+    background: url('/media/index_bg.jpg') no-repeat center center fixed;
+    background-size: cover;
 }
 
 #index-text-div {
-    background-color: rgba(128, 128, 128, 0.5);
+    background-color: rgba(228, 176, 33, 0.9);
 }
 
 .continent-div {
