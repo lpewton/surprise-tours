@@ -17,3 +17,7 @@
     background: url('/media/world.png') no-repeat center center;
     background-size: cover;
 }
+
+.tour-img {
+    height: 250px;
+}
