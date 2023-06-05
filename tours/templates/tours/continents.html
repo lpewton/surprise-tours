@@ -8,7 +8,7 @@
         {% for continent in continents %}
         <div class="continent-div m-3 col-md-3" style="background-image: url('{{ continent.image.url }}'); background-repeat: no-repeat; background-size:
         cover">
-            <a href="#" class="text-decoration-none text-uppercase">
+            <a href="{% url 'tours' continent.pk %}" class="text-decoration-none text-uppercase">
                 <h4 class="text-center text-light bg-gradient bg-success"><strong>{{continent}}</strong></h4>
             </a>
         </div>

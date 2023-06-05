@@ -58,12 +58,12 @@
                                 Destinations
                             </btn>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Europe</a></li>
-                                <li><a class="dropdown-item" href="#">Africa</a></li>
-                                <li><a class="dropdown-item" href="#">Asia</a></li>
-                                <li><a class="dropdown-item" href="#">Oceania</a></li>
-                                <li><a class="dropdown-item" href="#">North America</a></li>
-                                <li><a class="dropdown-item" href="#">South America</a></li>
+                                <li><a class="dropdown-item" href="{% url 'tours' %}?continent=Europe">Europe</a></li>
+                                <li><a class="dropdown-item" href="{% url 'tours' %}?continent=Africa">Africa</a></li>
+                                <li><a class="dropdown-item" href="{% url 'tours' %}?continent=Asia">Asia</a></li>
+                                <li><a class="dropdown-item" href="{% url 'tours' %}?continent=Oceania">Oceania</a></li>
+                                <li><a class="dropdown-item" href="{% url 'tours' %}?continent=North America">North America</a></li>
+                                <li><a class="dropdown-item" href="{% url 'tours' %}?continent=South America">South America</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">

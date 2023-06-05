@@ -3,7 +3,7 @@ from .models import Continent, Tour
 
 class ContinentAdmin(admin.ModelAdmin):
     list_display = (
-        'continent',
+        'friendly_name',
     )
 
 class TourAdmin(admin.ModelAdmin):

@@ -3,6 +3,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Continent(models.Model):
     continent = models.CharField(max_length=50)
+    friendly_name = models.CharField(max_length=50, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
     
     def __str__(self):
@@ -20,6 +21,8 @@ class Tour(models.Model):
     description = models.CharField(max_length=254)
     rating = models.FloatField(
         validators=[MinValueValidator(0)], default=0)
+    price = models.FloatField(
+        validators=[MinValueValidator(0)], default=100)
     image_1 = models.ImageField(null=True, blank=True)
     image_2 = models.ImageField(null=True, blank=True)
     image_3 = models.ImageField(null=True, blank=True)
