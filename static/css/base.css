@@ -17,6 +17,3 @@
     background: url('/media/world.png') no-repeat center center;
     background-size: cover;
 }
-
-
-style="background-image: url('{{ continent.image.url }}'); background-repeat: no-repeat; background-size: cover;"
