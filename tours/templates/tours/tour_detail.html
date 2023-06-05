@@ -9,34 +9,37 @@
             <hr>
         </span>
         <h1 class="col-4 text-end">{{ tour.rating }}/10</h1>
+        <hr>
     </div>
-    <div class="row">
-        <aside class="col-5">
-            <img class="col-12 tour-img" src="{{tour.image_1.url}}" alt="Nice photograph">
-            <br>
-            <img class="col-12 tour-img" src="{{tour.image_2.url}}" alt="Nice photograph">
-            <br>
-            <img class="col-12 tour-img" src="{{tour.image_3.url}}" alt="Nice photograph">
-        </aside>
-        <div class="col-7 pt-5">
+    <div class="row d-flex">
+        <div class="col-md-7 pt-md-5">
             <h5>START/END: {{ tour.location }}</h5>
             <h5>DATES: {{ tour.start_date }} - {{ tour.end_date }}</h5>
             <h5>SLOTS LEFT: {{ tour.slots_left }}/{{ tour.slots }}</h5>
             <p class="border border-black p-2">{{ tour.description }}</p>
             <h5 class="text-end">{{ tour.price }}€/pp</h5>
             <hr>
-            <h5>BOOK YOUR SPOT!</h5>
-            <div class="border border-black p-4 col-6">
-                <h5>{{ tour }} x3 (779.97€)</h5>
-                <div class="row d-flex justify-content-around">
-                    <button class="btn bg-info mx-2 col-5 rounded">Add a passenger</button>
-                    <button class="btn bg-info mx-2 col-5 rounded">Remove a passenger</button>
-                </div>
-                <div class="row">
-                    <button class="btn bg-success mt-3 mx-auto col-5">Add to bag</button>
+            <div class="col-xl-8 mb-3 mx-auto">
+                <h5 class="mt-md-3 text-center">BOOK YOUR SPOT!</h5>
+                <div class="border border-black p-2">
+                    <h5>{{ tour }} x3 (779.97€)</h5>
+                    <div class="row d-flex justify-content-around">
+                        <button class="btn bg-info mx-2 col-5 rounded">Add a passenger</button>
+                        <button class="btn bg-info mx-2 col-5 rounded">Remove a passenger</button>
+                    </div>
+                    <div class="row">
+                        <button class="btn bg-success mt-3 mx-auto col-5">Add to bag</button>
+                    </div>
                 </div>
             </div>
         </div>
+        <aside class="col-md-5">
+            <img class="col-12 tour-img" src="{{tour.image_1.url}}" alt="Nice photograph">
+            <br>
+            <img class="col-12 tour-img" src="{{tour.image_2.url}}" alt="Nice photograph">
+            <br>
+            <img class="col-12 tour-img" src="{{tour.image_3.url}}" alt="Nice photograph">
+        </aside>
     </div>
 </div>
 {% endblock %}
