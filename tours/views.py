@@ -1,6 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Continent, Tour
-from django.views.generic import ListView
 
 def continents(request):
     """Returns the continents page"""
@@ -19,7 +18,6 @@ def tours(request):
     tours = Tour.objects.all()
     continent = None
 
-
     if request.GET:
         if 'continent' in request.GET:
             continent = request.GET['continent'].split(',')
@@ -30,5 +28,17 @@ def tours(request):
         'current_continent': continent,
         'tours': tours
     }
-        
+
     return render(request, 'tours/tours.html', context)
+
+
+def tour_detail(request, tour_id):
+    """Returns the detailed tour page"""
+
+    tour = get_object_or_404(Tour, pk=tour_id)
+
+    context = {
+        'tour': tour,
+    }
+
+    return render(request, 'tours/tour_detail.html', context)
