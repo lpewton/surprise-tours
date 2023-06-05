@@ -17,7 +17,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{ tour }}</h5>
                 <p class="card-text">{{ tour.start_date}} - {{ tour.end_date }}</p>
-                <p class="card-text text-end h5">{{ tour.price|floatformat:2 }}€</p>
+                <p class="card-text text-end h5">{{ tour.price|floatformat:2 }}€/pp</p>
                 <a href="{% url 'tour_detail' tour.id %}" class="btn btn-primary">Check it out!</a>
             </div>
         </div>
