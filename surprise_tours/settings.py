@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'home',
     'tours',
+    'bag',
 ]
 
 MESSAGE_TAGS = {
