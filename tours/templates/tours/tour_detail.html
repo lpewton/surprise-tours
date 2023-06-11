@@ -34,11 +34,22 @@
             </div>
         </div>
         <aside class="col-md-5">
+            {% if tour.image_1 %}
             <img class="col-12 tour-img" src="{{tour.image_1.url}}" alt="Nice photograph">
+            {% else %}
+            <img class="col-12 tour-img" src="{{ MEDIA_URL }}food_img.jpg" alt="International food">
+            {% endif %}
             <br>
+            {% if tour.image_2 %}
             <img class="col-12 tour-img" src="{{tour.image_2.url}}" alt="Nice photograph">
-            <br>
+            {% else %}
+            <img class="col-12 tour-img" src="{{ MEDIA_URL }}suitcase.png" alt="Woman with suitcase">
+            {% endif %} <br>
+            {% if tour.image_3 %}
             <img class="col-12 tour-img" src="{{tour.image_3.url}}" alt="Nice photograph">
+            {% else %}
+            <img class="col-12 tour-img" src="{{ MEDIA_URL }}plane.jpg" alt="Airplane Wing">
+            {% endif %}
         </aside>
     </div>
 </div>
