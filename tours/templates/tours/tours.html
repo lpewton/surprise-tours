@@ -2,28 +2,37 @@
 {% load static %}
 
 {% block content %}
-<div class="sort-select-wrapper w-50">
-    <select id="sort-selector"
-        class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
-        <option value="reset" {% if current_sorting=='None_None' %}selected{% endif %}>Sort by...</option>
-        <option value="price_asc" {% if current_sorting=='price_asc' %}selected{% endif %}>Price (low to high)</option>
-        <option value="price_desc" {% if current_sorting=='price_desc' %}selected{% endif %}>Price (high to low)
-        </option>
-        <option value="rating_asc" {% if current_sorting=='rating_asc' %}selected{% endif %}>Rating (low to high)
-        </option>
-        <option value="rating_desc" {% if current_sorting=='rating_desc' %}selected{% endif %}>Rating (high to low)
-        </option>
-        <option value="name_asc" {% if current_sorting=='name_asc' %}selected{% endif %}>Name (A-Z)</option>
-        <option value="name_desc" {% if current_sorting=='name_desc' %}selected{% endif %}>Name (Z-A)</option>
-        <option value="start_asc" {% if current_sorting=='start_asc' %}selected{% endif %}>Dates (Closer to further)
-        </option>
-        <option value="start_desc" {% if current_sorting=='start_desc' %}selected{% endif %}>Dates (Further to closer)
-        </option>
-
-    </select>
-</div>
-
 <div class="container">
+
+    <div class="sort-select-wrapper float-end">
+        <select id="sort-selector"
+            class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
+            <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
+            <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Sorted by name (A-Z)
+            </option>
+            <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Sorted by name (Z-A)
+            </option>
+            <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Sorted by price (low to
+                high)</option>
+            <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Sorted by price (high
+                to low)
+            </option>
+            <option value="start_asc" {% if current_sorting == 'start_asc' %}selected{% endif %}>Sorted by date (Closer to
+                further)
+            </option>
+            <option value="start_desc" {% if current_sorting == 'start_desc' %}selected{% endif %}>Sorted by date (Further
+                to closer)
+            </option>
+            <option value="rating_asc" {% if current_sorting == 'rating_asc' %}selected{% endif %}>Sorted by rating (low
+                to high)
+            </option>
+            <option value="rating_desc" {% if current_sorting == 'rating_desc' %}selected{% endif %}>Sorted by rating
+                (high to low)
+            </option>
+
+        </select>
+    </div>
+
     {% if current_continent %}
     {% for continent in current_continent %}
     <h4 class="text-uppercase mt-3">{{ continent }}</h4>
