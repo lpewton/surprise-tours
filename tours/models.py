@@ -29,3 +29,8 @@ class Tour(models.Model):
 
     def __str__(self):
         return self.name
+
+    def length(self):
+        length = self.end_date - self.start_date
+
+        return length

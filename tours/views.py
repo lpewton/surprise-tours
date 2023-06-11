@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.db.models import Q
 from django.contrib import messages
+from django.db.models.functions import Lower
 
 from .models import Continent, Tour
 
@@ -16,16 +17,29 @@ def continents(request):
 
 
 def tours(request):
-    """Returns the tours page for each requested continent and search functionality"""
+    """Returns the tours page for each requested continent and search/sort functionality"""
 
     tours = Tour.objects.all()
     continent = None
+    sort = None
+    direction = None
 
     if request.GET:
         if 'continent' in request.GET:
             continent = request.GET['continent'].split(',')
             tours = tours.filter(continent__continent__in=continent)
             continent = Continent.objects.filter(continent__in=continent)
+
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            sort = sortkey
+            if sortkey == 'name':
+                sortkey = 'lower_name'
+                tours = tours.annotate(lower_name=Lower('name'))
+            if sortkey == 'continent':
+                sortkey = 'continent__name'
+            
+            tours = tours.order_by(sortkey)
 
         if 'q' in request.GET:
             query = request.GET['q']
@@ -36,9 +50,12 @@ def tours(request):
             queries = Q(name__icontains=query) | Q(location__icontains=query) | Q(start_date__icontains=query) | Q(end_date__icontains=query)
             tours = tours.filter(queries)
 
+    current_sorting = f'{sort}_{direction}'
+
     context = {
         'current_continent': continent,
-        'tours': tours
+        'tours': tours,
+        'current_sorting': current_sorting,
     }
 
     return render(request, 'tours/tours.html', context)
