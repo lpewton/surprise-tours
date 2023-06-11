@@ -13,8 +13,8 @@ class Tour(models.Model):
     name = models.CharField(max_length=200)
     location = models.CharField(max_length=50)
     continent = models.ForeignKey(Continent, on_delete=models.CASCADE)
-    start_date = models.DateField()
-    end_date = models.DateField()
+    start = models.DateField()
+    end = models.DateField()
     slots = models.PositiveIntegerField(
         validators=[MinValueValidator(1)], default=1)
     slots_left = models.PositiveIntegerField(default=1)
@@ -31,6 +31,6 @@ class Tour(models.Model):
         return self.name
 
     def length(self):
-        length = self.end_date - self.start_date
+        length = self.end - self.start
 
         return length

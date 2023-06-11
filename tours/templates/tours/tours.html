@@ -15,10 +15,10 @@
         </option>
         <option value="name_asc" {% if current_sorting=='name_asc' %}selected{% endif %}>Name (A-Z)</option>
         <option value="name_desc" {% if current_sorting=='name_desc' %}selected{% endif %}>Name (Z-A)</option>
-        <option value="length_asc" {% if current_sorting=='length_asc' %}selected{% endif %}>Length of Stay (less to
-            more)</option>
-        <option value="length_desc" {% if current_sorting=='length_desc' %}selected{% endif %}>Length of Stay (more to
-            less)</option>
+        <option value="start_asc" {% if current_sorting=='start_asc' %}selected{% endif %}>Dates (Closer to further)
+        </option>
+        <option value="start_desc" {% if current_sorting=='start_desc' %}selected{% endif %}>Dates (Further to closer)
+        </option>
 
     </select>
 </div>
@@ -37,7 +37,7 @@
             <img src="{{ tour.image_1.url }}" class="card-img-top tour-img pt-1" alt="Tour Image">
             <div class="card-body">
                 <h5 class="card-title">{{ tour }}</h5>
-                <p class="card-text">{{ tour.start_date}} - {{ tour.end_date }}</p>
+                <p class="card-text">{{ tour.start }} - {{ tour.end }}</p>
                 <p class="card-text text-end h5">{{ tour.price|floatformat:2 }}€/pp</p>
                 <a href="{% url 'tour_detail' tour.id %}" class="btn btn-primary">Check it out!</a>
             </div>
@@ -45,5 +45,32 @@
         {% endfor %}
     </div>
 </div>
+
+{% endblock %}
+
+{% block postloadjs %}
+
+<script type="text/javascript">
+    $('#sort-selector').change(function () {
+        var selector = $(this);
+        var currentUrl = new URL(window.location);
+
+        var selectedVal = selector.val();
+        if (selectedVal != "reset") {
+            var sort = selectedVal.split("_")[0];
+            var direction = selectedVal.split("_")[1];
+
+            currentUrl.searchParams.set("sort", sort);
+            currentUrl.searchParams.set("direction", direction);
+
+            window.location.replace(currentUrl);
+        } else {
+            currentUrl.searchParams.delete("sort");
+            currentUrl.searchParams.delete("direction");
+
+            window.location.replace(currentUrl);
+        }
+    })
+</script>
 
 {% endblock %}

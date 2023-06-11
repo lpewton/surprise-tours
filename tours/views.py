@@ -33,12 +33,18 @@ def tours(request):
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
             sort = sortkey
-            if sortkey == 'name':
-                sortkey = 'lower_name'
-                tours = tours.annotate(lower_name=Lower('name'))
+            if sortkey == 'location':
+                sortkey = 'lower_location'
+                tours = tours.annotate(lower_location=Lower('location'))
             if sortkey == 'continent':
                 sortkey = 'continent__name'
             
+            tours = tours.order_by(sortkey)
+
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sortkey = f'-{sortkey}'
             tours = tours.order_by(sortkey)
 
         if 'q' in request.GET:

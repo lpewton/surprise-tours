@@ -14,10 +14,10 @@
     <div class="row d-flex">
         <div class="col-md-7 pt-md-5">
             <h5>START/END: {{ tour.location }}</h5>
-            <h5>DATES: {{ tour.start_date }} - {{ tour.end_date }}</h5>
+            <h5>DATES: {{ tour.start }} - {{ tour.end }}</h5>
             <h5>SLOTS LEFT: {{ tour.slots_left }}/{{ tour.slots }}</h5>
             <p class="border border-black p-2">{{ tour.description }}</p>
-            <h5 class="text-end">{{ tour.price }}€/pp</h5>
+            <h5 class="text-end">{{ tour.price|floatformat:2 }}€/pp</h5>
             <hr>
             <div class="col-xl-8 mb-3 mx-auto">
                 <h5 class="mt-md-3 text-center">BOOK YOUR SPOT!</h5>
