@@ -7,7 +7,6 @@
     <div class="sort-select-wrapper float-end">
         <select id="sort-selector"
             class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
-            <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
             <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Sorted by name (A-Z)
             </option>
             <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Sorted by name (Z-A)

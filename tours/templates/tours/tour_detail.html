@@ -21,16 +21,24 @@
             <hr>
             <div class="col-xl-8 mb-3 mx-auto">
                 <h5 class="mt-md-3 text-center">BOOK YOUR SPOT!</h5>
-                <div class="border border-black p-2">
-                    <h5>{{ tour }} x<span id="tour_quantity">1</span> (<span id="added_price">{{ tour.price|floatformat:2 }}</span>€)</h5>
-                    <div class="row d-flex justify-content-around">
-                        <button id="add_passenger" class="btn bg-info mx-2 col-5 rounded">Add a passenger</button>
-                        <button id="remove_passenger" class="btn bg-info mx-2 col-5 rounded">Remove a passenger</button>
+
+                <form action="#" method="POST">
+                    {% csrf_token %}
+                    <div class="border border-black p-2">
+                        <h5>{{ tour }} x<input type="text" readonly disabled class="border-0 w-25 text-dark"
+                                id="tour_quantity" value="1"><span class="float-end">
+                                (<span id="added_price">{{ tour.price|floatformat:2 }}</span>€)</span> </h5>
+                        <div class="row d-flex justify-content-around">
+                            <button type="button" id="add_passenger" class="btn bg-info mx-2 col-5 rounded">Add a
+                                passenger</button>
+                            <button type="button" id="remove_passenger" class="btn bg-info mx-2 col-5 rounded">Remove a
+                                passenger</button>
+                        </div>
+                        <div class="row">
+                            <button type="submit" class="btn bg-success mt-3 mx-auto col-5">Add to bag</button>
+                        </div>
                     </div>
-                    <div class="row">
-                        <button class="btn bg-success mt-3 mx-auto col-5">Add to bag</button>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
         <aside class="col-md-5">
@@ -63,19 +71,21 @@
 
     passenger_quantity = 1
 
+    // Add a passenger to the tour detail
     function addPassenger() {
         passenger_quantity += 1
         let passengers = document.getElementById("tour_quantity");
-        passengers.innerHTML = `${passenger_quantity}`;
+        passengers.value = `${passenger_quantity}`;
         updatePrice();
     }
 
+    // Remove a passenger from the tour detail
     function removePassenger() {
         passenger_quantity -= 1
         passengers = document.getElementById("tour_quantity");
         removePassenger = document.getElementById('remove_passenger')
 
-        passengers.innerHTML = `${passenger_quantity}`;
+        passengers.value = `${passenger_quantity}`;
         updatePrice();
 
         if (passenger_quantity == 0) {
@@ -83,6 +93,7 @@
         }
     }
 
+    // Change product price depending on number of passengers
     function updatePrice() {
         let tour_price = document.getElementById("tour_price").innerText;
         let price = document.getElementById("added_price");
