@@ -17,15 +17,16 @@
             <h5>DATES: {{ tour.start }} - {{ tour.end }}</h5>
             <h5>SLOTS LEFT: {{ tour.slots_left }}/{{ tour.slots }}</h5>
             <p class="border border-black p-2">{{ tour.description }}</p>
-            <h5 class="text-end">{{ tour.price|floatformat:2 }}€/pp</h5>
+            <h5 class="text-end"><span id="tour_price">{{ tour.price|floatformat:2 }}</span>€/pp</h5>
             <hr>
             <div class="col-xl-8 mb-3 mx-auto">
                 <h5 class="mt-md-3 text-center">BOOK YOUR SPOT!</h5>
                 <div class="border border-black p-2">
-                    <h5>{{ tour }} x0 (0€)</h5>
+                    <h5>{{ tour }} x<span id="tour_quantity">1</span> (<span id="added_price">{{
+                            tour.price|floatformat:2 }}</span>€)</h5>
                     <div class="row d-flex justify-content-around">
-                        <button class="btn bg-info mx-2 col-5 rounded">Add a passenger</button>
-                        <button class="btn bg-info mx-2 col-5 rounded">Remove a passenger</button>
+                        <button id="add_passenger" class="btn bg-info mx-2 col-5 rounded">Add a passenger</button>
+                        <button id="remove_passenger" class="btn bg-info mx-2 col-5 rounded">Remove a passenger</button>
                     </div>
                     <div class="row">
                         <button class="btn bg-success mt-3 mx-auto col-5">Add to bag</button>
@@ -53,4 +54,37 @@
         </aside>
     </div>
 </div>
+{% endblock %}
+
+{% block postloadjs %}
+
+<script type="text/javascript">
+    document.getElementById("add_passenger").addEventListener("click", addPassenger);
+    document.getElementById("remove_passenger").addEventListener("click", removePassenger);
+
+    passenger_quantity = 1
+
+    function addPassenger() {
+        passenger_quantity += 1
+        let passengers = document.getElementById("tour_quantity");
+        passengers.innerHTML = `${passenger_quantity}`;
+        updatePrice();
+    }
+
+    function removePassenger() {
+        passenger_quantity -= 1
+        let passengers = document.getElementById("tour_quantity");
+        passengers.innerHTML = `${passenger_quantity}`;
+        updatePrice();
+    }
+
+    function updatePrice() {
+        let tour_price = document.getElementById("tour_price").innerText;
+        let price = document.getElementById("added_price");
+
+        let total_price = passenger_quantity * tour_price;
+        price.innerHTML = parseFloat(total_price).toFixed(2);
+    }
+</script>
+
 {% endblock %}
