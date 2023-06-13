@@ -38,7 +38,7 @@
                                 passenger</button>
                         </div>
                         <div class="row">
-                            <button type="submit" class="btn bg-success mt-3 mx-auto col-5">Add to bag</button>
+                            <button id="add_to_bag_btn" type="submit" class="btn bg-success mt-3 mx-auto col-5">Add to bag</button>
                         </div>
                     </div>
                 </form>
@@ -87,13 +87,16 @@
     function removePassenger() {
         passenger_quantity -= 1
         passengers = document.getElementById("tour_quantity");
-        removePassenger = document.getElementById('remove_passenger')
+        removePassenger = document.getElementById('remove_passenger');
+        addToBagBtn = document.getElementById('add_to_bag_btn');
+        
 
         passengers.value = `${passenger_quantity}`;
         updatePrice();
 
         if (passenger_quantity == 0) {
             removePassenger.disabled = true;
+            addToBagBtn.disabled = true;
         }
     }
 
@@ -101,10 +104,13 @@
     function updatePrice() {
         let tour_price = document.getElementById("tour_price").innerText;
         let price = document.getElementById("added_price");
+        addToBagBtn = document.getElementById('add_to_bag_btn');
+
 
         let total_price = passenger_quantity * tour_price;
         price.innerHTML = parseFloat(total_price).toFixed(2);
         removePassenger.disabled = false;
+        addToBagBtn.disabled = false;
     }
 </script>
 
