@@ -5,13 +5,6 @@ from django.http import HttpResponseRedirect
 from tours.models import Tour
 from .contexts import *
 
-def bag(request):
-    """Returns the bag page"""
-    cart = bag_items.objects.all()
-
-
-    return render(request, 'bag/bag.html') 
-
 def add_to_bag(request, tour_id):
     """Add a product and it's quantity to the bag"""
 
@@ -26,7 +19,14 @@ def add_to_bag(request, tour_id):
         bag[tour_id] = quantity    
         messages.success(request, (f'Added {tour.name} to your bag'))
     
+    tour.slots_left -= quantity
+    tour.save()
     request.session['bag'] = bag
-    print(bag)
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+def bag(request):
+    """Returns the bag page"""
+
+    return render(request, 'bag/bag.html') 
