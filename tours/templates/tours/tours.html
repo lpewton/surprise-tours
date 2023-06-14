@@ -42,7 +42,16 @@
     <div class="row d-flex justify-content-around">
         {% for tour in tours %}
         <div class="card mb-2" style="width: 18rem;">
-            <img src="{{ tour.image_1.url }}" class="card-img-top tour-img pt-1" alt="Tour Image">
+            <div>
+                <img src="{{ tour.image_1.url }}" class="card-img-top tour-img pt-1" alt="Tour Image">
+                {% if tour.slots_left == 0 %}
+                <p class="bg-dark p-2 me-3 tour-characteristic text-light">Sold Out</p>
+                {% elif tour.slots_left < 5 %} <p class="bg-danger p-2 me-3 tour-characteristic">Only {{ tour.slots_left }}
+                    slots left!</p>
+                    {% elif tour.rating > 9 %}
+                    <p class="bg-success p-2 me-3 tour-characteristic">Tourist favourite!</p>
+                    {% endif %}
+            </div>
             <div class="card-body">
                 <h5 class="card-title">{{ tour }}</h5>
                 <p class="card-text">{{ tour.start }} - {{ tour.end }}</p>
@@ -53,11 +62,11 @@
         {% endfor %}
     </div>
 </div>
-
+    
 {% endblock %}
-
+    
 {% block postloadjs %}
-
+    
 <script type="text/javascript">
     $('#sort-selector').change(function () {
         var selector = $(this);
@@ -80,5 +89,5 @@
         }
     })
 </script>
-
+    
 {% endblock %}
