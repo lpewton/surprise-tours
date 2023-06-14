@@ -50,6 +50,10 @@
                 </div>
                 {% endif %}
             </div>
+            <div class="text-center">
+                <a href="{% url 'tours' %}" class="btn text-light bg-dark">Book more Tours!</a>
+                <a href="{% url 'bag' %}" class="btn text-light bg-dark">Check Out</a>
+            </div>
         </div>
         <aside class="col-md-5">
             {% if tour.image_1 %}

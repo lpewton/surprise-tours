@@ -89,6 +89,8 @@ TEMPLATES = [
     },
 ]
 
+SESSION_COOKIE_AGE = 3600
+
 WSGI_APPLICATION = 'surprise_tours.wsgi.application'
 
 
