@@ -33,4 +33,4 @@ class Tour(models.Model):
     def length(self):
         length = self.end - self.start
 
-        return length
+        return length.days

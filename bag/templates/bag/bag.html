@@ -2,8 +2,32 @@
 {% load static %}
 
 {% block content %}
-<h1>HEELLO</h1>
-{% for tour in bag_items %}
-<p>{{ tour.tour }} x{{ tour.quantity }}</p>
-{% endfor %}
+<div class="container">
+    <h4>SHOPPING BAG</h4>
+    {% for tour in bag_items %}
+    <div class="row">
+        <div class="col-4">
+            <img src="{{ tour.tour.image_1.url }}" class="card-img-top tour-img pt-1" alt="Tour Image">
+        </div>
+        <div class="col-4 my-auto">
+            <h5 class="text-uppercase">{{ tour.tour.length }} nights in {{ tour.tour.location }}</h5>
+            <h5 class="text-uppercase">{{ tour.tour.start }} - {{ tour.tour.end }}</h5>
+        </div>
+        <div class="col-4 my-auto">
+            <h3>x{{ tour.quantity }} = {{ tour.tour_total|floatformat:2 }}€</h3>
+            <div>
+                <a href="" class="text-success">Add passengers</a>
+                <a href="" class="text-danger">Remove from bag</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="row">
+        <h3 class="mt-3 col-4">TOTAL: {{ total|floatformat:2 }}€</h3>
+        <div class="col-6">
+            <a href="" class="btn btn-outline-dark">Check Out</a>
+            <a href="" class="btn btn-outline-success">Book more Tours!</a>
+        </div>
+    </div>
+</div>
 {% endblock %}

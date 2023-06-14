@@ -13,16 +13,19 @@ def bag_contents(request):
 
     for tour_id, quantity in bag.items():
         tour = get_object_or_404(Tour, pk=tour_id)
-        total += quantity * tour.price
+        tour_total = quantity * tour.price
+        total += tour_total
         product_count += quantity
         bag_items.append({
             'tour_id': tour_id,
             'quantity': quantity,
             'tour': tour,
+            'tour_total': tour_total,
         })
 
     context = {
         'bag_items': bag_items,
+        'total': total,
     }
 
     return context

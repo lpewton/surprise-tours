@@ -5,6 +5,13 @@ from django.http import HttpResponseRedirect
 from tours.models import Tour
 from .contexts import *
 
+
+def bag(request):
+    """Returns the bag page"""
+
+    return render(request, 'bag/bag.html')
+
+
 def add_to_bag(request, tour_id):
     """Add a product and it's quantity to the bag"""
 
@@ -24,9 +31,3 @@ def add_to_bag(request, tour_id):
     request.session['bag'] = bag
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
-
-def bag(request):
-    """Returns the bag page"""
-
-    return render(request, 'bag/bag.html') 
