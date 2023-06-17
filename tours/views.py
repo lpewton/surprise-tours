@@ -80,10 +80,20 @@ def tour_detail(request, tour_id):
     return render(request, 'tours/tour_detail.html', context)
 
 def add_tour(request):
-    
     form = TourForm()
     context = {
         'form': form
     }
+
+    if request.method == 'POST':
+        form = TourForm(request.POST, request.FILES)
+        if form.is_valid():
+            tour = form.save()
+            messages.success(request, 'Tour added correctly')
+            return redirect(reverse('tour_detail', args=[tour.id]))
+        else:
+            error_message = form.errors.as_text()
+            messages.error(request, error_message)
+            return redirect('add_tour')
 
     return render(request, 'tours/add_tour.html', context)

@@ -18,11 +18,11 @@ class Tour(models.Model):
     slots = models.PositiveIntegerField(
         validators=[MinValueValidator(1)], default=1)
     slots_left = models.PositiveIntegerField(default=1)
-    description = models.CharField(max_length=254)
     rating = models.FloatField(
         validators=[MinValueValidator(0)], default=0)
     price = models.FloatField(
         validators=[MinValueValidator(0)], default=100)
+    description = models.CharField(max_length=254)
     image_1 = models.ImageField(null=True, blank=True)
     image_2 = models.ImageField(null=True, blank=True)
     image_3 = models.ImageField(null=True, blank=True)
