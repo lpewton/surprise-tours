@@ -77,3 +77,7 @@ def tour_detail(request, tour_id):
     }
 
     return render(request, 'tours/tour_detail.html', context)
+
+def add_tour(request):
+    
+    return render(request, 'tours/add_tour.html')
