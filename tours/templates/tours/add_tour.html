@@ -3,25 +3,22 @@
 
 {% block content %}
 <div class="container">
-    <h4 class="text-center">Add a Tour</h4>
+    <h4 class="text-center p-3">Add a Tour</h4>
     <div class="text-center">
-        <form class="d-flex" action="{% url 'add_tour' %}" method="POST">
+        <form class="d-flex justify-content-around flex-wrap" action="{% url 'add_tour' %}" method="POST">
             {% csrf_token %}
             {% for field in form %}
-            <div class="col-6">
-                <p>{{ field.name }}</p>
-                {{ field }}
-                {% if forloop.counter|divisibleby:2 %}
-                <hr>
-                <div class="row">
-
+                <div class="row col-md-4 px-2 mb-5">
+                    <p>{{ field.label }}:</p>
+                    {{ field }}
                 </div>
-                {% endif %}
-            </div>
-
+                    {% if field.name == 'price' %}
+                    <hr class="w-100">
+                    {% endif %}
             {% endfor %}
-            <hr>
-            <button type="submit">Add Tour</button>
+            <div class="">
+                <button type="submit">Add Tour</button>
+            </div>
         </form>
     </div>
 </div>
