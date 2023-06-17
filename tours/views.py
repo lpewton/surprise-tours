@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.db.models.functions import Lower
 
 from .models import Continent, Tour
+from .forms import TourForm
 
 def continents(request):
     """Returns the continents page"""
@@ -80,4 +81,9 @@ def tour_detail(request, tour_id):
 
 def add_tour(request):
     
-    return render(request, 'tours/add_tour.html')
+    form = TourForm()
+    context = {
+        'form': form
+    }
+
+    return render(request, 'tours/add_tour.html', context)

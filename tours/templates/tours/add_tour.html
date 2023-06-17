@@ -3,6 +3,27 @@
 
 {% block content %}
 <div class="container">
-    <h1>Hello there</h1>
+    <h4 class="text-center">Add a Tour</h4>
+    <div class="text-center">
+        <form class="d-flex" action="{% url 'add_tour' %}" method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="col-6">
+                <p>{{ field.name }}</p>
+                {{ field }}
+                {% if forloop.counter|divisibleby:2 %}
+                <hr>
+                <div class="row">
+
+                </div>
+                {% endif %}
+            </div>
+
+            {% endfor %}
+            <hr>
+            <button type="submit">Add Tour</button>
+        </form>
+    </div>
 </div>
+
 {% endblock %}

@@ -14,15 +14,16 @@
         </div>
         {% if forloop.counter|divisibleby:3 %}
         <div class="row d-flex justify-content-around mb-3">
-            {% endif %}
-            {% endfor %}
+        {% endif %}
+        {% endfor %}
             <div class="continent-div m-3" id="anywhere-div">
-                <a href="{% url 'tours' %}?sort=price&direction=asc" class="my-3 w-75 text-decoration-none" id="anywhere-div">
+                <a href="{% url 'tours' %}?sort=price&direction=asc" class="my-3 w-75 text-decoration-none"
+                    id="anywhere-div">
                     <h4 class="text-light text-center bg-success"><strong>ANYWHERE</strong></h4>
                 </a>
             </div>
         </div>
     </div>
-    </div>
+</div>
 </div>
 {% endblock %}
