@@ -10,9 +10,11 @@
             {% for field in form %}
             {% if field.name == 'start' or field.name == 'end' %}
             <div class="row col-md-4 px-2 mb-5">
-                <p>{{ field.label }} (MM/DD/YYYY):</p>
-                <p>{{ field }}</p>
-            </div>
+                <p>{{ field.label }}:</p>
+                <p>
+                <input type="date" name="{{ field.html_name }}" id="{{ field.id_for_label }}">
+            </p>
+                 </div>
             {% elif field.name == 'description' %}
             <div class="row col-md-4 px-2 mb-5">
                 <p>{{ field.label }}:</p>

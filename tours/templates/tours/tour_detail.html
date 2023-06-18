@@ -15,7 +15,13 @@
         <div class="col-md-7 pt-md-5">
             <h5>START/END: {{ tour.location }}</h5>
             <h5>DATES: {{ tour.start }} - {{ tour.end }}</h5>
-            <h5>SLOTS LEFT: {{ tour.slots_left }}/{{ tour.slots }}</h5>
+            <div class="row">
+                <h5 class="col-6">SLOTS LEFT: {{ tour.slots_left }}/{{ tour.slots }}</h5>
+                {% if user.is_staff %}
+                <p class="text-end col-6 ps-0"><a href="" class="text-success">Edit tour</a> | <a href=""
+                        class="text-danger">Remove tour</a></p>
+                {% endif %}
+            </div>
             <p class="border border-black p-2">{{ tour.description }}</p>
             <h5 class="text-end"><span id="tour_price">{{ tour.price|floatformat:2 }}</span>€/pp</h5>
             <hr>
