@@ -79,6 +79,7 @@ def tour_detail(request, tour_id):
 
     return render(request, 'tours/tour_detail.html', context)
 
+
 def add_tour(request):
     form = TourForm()
     context = {
@@ -98,11 +99,42 @@ def add_tour(request):
 
     return render(request, 'tours/add_tour.html', context)
 
+
 def remove_tour(request, tour_id):
+    """ Remove one of the tours """
     tour = get_object_or_404(Tour, pk=tour_id)
 
     tour.delete()
     
     return redirect('tours')
+
+
+def edit_tour(request, tour_id):
+    """ Edit one of the tours """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    tour = get_object_or_404(Tour, pk=tour_id)
+    
+    if request.method == 'POST':
+        form = TourForm(request.POST, request.FILES, instance=tour)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Tour updated correctly')
+            return redirect(reverse('tour_detail', args=[tour.id]))
+        else:
+            messages.error(request, 'Failed to update tour. Please ensure the form is valid.')
+    
+    else:
+        form = TourForm(instance=tour)
+    
+    context = {
+        'form': form,
+        'tour': tour,
+    }
+
+    return render(request, 'tours/edit_tour.html', context)
+
 
 

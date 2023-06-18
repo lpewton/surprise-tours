@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h4 class="text-center p-3">Editing {{ tour }}</h4>
+    <div class="text-center">
+        <form class="d-flex justify-content-around flex-wrap" action="{% url 'edit_tour' tour.id %}" method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+            {% if field.name == 'start' or field.name == 'end' %}
+            <div class="row col-md-4 px-2 mb-5">
+                <p>{{ field.label }}:</p>
+                <p>
+                    <input type="date" name="{{ field.html_name }}" value="{{ field.value|date:'Y-m-d' }}">
+                </p>
+            </div>
+            {% elif field.name == 'description' %}
+            <div class="row col-md-4 px-2 mb-5">
+                <p>{{ field.label }}:</p>
+                <textarea name="{{ field.html_name }}"
+                    style="height: 150px;">{% if field.value %}{{ field.value }} {% else %} Description {% endif %} </textarea>
+                <hr class="w-100">
+                {% else %}
+                <div class="row col-md-4 px-2 mb-5">
+                    <p>{{ field.label }}:</p>
+                    <p>{{ field }}</p>
+                </div>
+                {% endif %}
+                {% endfor %}
+                <div class="">
+                    <button type="submit">Edit Tour</button>
+                </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
