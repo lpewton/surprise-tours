@@ -18,8 +18,10 @@
             <div class="row">
                 <h5 class="col-6">SLOTS LEFT: {{ tour.slots_left }}/{{ tour.slots }}</h5>
                 {% if user.is_staff %}
-                <p class="text-end col-6 ps-0"><a href="" class="text-success">Edit tour</a> | <a href=""
-                        class="text-danger">Remove tour</a></p>
+                <p class="text-end col-6 ps-0">
+                    <a href="" class="text-success">Edit tour</a> | <a href="{% url 'remove_tour' tour.id %}"
+                        class="text-danger">Remove tour</a>
+                </p>
                 {% endif %}
             </div>
             <p class="border border-black p-2">{{ tour.description }}</p>

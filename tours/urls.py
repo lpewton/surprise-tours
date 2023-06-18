@@ -6,4 +6,5 @@ urlpatterns = [
     path('tours/', views.tours, name='tours'),
     path('<int:tour_id>/', views.tour_detail, name='tour_detail'),
     path('add_tour/', views.add_tour, name='add_tour'),
+    path('remove_tour/<int:tour_id>', views.remove_tour, name='remove_tour'),
 ]

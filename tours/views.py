@@ -97,3 +97,12 @@ def add_tour(request):
             return redirect('add_tour')
 
     return render(request, 'tours/add_tour.html', context)
+
+def remove_tour(request, tour_id):
+    tour = get_object_or_404(Tour, pk=tour_id)
+
+    tour.delete()
+    
+    return redirect('tours')
+
+

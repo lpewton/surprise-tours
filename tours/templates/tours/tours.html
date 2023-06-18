@@ -47,7 +47,8 @@
                 <img class="col-12 tour-img" src="{{tour.image_1.url}}" alt="Nice photograph">
                 {% else %}
                 <img class="col-12 tour-img" src="{{ MEDIA_URL }}plane.jpg" alt="Airplane Wing">
-                {% endif %}                {% if tour.slots_left == 0 %}
+                {% endif %}                
+                {% if tour.slots_left == 0 %}
                 <p class="bg-dark p-2 me-3 tour-characteristic text-light">Sold Out</p>
                 {% elif tour.slots_left < 5 %} <p class="bg-danger p-2 me-3 tour-characteristic">Only {{ tour.slots_left }}
                     slots left!</p>
