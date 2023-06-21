@@ -18,7 +18,7 @@ def add_to_bag(request, tour_id):
     tour = get_object_or_404(Tour, pk=tour_id)
     quantity = int(request.POST.get('tour_quantity'))
     bag = request.session.get('bag', {})
-    expiry_time = calculateExpiryTime(request)
+    expiry_time = calculate_expiry_time(request)
 
     if tour_id in list(bag.keys()):
         bag[tour_id] += quantity    
@@ -31,15 +31,29 @@ def add_to_bag(request, tour_id):
     tour.save()
     request.session['bag'] = bag
 
+
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
-def calculateExpiryTime(request):
+
+def calculate_expiry_time(request):
     
-    cookieAge = 30 #How many seconds it takes for session to expire
+    cookieAge = 3600 #How many seconds it takes for session to expire
     timeNow = timezone.now()
     expiryTime = cookieAge + int(timeNow.timestamp())
 
     print(expiryTime)
 
     return expiryTime
+
+
+def remove_from_bag(request, tour_id):
+    tour = get_object_or_404(Tour, pk=tour_id)
+    bag_items = request.session['bag']
+
+    for bag_tour, quantity in bag_items.items():
+        if int(bag_tour) == int(tour.id):
+            tour.slots_left += quantity
+            tour.save()
+    
+    return render(request, 'bag/bag.html')
     

@@ -112,7 +112,7 @@ ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 
-SESSION_COOKIE_AGE = 15
+SESSION_COOKIE_AGE = 3600
 
 WSGI_APPLICATION = 'surprise_tours.wsgi.application'
 

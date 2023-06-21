@@ -21,8 +21,7 @@
             <p>x{{ tour.quantity }} = {{ tour.tour_total|floatformat:2 }}€</p>
             <div>
                 <a href="" class="text-success">Add passengers</a>
-                <a href="" class="text-danger">Remove from bag</a>
-            </div>
+                <a href="{% url 'remove_from_bag' tour.tour.id %}" class="text-danger">Remove from bag</a>            </div>
         </div>
     </div>
     {% endfor %}
