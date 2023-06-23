@@ -54,6 +54,8 @@ def remove_from_bag(request, tour_id):
         if int(bag_tour) == int(tour.id):
             tour.slots_left += quantity
             tour.save()
-    
-    return render(request, 'bag/bag.html')
-    
+
+    del bag_items[tour_id]
+    request.session['bag'] = bag_items
+
+    return redirect('bag')
