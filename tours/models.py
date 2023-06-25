@@ -22,10 +22,10 @@ class Tour(models.Model):
         validators=[MinValueValidator(0)], default=0)
     price = models.FloatField(
         validators=[MinValueValidator(0)], default=100)
-    description = models.CharField(max_length=254)
     image_1 = models.ImageField(null=True, blank=True)
     image_2 = models.ImageField(null=True, blank=True)
     image_3 = models.ImageField(null=True, blank=True)
+    description = models.CharField(max_length=500)
 
     def __str__(self):
         return self.name
