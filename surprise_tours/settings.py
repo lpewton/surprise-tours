@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'home',
     'tours',
     'bag',
+    'checkout',
 ]
 
 MESSAGE_TAGS = {
