@@ -1,5 +1,9 @@
+import uuid
+
 from django.db import models
+from django.db.models import Sum
 from django_countries.fields import CountryField
+
 
 from tours.models import Tour
 
@@ -34,6 +38,13 @@ class Order(models.Model):
         if not self.order_number:
             self.order_number = self._generate_order_number()
         super().save(*args, **kwargs)
+
+    def update_total(self):
+        """
+        Update grand total each time a line item is added.
+        """
+        self.order_total = self.lineitems.aggregate(total=Sum('item_total'))['total'] or 0
+        self.save()
 
     def __str__(self):
         return self.order_number
