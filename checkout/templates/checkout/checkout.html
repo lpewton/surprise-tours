@@ -32,20 +32,20 @@
 
     <!-- Checkout Form -->
     <h4 class="mt-4">PAYMENT:</h4>
-    <form class="col-5" action="{% url 'checkout' %}" method="POST">
+    <form id="payment-form" class="col-5" action="{% url 'checkout' %}" method="POST">
         {% csrf_token %}
         <fieldset>
             <legend>Buyer Details:</legend>
-            {{ form.full_name | as_crispy_field }}
-            {{ form.email | as_crispy_field }}
-            {{ form.phone_number | as_crispy_field }}
-            {{ form.nationality | as_crispy_field }}
-            {{ form.street_address1 | as_crispy_field }}
-            {{ form.street_address2 | as_crispy_field }}
-            {{ form.town_or_city | as_crispy_field }}
-            {{ form.postcode | as_crispy_field }}
-            {{ form.country | as_crispy_field }}
-            {{ form.county | as_crispy_field }}
+            {{ form.full_name }}
+            {{ form.email }}
+            {{ form.phone_number }}
+            {{ form.nationality }}
+            {{ form.street_address1 }}
+            {{ form.street_address2 }}
+            {{ form.town_or_city }}
+            {{ form.postcode }}
+            {{ form.country }}
+            {{ form.county }}
         </fieldset>
         <div class="form-check form-check-inline float-right mr-0">
             {% if user.is_authenticated %}
@@ -63,16 +63,27 @@
         <hr>
         <fieldset>
             <legend>Payment Details:</legend>
-            <div>
-                STRIPE GOES HERE
+            <div id="card-element">
             </div>
-            <div class="text-danger">
-                STRIPE ERRORS
+            <div id="card-errors" class="text-danger">
             </div>
         </fieldset>
-        <p class="text-danger">*You will now be charged {{ total|floatformat:2 }}€</p>
-        <button>Adjust bag</button>
-        <button>Purchase</button>
+        <p id="charge-quantity" class="text-danger">*You will now be charged {{ total|floatformat:2 }}€</p>
+        <a class="btn" href="{% url 'bag' %}">Adjust bag</a>
+        <button type="submit" id="submit-button" class="btn btn-black rounded-0">
+            <span class="font-weight-bold">Complete Order</span>
+            <span class="icon">
+                <i class="fas fa-lock"></i>
+            </span>
+        </button>
     </form>
 </div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
+    {{ client_secret|json_script:"id_client_secret" }}
+    <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
+
 {% endblock %}
