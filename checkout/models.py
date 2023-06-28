@@ -44,7 +44,10 @@ class Order(models.Model):
         """
         self.order_total = self.lineitems.aggregate(total=Sum('item_total'))['total'] or 0
         self.save()
-
+    
+    def upon_arrival(self):
+        return self.order_total * 9
+    
     def __str__(self):
         return self.order_number
 

@@ -20,17 +20,17 @@
             </ul>
             <li>Purchase Details:</li>
             <ul>{% for tour in order.lineitems.all %}
-                <li>{{ tour.quantity}} ticket{% if tour.quantity > 1 %}s{% endif %} for {{ tour.tour }} (US ${{
-                    tour.item_total }})</li>
+                <li>{{ tour.quantity}} ticket{% if tour.quantity > 1 %}s{% endif %} for {{ tour.tour }} 
+                    (US ${{tour.item_total }})</li>
                 {% endfor %}
             </ul>
         </ul>
-        <p><strong>TOTAL PAYMENT:</strong> US ${{ order.order_total }}</p>
+        <p><strong>TOTAL PAYMENT:</strong> US ${{ order.order_total }} (10% deposit)</p>
     </div>
     <div class="mt-3">
     <p>Thank you for shopping with us, you will shortly receive an email with more instructions on your reservation and
         2 weeks before your trip you will receive another email with detailed instructions on preparations for your
-        trip. Please remember that the rest of the payment is made in person upon meeting your guide.</p>
+        trip. Please remember that the rest of the payment (US ${{ order.upon_arrival }}) is made in person upon meeting your guide.</p>
     <p>Please remember to always travel safe and, most importantly of all, have fun!</p>
 </div>
 </div>
