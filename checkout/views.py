@@ -107,4 +107,8 @@ def checkoutSuccess(request, order_number):
 
     if 'bag' in request.session:
         del request.session['bag']
-    return render(request, 'checkout/checkout-success.html') 
+
+    context = {
+        'order': order
+    }
+    return render(request, 'checkout/checkout-success.html', context) 
