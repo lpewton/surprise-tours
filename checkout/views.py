@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.conf import settings
 from django.views.decorators.http import require_POST
@@ -59,6 +59,9 @@ def checkout(request):
                     )
                     order_item.save()
                     
+                    return redirect(reverse('checkout_success', args=[order.order_number]))
+
+                    
                 except Tour.DoesNotExist:
                     messages.error(request, (
                         "One of the tours is not available anymore! Order cancelled!")
@@ -96,3 +99,12 @@ def checkout(request):
                 'client_secret': intent.client_secret,
             }
             return render(request, 'checkout/checkout.html', context)
+
+def checkoutSuccess(request, order_number):
+    """ Rendered after order is successful """
+    order = get_object_or_404(Order, order_number=order_number)
+    messages.success(request, f'Pack your bags! Your order has been successful')
+
+    if 'bag' in request.session:
+        del request.session['bag']
+    return render(request, 'checkout/checkout-success.html') 
