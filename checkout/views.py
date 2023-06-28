@@ -3,6 +3,8 @@ from django.contrib import messages
 from django.conf import settings
 from django.views.decorators.http import require_POST
 
+from.models import Order, OrderItem
+from tours.models import Tour
 from .forms import OrderForm
 from bag.contexts import bag_contents
 
@@ -27,7 +29,8 @@ def cache_checkout_data(request):
 
 def checkout(request):
     if request.method == 'POST':
-        messages.success(request, "Order beggining")
+
+        bag = request.session.get('bag', {})
         
         form_data = {
             'full_name': request.POST['full_name'],
@@ -45,8 +48,23 @@ def checkout(request):
         order_form = OrderForm(form_data)
 
         if order_form.is_valid:
-            order_form.save()
-            messages.success(request, "Order sent")
+            order = order_form.save()
+            for item_id, item_quantity in bag.items():
+                try:
+                    tour = Tour.objects.get(id=item_id)
+                    order_item = OrderItem(
+                        order=order,
+                        tour=tour,
+                        quantity=item_quantity,
+                    )
+                    order_item.save()
+                    
+                except Tour.DoesNotExist:
+                    messages.error(request, (
+                        "One of the tours is not available anymore! Order cancelled!")
+                    )
+                    order.delete()
+                    return redirect(reverse('bag'))
         
         else:
             messages.error(request, "Something went wrong")
