@@ -41,8 +41,6 @@ def calculate_expiry_time(request):
     timeNow = timezone.now()
     expiryTime = cookieAge + int(timeNow.timestamp())
 
-    print(expiryTime)
-
     return expiryTime
 
 

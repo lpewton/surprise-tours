@@ -51,7 +51,7 @@ class StripeWH_Handler:
 
         billing_details = intent.charges.data[0].billing_details
         shipping_details = intent.shipping
-        grand_total = round(intent.charges.data[0].amount / 100, 2)
+        order_total = round(intent.charges.data[0].amount / 100, 2)
 
         # Clean data in the shipping details
         for field, value in shipping_details.address.items():
@@ -71,6 +71,7 @@ class StripeWH_Handler:
                 profile.default_street_address1 = shipping_details.address.line1
                 profile.default_street_address2 = shipping_details.address.line2
                 profile.default_county = shipping_details.address.state
+                profile.nationality = shipping_details.nationality
                 profile.save()
 
         order_exists = False
@@ -87,7 +88,8 @@ class StripeWH_Handler:
                     street_address1__iexact=shipping_details.address.line1,
                     street_address2__iexact=shipping_details.address.line2,
                     county__iexact=shipping_details.address.state,
-                    grand_total=grand_total,
+                    nationality_iexact=shipping_details.nationality,
+                    order_total=order_total,
                     original_bag=bag,
                     stripe_pid=pid,
                 )
@@ -115,27 +117,19 @@ class StripeWH_Handler:
                     street_address1=shipping_details.address.line1,
                     street_address2=shipping_details.address.line2,
                     county=shipping_details.address.state,
+                    nationality=shipping_details.nationality,
                     original_bag=bag,
                     stripe_pid=pid,
                 )
                 for item_id, item_data in json.loads(bag).items():
                     tour = Tour.objects.get(id=item_id)
-                    if isinstance(item_data, int):
-                        order_line_item = OrderItem(
-                            order=order,
-                            tour=tour,
-                            quantity=item_data,
-                        )
-                        order_line_item.save()
-                    else:
-                        for size, quantity in item_data['items_by_size'].items():
-                            order_line_item = OrderItem(
-                                order=order,
-                                tour=tour,
-                                quantity=quantity,
-                                product_size=size,
-                            )
-                            order_line_item.save()
+                    order_item = OrderItem(
+                        order=order,
+                        tour=tour,
+                        quantity=item_data,
+                    )
+                    order_item.save()
+                    
             except Exception as e:
                 if order:
                     order.delete()
