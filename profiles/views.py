@@ -26,3 +26,6 @@ def MyProfile(request):
         else: 
             messages.error(request, 'Form failed, please try again')
     
+def pastOrders(request):
+    """ Displays the user's past orders """
+    return render(request, "profiles/past-orders.html")

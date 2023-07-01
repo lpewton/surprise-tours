@@ -5,6 +5,7 @@ from django.views.decorators.http import require_POST
 
 from.models import Order, OrderItem
 from tours.models import Tour
+from profiles.models import UserProfile
 from .forms import OrderForm
 from bag.contexts import bag_contents
 
@@ -78,8 +79,6 @@ def checkout(request):
             messages.error(request, "Something went wrong")
         return render(request, 'checkout/checkout.html')
 
-
-
     if request.method == 'GET':
         stripe_public_key = settings.STRIPE_PUBLIC_KEY
         stripe_secret_key = settings.STRIPE_SECRET_KEY
@@ -97,7 +96,18 @@ def checkout(request):
             messages.error(request, "There's nothing in your bag at the moment")
             return redirect(reverse('tours'))
         else:
-            form = OrderForm
+            profile = UserProfile.objects.get(user=request.user)
+            form = OrderForm(initial={
+                    'full_name': profile.user.get_full_name(),
+                    'email': profile.user.email,
+                    'phone_number': profile.profile_phone_number,
+                    'country': profile.profile_country,
+                    'postcode': profile.profile_postcode,
+                    'town_or_city': profile.profile_town_or_city,
+                    'street_address1': profile.profile_street_address1,
+                    'street_address2': profile.profile_street_address2,
+                    'county': profile.profile_county,
+                })            
             context = {
                 'form': form,
                 'stripe_public_key': stripe_public_key,
