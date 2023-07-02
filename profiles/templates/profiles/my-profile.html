@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="container">
-    <h4>MY PROFILE</h4>
+    <h4>MY PROFILE: {{ request.user }}</h4>
     <form action="{% url 'my_profile' %}" method="POST">
         {% csrf_token %}
         {{ form }}

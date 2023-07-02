@@ -28,4 +28,11 @@ def MyProfile(request):
     
 def pastOrders(request):
     """ Displays the user's past orders """
-    return render(request, "profiles/past-orders.html")
+    profile = get_object_or_404(UserProfile, user=request.user)
+    orders = profile.orders.all()
+
+    context = {
+        'orders': orders
+    }
+
+    return render(request, "profiles/past-orders.html", context)
