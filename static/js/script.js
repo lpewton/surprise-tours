@@ -2,13 +2,13 @@ document.addEventListener('DOMContentLoaded', disableAddPassengerBtn);
 document.getElementById("add_passenger").addEventListener("click", addPassenger);
 document.getElementById("remove_passenger").addEventListener("click", removePassenger);
 
-let passengers = document.getElementsByClassName("tour_quantity");
+let passengers = document.getElementById("tour_quantity");
 
 passenger_quantity = 1
 
 function disableAddPassengerBtn() {
-    let passengers = document.getElementsByClassName("tour_quantity").value;
-    let slotsLeft = '{{ tour.slots_left }}';
+    let passengers = document.getElementById("tour_quantity").value;
+    let slotsLeft = document.getElementById("slots_left").innerHTML;
 
     if (parseInt(passengers, 10) >= parseInt(slotsLeft, 10)) {
         document.getElementById('add_passenger').disabled = true;
@@ -19,10 +19,11 @@ function disableAddPassengerBtn() {
 // Add a passenger to the tour detail
 
 function addPassenger() {
-passenger_quantity += 1
-passengers.value = `${passenger_quantity}`;
-updatePrice();
-disableAddPassengerBtn();}
+    passenger_quantity += 1
+    passengers.value = `${passenger_quantity}`;
+    updatePrice();
+    disableAddPassengerBtn();
+}
 
 // Remove a passenger from the tour detail
 function removePassenger() {

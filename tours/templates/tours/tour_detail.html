@@ -16,7 +16,7 @@
             <h5>START/END: {{ tour.location }}</h5>
             <h5>DATES: {{ tour.start }} - {{ tour.end }}</h5>
             <div class="row">
-                <h5 class="col-6">SLOTS LEFT: {{ tour.slots_left }}/{{ tour.slots }}</h5>
+                <h5 class="col-6">SLOTS LEFT: <span id="slots_left">{{ tour.slots_left }}</span>/{{ tour.slots }}</h5>
                 {% if user.is_staff %}
                 <p class="text-end col-6 ps-0">
                     <a href="{% url 'edit_tour' tour.id %}" class="text-success">Edit tour</a> | <a href="{% url 'remove_tour' tour.id %}"
@@ -34,7 +34,7 @@
                     {% csrf_token %}
                     <div class="border border-black p-2">
                         <h5>{{ tour }} x
-                            <input type="text" readonly class="border-0 w-25 text-dark tour_quantity"
+                            <input type="text" readonly class="border-0 w-25 text-dark" id="tour_quantity"
                                 name="tour_quantity" value="1">
                             <span class="float-end">
                                 (<span id="added_price">{{ tour.price|floatformat:2 }}</span>€)

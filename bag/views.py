@@ -18,7 +18,6 @@ def add_to_bag(request, tour_id):
     tour = get_object_or_404(Tour, pk=tour_id)
     quantity = int(request.POST.get('tour_quantity'))
     bag = request.session.get('bag', {})
-    expiry_time = calculate_expiry_time(request)
 
     if tour_id in list(bag.keys()):
         bag[tour_id] += quantity    
@@ -55,11 +54,13 @@ def addPassenger(request, tour_id):
     tour = get_object_or_404(Tour, pk=tour_id)
     bag_items = request.session['bag']
     for bag_tour, quantity in bag_items.items():
-        if int(bag_tour) == int(tour.id):  
-            print(quantity)          
-            quantity += 1
-            print(quantity)          
-            bag_items[bag_tour] = quantity
+        if int(bag_tour) == int(tour.id):
+            if tour.slots_left > quantity:
+                quantity += 1
+                bag_items[bag_tour] = quantity
+            else:
+                messages.error(request, "Sorry, there's no more space in this tour")
+
     request.session['bag'] = bag_items
 
     return redirect('bag')
@@ -70,11 +71,12 @@ def removePassenger(request, tour_id):
     tour = get_object_or_404(Tour, pk=tour_id)
     bag_items = request.session['bag']
     for bag_tour, quantity in bag_items.items():
-        if int(bag_tour) == int(tour.id):  
-            print(quantity)          
-            quantity -= 1
-            print(quantity)          
-            bag_items[bag_tour] = quantity
+        if int(bag_tour) == int(tour.id):
+            if quantity > 1:
+                quantity -= 1
+                bag_items[bag_tour] = quantity
+            else:
+                messages.error(request, "Please remove the tour from your bag if you no longer want to purchase it")
     request.session['bag'] = bag_items
 
     return redirect('bag')
