@@ -81,7 +81,7 @@ def checkout(request):
         
         else:
             messages.error(request, "Something went wrong")
-        return render(request, 'checkout/checkout.html')
+            return render(request, 'checkout/checkout.html')
 
     if request.method == 'GET':
         stripe_public_key = settings.STRIPE_PUBLIC_KEY
@@ -114,7 +114,8 @@ def checkout(request):
                         'county': profile.profile_county,
                     })    
             else:
-                form = OrderForm()         
+                form = OrderForm()
+
             context = {
                 'form': form,
                 'stripe_public_key': stripe_public_key,
