@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
 
 from .forms import UserProfileForm
 from .models import UserProfile
@@ -29,22 +30,31 @@ def MyProfile(request):
     
 def pastOrders(request):
     """ Displays the user's past orders """
-    profile = get_object_or_404(UserProfile, user=request.user)
-    orders = profile.orders.all()
+    if request.user.is_authenticated:
+        profile = get_object_or_404(UserProfile, user=request.user)
+        orders = profile.orders.all()
+        context = {
+            'orders': orders
+        }
+        
+        return render(request, "profiles/past-orders.html", context)
 
-    context = {
-        'orders': orders
-    }
-
-    return render(request, "profiles/past-orders.html", context)
+    else:
+        messages.error(request, 'You are not logged in, please log in to see this information')
+        return render(request, "home/index.html")
 
 
 def orderDetail(request, order_id):
     """ Displays the user's past order details"""
-    order = get_object_or_404(Order, pk=order_id)
+    if request.user.is_authenticated:
+        order = get_object_or_404(Order, pk=order_id)
 
-    context = {
-        'order': order,
-    }
+        context = {
+            'order': order,
+        }
+        return render(request, "profiles/order-detail.html", context)
     
-    return render(request, "profiles/order-detail.html", context)
+    else: 
+        messages.error(request, 'You are not logged in, please log in to see this information')
+        return render(request, "home/index.html")
+    

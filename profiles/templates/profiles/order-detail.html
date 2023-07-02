@@ -2,5 +2,30 @@
 {% load static %}
 
 {% block content %}
-<p>{{ order }}</p>
+<div class="container">
+    <h4>ORDER DETAILS:</h4>
+    <div class="col-6 border border-black p-2">
+        <h6>Order {{ order }}</h6>
+        <ul>
+            <li>Customer Details:</li>
+            <ul>
+                <li><strong>Name:</strong> {{ order.full_name }}</li>
+                <li><strong>Email:</strong> {{ order.email }}</li>
+                <li><strong>Phone Number:</strong> {{ order.phone_number }}</li>
+                <li><strong>Nationality:</strong> {{ order.nationality }}</li>
+                <li><strong>Postal Address:</strong> {{ order.street_address1 }}{% if street_address2 %}{{
+                    order.street_address2 }}{% endif %}. {{ order.town_or_city }}, {{order.postcode}}. {{order.country}}
+                </li>
+                <li><strong>Purchased on:</strong> {{ order.show_date }}</li>
+            </ul>
+            <li>Purchase Details:</li>
+            <ul>{% for tour in order.lineitems.all %}
+                <li>{{ tour.quantity}} ticket{% if tour.quantity > 1 %}s{% endif %} for {{ tour.tour }}
+                    (US ${{tour.item_total }})</li>
+                {% endfor %}
+            </ul>
+        </ul>
+        <p><strong>TOTAL PAYMENT:</strong> US ${{ order.order_total }} (10% deposit)</p>
+    </div>
+</div>
 {% endblock %}

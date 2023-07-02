@@ -98,18 +98,21 @@ def checkout(request):
             messages.error(request, "There's nothing in your bag at the moment")
             return redirect(reverse('tours'))
         else:
-            profile = UserProfile.objects.get(user=request.user)
-            form = OrderForm(initial={
-                    'full_name': profile.user.get_full_name(),
-                    'email': profile.user.email,
-                    'phone_number': profile.profile_phone_number,
-                    'country': profile.profile_country,
-                    'postcode': profile.profile_postcode,
-                    'town_or_city': profile.profile_town_or_city,
-                    'street_address1': profile.profile_street_address1,
-                    'street_address2': profile.profile_street_address2,
-                    'county': profile.profile_county,
-                })            
+            if request.user.is_authenticated:
+                profile = UserProfile.objects.get(user=request.user)
+                form = OrderForm(initial={
+                        'full_name': profile.user.get_full_name(),
+                        'email': profile.user.email,
+                        'phone_number': profile.profile_phone_number,
+                        'country': profile.profile_country,
+                        'postcode': profile.profile_postcode,
+                        'town_or_city': profile.profile_town_or_city,
+                        'street_address1': profile.profile_street_address1,
+                        'street_address2': profile.profile_street_address2,
+                        'county': profile.profile_county,
+                    })    
+            else:
+                form = OrderForm()         
             context = {
                 'form': form,
                 'stripe_public_key': stripe_public_key,
