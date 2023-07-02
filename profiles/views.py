@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 from .forms import UserProfileForm
 from .models import UserProfile
+from checkout.models import Order
 
 def MyProfile(request):
     """ Render the user profile page """
@@ -36,3 +37,14 @@ def pastOrders(request):
     }
 
     return render(request, "profiles/past-orders.html", context)
+
+
+def orderDetail(request, order_id):
+    """ Displays the user's past order details"""
+    order = get_object_or_404(Order, pk=order_id)
+
+    context = {
+        'order': order,
+    }
+    
+    return render(request, "profiles/order-detail.html", context)

@@ -4,8 +4,12 @@
 {% block content %}
 <div class="container">
     <h4>PAST TRIPS</h4>
+    <ul>
     {% for order in orders %}
-    <p>{{ order }}</p>
+    <li>
+    <a href="{% url 'order_detail' order.id %}">Order booked on: {{ order.show_date }}</a>
+</li>
     {% endfor %}
+</ul>
 </div>
 {% endblock %}
