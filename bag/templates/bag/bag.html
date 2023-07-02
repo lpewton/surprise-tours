@@ -17,8 +17,8 @@
             </div>
             <div class="row col-md-8">
                 <div class="col-md-8 mt-auto">
-                    <p class="text-uppercase mb-0 my-md-4"><strong>{{ tour.tour.length }} nights in 
-                        {{tour.tour.location}}</strong></p>
+                    <p class="text-uppercase mb-0 my-md-4"><strong>{{ tour.tour.length }} nights in
+                            {{tour.tour.location}}</strong></p>
                     <p class="text-uppercase mb-0">{{ tour.tour.start }} - {{ tour.tour.end }}</p>
                 </div>
                 <div class="col-md-4 mt-auto">
@@ -27,8 +27,9 @@
                     </h3>
                 </div>
                 <div class="text-md-end mb-2 mt-auto">
-                    <a href="" class="text-success">Add passengers</a>
-                    <a href="{% url 'remove_from_bag' tour.tour.id %}" class="text-danger">Remove from bag</a>
+                    <a href="{% url 'add_passenger' tour.tour.id %}" class="text-success">Add a passenger</a>
+                    <a href="{% url 'remove_passenger' tour.tour.id %}" class="text-success"> | Remove a passenger</a>
+                    <a href="{% url 'remove_from_bag' tour.tour.id %}" class="text-danger"> | Remove from bag</a>
                 </div>
             </div>
         </div>

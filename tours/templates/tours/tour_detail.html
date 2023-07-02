@@ -34,7 +34,7 @@
                     {% csrf_token %}
                     <div class="border border-black p-2">
                         <h5>{{ tour }} x
-                            <input type="text" readonly class="border-0 w-25 text-dark" id="tour_quantity"
+                            <input type="text" readonly class="border-0 w-25 text-dark tour_quantity"
                                 name="tour_quantity" value="1">
                             <span class="float-end">
                                 (<span id="added_price">{{ tour.price|floatformat:2 }}</span>€)
@@ -86,65 +86,5 @@
 {% endblock %}
 
 {% block postloadjs %}
-
-<script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', disableAddPassengerBtn);
-    document.getElementById("add_passenger").addEventListener("click", addPassenger);
-    document.getElementById("remove_passenger").addEventListener("click", removePassenger);
-
-    let passengers = document.getElementById("tour_quantity");
-
-    passenger_quantity = 1
-
-    function disableAddPassengerBtn() {
-        let passengers = document.getElementById("tour_quantity").value;
-        let slotsLeft = '{{ tour.slots_left }}';
-
-        if (parseInt(passengers, 10) >= parseInt(slotsLeft, 10)) {
-            document.getElementById('add_passenger').disabled = true;
-        } else {
-            document.getElementById('add_passenger').disabled = false;
-        }
-    }
-
-    // Add a passenger to the tour detail
-
-    function addPassenger() {
-        passenger_quantity += 1
-        passengers.value = `${passenger_quantity}`;
-        updatePrice();
-        disableAddPassengerBtn();
-    }
-
-    // Remove a passenger from the tour detail
-    function removePassenger() {
-        passenger_quantity -= 1
-        removePassenger = document.getElementById('remove_passenger');
-        addToBagBtn = document.getElementById('add_to_bag_btn');
-
-
-        passengers.value = `${passenger_quantity}`;
-        updatePrice();
-        disableAddPassengerBtn();
-
-        if (passenger_quantity == 0) {
-            removePassenger.disabled = true;
-            addToBagBtn.disabled = true;
-        }
-    }
-
-    // Change product price depending on number of passengers
-    function updatePrice() {
-        let tour_price = document.getElementById("tour_price").innerText;
-        let price = document.getElementById("added_price");
-        addToBagBtn = document.getElementById('add_to_bag_btn');
-
-
-        let total_price = passenger_quantity * tour_price;
-        price.innerHTML = parseFloat(total_price).toFixed(2);
-        removePassenger.disabled = false;
-        addToBagBtn.disabled = false;
-    }
-</script>
-
+<script src="{% static 'js/script.js' %}"></script>
 {% endblock %}

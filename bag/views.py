@@ -31,7 +31,6 @@ def add_to_bag(request, tour_id):
     tour.save()
     request.session['bag'] = bag
 
-
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
@@ -45,6 +44,7 @@ def calculate_expiry_time(request):
 
 
 def remove_from_bag(request, tour_id):
+    """ Removes product from bag completely"""
     tour = get_object_or_404(Tour, pk=tour_id)
     bag_items = request.session['bag']
 
@@ -54,6 +54,36 @@ def remove_from_bag(request, tour_id):
             tour.save()
 
     del bag_items[tour_id]
+    request.session['bag'] = bag_items
+
+    return redirect('bag')
+
+
+def addPassenger(request, tour_id):
+    """ Adds a passenger to the specific tour within the bag"""
+    tour = get_object_or_404(Tour, pk=tour_id)
+    bag_items = request.session['bag']
+    for bag_tour, quantity in bag_items.items():
+        if int(bag_tour) == int(tour.id):  
+            print(quantity)          
+            quantity += 1
+            print(quantity)          
+            bag_items[bag_tour] = quantity
+    request.session['bag'] = bag_items
+
+    return redirect('bag')
+
+
+def removePassenger(request, tour_id):
+    """ Removes a passenger to the specific tour within the bag"""
+    tour = get_object_or_404(Tour, pk=tour_id)
+    bag_items = request.session['bag']
+    for bag_tour, quantity in bag_items.items():
+        if int(bag_tour) == int(tour.id):  
+            print(quantity)          
+            quantity -= 1
+            print(quantity)          
+            bag_items[bag_tour] = quantity
     request.session['bag'] = bag_items
 
     return redirect('bag')
