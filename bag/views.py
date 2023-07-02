@@ -34,15 +34,6 @@ def add_to_bag(request, tour_id):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
-def calculate_expiry_time(request):
-    
-    cookieAge = 3600 #How many seconds it takes for session to expire
-    timeNow = timezone.now()
-    expiryTime = cookieAge + int(timeNow.timestamp())
-
-    return expiryTime
-
-
 def remove_from_bag(request, tour_id):
     """ Removes product from bag completely"""
     tour = get_object_or_404(Tour, pk=tour_id)
