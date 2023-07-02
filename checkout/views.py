@@ -67,6 +67,8 @@ def checkout(request):
                         tour=tour,
                         quantity=item_quantity,
                     )
+                    tour.slots_left -= item_quantity
+                    tour.save()
                     order_item.save()
                     
                     return redirect(reverse('checkout_success', args=[order.order_number]))

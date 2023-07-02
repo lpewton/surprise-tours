@@ -26,8 +26,6 @@ def add_to_bag(request, tour_id):
         bag[tour_id] = quantity    
         messages.success(request, f'Added {tour.name} to your bag')
     
-    tour.slots_left -= quantity
-    tour.save()
     request.session['bag'] = bag
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
@@ -37,11 +35,6 @@ def remove_from_bag(request, tour_id):
     """ Removes product from bag completely"""
     tour = get_object_or_404(Tour, pk=tour_id)
     bag_items = request.session['bag']
-
-    for bag_tour, quantity in bag_items.items():
-        if int(bag_tour) == int(tour.id):
-            tour.slots_left += quantity
-            tour.save()
 
     del bag_items[tour_id]
     request.session['bag'] = bag_items
