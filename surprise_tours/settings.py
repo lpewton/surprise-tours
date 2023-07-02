@@ -57,7 +57,7 @@ INSTALLED_APPS = [
 
     # Others
     'crispy_forms',
-    'crispy_bootstrap5',
+    'crispy_bootstrap5'
 ]
 
 MESSAGE_TAGS = {
