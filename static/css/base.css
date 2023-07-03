@@ -1,3 +1,8 @@
+footer{
+    position:absolute;
+    bottom:0;
+}
+
 #index-container {
     height: 50vh;
     background: url('/media/index_bg.jpg') no-repeat center center fixed;
