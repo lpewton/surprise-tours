@@ -25,7 +25,7 @@
                 {% endif %}
             </div>
             <p class="border border-black p-2">{{ tour.description }}</p>
-            <h5 class="text-end"><span id="tour_price">{{ tour.price|floatformat:2 }}</span>€/pp</h5>
+            <h5 class="text-end">US $<span id="tour_price">{{ tour.price|floatformat:2 }}</span>/pp</h5>
             <hr>
             <div class="col-xl-8 mb-3 mx-auto">
                 <h5 class="mt-md-3 text-center">BOOK YOUR SPOT!</h5>
@@ -37,7 +37,7 @@
                             <input type="text" readonly class="border-0 w-25 text-dark" id="tour_quantity"
                                 name="tour_quantity" value="1">
                             <span class="float-end">
-                                (<span id="added_price">{{ tour.price|floatformat:2 }}</span>€)
+                                (US $<span id="added_price">{{ tour.price|floatformat:2 }}</span>)
                             </span>
                         </h5>
                         <div class="row d-flex justify-content-around">
@@ -50,6 +50,8 @@
                             <button id="add_to_bag_btn" type="submit" class="btn bg-success mt-3 mx-auto col-5">Add to
                                 bag</button>
                         </div>
+                        <p class="mt-2 mb-0">* Please be aware that all passengers need to be over 18</p>
+                        <p>* Bear in mind that a 10% deposit is required to book your spot, the rest of the payyment is made in person</p>
                     </div>
                 </form>
                 {% else %}

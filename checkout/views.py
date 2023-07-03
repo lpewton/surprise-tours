@@ -72,7 +72,6 @@ def checkout(request):
                     order_item.save()
                     
                     return redirect(reverse('checkout_success', args=[order.order_number]))
-
                     
                 except Tour.DoesNotExist:
                     messages.error(request, (

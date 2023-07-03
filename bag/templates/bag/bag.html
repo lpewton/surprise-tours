@@ -22,8 +22,8 @@
                     <p class="text-uppercase mb-0">{{ tour.tour.start }} - {{ tour.tour.end }}</p>
                 </div>
                 <div class="col-md-4 mt-auto">
-                    <p class="py-4 mb-0 d-xl-none">x{{ tour.quantity }} = {{ tour.tour_total|floatformat:2 }}€</p>
-                    <h3 class="py-4 mb-0 d-none d-xl-block">x{{ tour.quantity }} = {{ tour.tour_total|floatformat:2 }}€
+                    <p class="py-4 mb-0 d-xl-none">x{{ tour.quantity }} = US ${{ tour.tour_total|floatformat:2 }}</p>
+                    <h3 class="py-4 mb-0 d-none d-xl-block">x{{ tour.quantity }} = US ${{ tour.tour_total|floatformat:2 }}
                     </h3>
                 </div>
                 <div class="text-md-end mb-2 mt-auto">
@@ -36,7 +36,7 @@
     </div>
     {% endfor %}
     <div class="row">
-        <h3 class="m-2 col-md-4">TOTAL: {{ total|floatformat:2 }}€</h3>
+        <h3 class="m-2 col-md-4">TOTAL: US ${{ total|floatformat:2 }}</h3>
         <div class="col-md-6 text-center mt-2">
             <a href="{% url 'tours' %}" class="btn text-light bg-dark">Book more Tours!</a>
             <a href="{% url 'checkout' %}" class="btn text-light bg-dark">Check Out</a>

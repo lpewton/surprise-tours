@@ -45,7 +45,7 @@
                     <div id="card-errors" class="text-danger"></div>
                     <input type="hidden" value="{{ client_secret }}" name="client_secret">
                 </fieldset>
-                <p id="charge-quantity" class="text-danger">*You will now be charged {{ total|floatformat:2 }}€</p>
+                <p id="charge-quantity" class="text-danger">*You will now be charged US ${{ total|floatformat:2 }}</p>
                 <a class="btn bg-black text-light rounded p-2 text-decoration-none checkout-btn"
                     href="{% url 'bag' %}">Adjust bag</a>
                 <button type="submit" id="submit-button" class="btn bg-black text-light rounded p-2 checkout-btn">
@@ -66,10 +66,10 @@
                     <p class="text-uppercase mb-0">{{ tour.tour.start }} - {{ tour.tour.end }}</p>
                 </div>
                 <div class="col-md-4 my-auto">
-                    <p class="py-md-4 py-2 mb-0 d-xl-none">x{{ tour.quantity }} = {{ tour.tour_total|floatformat:2 }}€
+                    <p class="py-md-4 py-2 mb-0 d-xl-none">x{{ tour.quantity }} = US ${{ tour.tour_total|floatformat:2 }}
                     </p>
                     <h5 class="py-md-4 py-2 mb-0 d-none d-xl-block">
-                        x{{ tour.quantity }} = {{tour.tour_total|floatformat:2 }}€</h5>
+                        x{{ tour.quantity }} = US ${{tour.tour_total|floatformat:2 }}</h5>
                 </div>
             </div>
             {% endfor %}
