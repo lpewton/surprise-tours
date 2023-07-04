@@ -11,7 +11,7 @@ class UserProfile(models.Model):
     profile_full_name = models.CharField(max_length=50, null=False, blank=False)
     profile_email = models.EmailField(max_length=254, null=False, blank=False)
     profile_phone_number = models.CharField(max_length=20, null=False, blank=False)
-    profile_nationality = CountryField(blank_label='Country *', null=False, blank=False)
+    profile_nationality = CountryField(blank_label='Nationality *', null=False, blank=False)
     profile_country = CountryField(blank_label='Country *', null=False, blank=False)
     profile_postcode = models.CharField(max_length=20, null=True, blank=True)
     profile_town_or_city = models.CharField(max_length=40, null=False, blank=False)
