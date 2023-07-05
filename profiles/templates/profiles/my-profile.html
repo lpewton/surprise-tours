@@ -2,12 +2,12 @@
 {% load static %}
 
 {% block content %}
-<div class="container">
-    <h4>MY PROFILE: {{ request.user }}</h4>
-    <form action="{% url 'my_profile' %}" method="POST">
+<div class="container mt-3">
+    <h4 class="text-center">MY PROFILE: {{ request.user }}</h4>
+    <form action="{% url 'my_profile' %}" method="POST" class="row col-md-9 col-xl-6 mx-auto">
         {% csrf_token %}
-        {{ form }}
-        <button type="submit">Save information</button>
+        {{ form | crispy }}
+        <button type="submit" class="col-9 col-md-5 col-xl-3 mx-auto">Save information</button>
     </form>
 </div>
 {% endblock %}
