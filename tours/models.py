@@ -34,3 +34,6 @@ class Tour(models.Model):
         length = self.end - self.start
 
         return length.days
+
+    class Meta:
+        ordering = ["name"]
