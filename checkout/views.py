@@ -15,6 +15,8 @@ import json
 
 @require_POST
 def cache_checkout_data(request):
+    messages.success(request, ("Cache"))
+
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -23,6 +25,9 @@ def cache_checkout_data(request):
             'save_info': request.POST.get('save_info'),
             'username': request.user,
         })
+        
+        messages.success(request, ("Cache try"))
+
         return render(request, 'checkout/checkout.html')
     except Exception as e:
         messages.error(request, 'Sorry, your payment cannot be \
@@ -31,8 +36,11 @@ def cache_checkout_data(request):
 
 
 def checkout(request):
+    messages.success(request, ("Beggining"))
+    
     if request.method == 'POST':
-
+        messages.success(request, ("POST"))
+        
         bag = request.session.get('bag', {})
         
         form_data = {
@@ -51,6 +59,7 @@ def checkout(request):
         order_form = OrderForm(form_data)
         if request.user.is_authenticated:
             profile = get_object_or_404(UserProfile, user=request.user)
+            messages.success(request, ("Authenticated!"))
 
         if order_form.is_valid:
             order = order_form.save(commit=False)
@@ -59,7 +68,9 @@ def checkout(request):
             order.original_bag = json.dumps(bag)
             if request.user.is_authenticated:
                 order.user_profile = profile
-            order.save()            
+            order.save()          
+            messages.success(request, ("Order form good"))
+
             for item_id, item_quantity in bag.items():
                 try:
                     tour = Tour.objects.get(id=item_id)
@@ -101,8 +112,6 @@ def checkout(request):
         )
         
         profile = get_object_or_404(UserProfile, user=request.user)
-        print(profile) #TREU AIXO
-        print(profile.profile_email)
 
         if not bag:
             messages.error(request, "There's nothing in your bag at the moment")
@@ -111,9 +120,10 @@ def checkout(request):
             if request.user.is_authenticated:
                 profile = UserProfile.objects.get(user=request.user)
                 form = OrderForm(initial={
-                        'full_name': profile.profile_name,
-                        'email': profile.user.profile_email,
+                        'full_name': profile.profile_full_name,
+                        'email': profile.profile_email,
                         'phone_number': profile.profile_phone_number,
+                        'nationality': profile.profile_nationality,
                         'country': profile.profile_country,
                         'postcode': profile.profile_postcode,
                         'town_or_city': profile.profile_town_or_city,
