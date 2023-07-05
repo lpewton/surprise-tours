@@ -20,8 +20,13 @@ def add_to_bag(request, tour_id):
     bag = request.session.get('bag', {})
 
     if tour_id in list(bag.keys()):
-        bag[tour_id] += quantity    
-        messages.success(request, f'Added {tour.name} to your bag')
+        bag[tour_id] += quantity
+        if bag[tour_id] > tour.slots_left:
+            messages.error(request, 'Cannot book more slots than are left...')
+            bag[tour_id] = tour.slots_left
+        else:
+            messages.success(request, f'Added {tour.name} to your bag')
+    
     else:
         bag[tour_id] = quantity    
         messages.success(request, f'Added {tour.name} to your bag')
