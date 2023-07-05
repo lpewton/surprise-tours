@@ -4,6 +4,10 @@
     background-size: cover;
 }
 
+#block-content {
+    min-height: 50vh;
+}
+
 #index-text-div {
     background-color: rgba(228, 176, 33, 0.9);
 }
