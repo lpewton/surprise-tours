@@ -19,8 +19,10 @@
                 <h5 class="col-6">SLOTS LEFT: <span id="slots_left">{{ tour.slots_left }}</span>/{{ tour.slots }}</h5>
                 {% if user.is_staff %}
                 <p class="text-end col-6 ps-0">
-                    <a href="{% url 'edit_tour' tour.id %}" class="text-success">Edit tour</a> | <a href="{% url 'remove_tour' tour.id %}"
-                        class="text-danger">Remove tour</a>
+                    <a href="{% url 'edit_tour' tour.id %}" class="btn text-success bg-light p-0">Edit tour</a> | <button type="button" class="btn bg-light text-danger p-0" data-bs-toggle="modal"
+                    data-bs-target="#deletes_tour-{{tour.id}}">
+                    Remove Tour
+                </button>
                 </p>
                 {% endif %}
             </div>
@@ -83,6 +85,31 @@
             <img class="col-12 tour-img" src="{{ MEDIA_URL }}plane.jpg" alt="Airplane Wing">
             {% endif %}
         </aside>
+    </div>
+
+    <!-- Tour deleting modal -->
+    <div class="modal" tabindex="-1" role="dialog" id="deletes_tour-{{ tour.id }}">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                    <h5 class="modal-title">Delete tour</h5>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete {{tour}} tour?</p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <form action="{% url 'remove_tour' tour.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" value="{{tour.id}}"
+                            class="btn btn-primary border-none">
+                            DELETE
+                        </button>
+                    </form>
+                    <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">BACK</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

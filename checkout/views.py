@@ -20,7 +20,7 @@ def cache_checkout_data(request):
         stripe.api_key = settings.STRIPE_SECRET_KEY
         stripe.PaymentIntent.modify(pid, metadata={
             'bag': json.dumps(request.session.get('bag', {})),
-            'save_info': request.POST.get('save-info'),
+            'save_info': request.POST.get('save_info'),
             'username': request.user,
         })
         return render(request, 'checkout/checkout.html')
@@ -49,12 +49,16 @@ def checkout(request):
         }
 
         order_form = OrderForm(form_data)
+        if request.user.is_authenticated:
+            profile = get_object_or_404(UserProfile, user=request.user)
 
         if order_form.is_valid:
             order = order_form.save(commit=False)
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
+            if request.user.is_authenticated:
+                order.user_profile = profile
             order.save()            
             for item_id, item_quantity in bag.items():
                 try:
@@ -107,16 +111,15 @@ def checkout(request):
             if request.user.is_authenticated:
                 profile = UserProfile.objects.get(user=request.user)
                 form = OrderForm(initial={
-                        'full_name': profile.profile_full_name,
-                        'email': profile.profile_email,
+                        'full_name': profile.profile_name,
+                        'email': profile.user.profile_email,
                         'phone_number': profile.profile_phone_number,
-                        'nationality': profile.profile_nationality,
+                        'country': profile.profile_country,
+                        'postcode': profile.profile_postcode,
+                        'town_or_city': profile.profile_town_or_city,
                         'street_address1': profile.profile_street_address1,
                         'street_address2': profile.profile_street_address2,
-                        'town_or_city': profile.profile_town_or_city,
-                        'postcode': profile.profile_postcode,
                         'county': profile.profile_county,
-                        'country': profile.profile_country,
                     })  
             else:
                 form = OrderForm()
@@ -137,28 +140,21 @@ def checkoutSuccess(request, order_number):
         del request.session['bag']
     
     save_info = request.session.get('save_info')
-    
     # Save the user's info
     if save_info:
-        profile = get_object_or_404(UserProfile, user=request.user)
+        profile = UserProfile.objects.get(user=request.user)
         profile_data = {
-            'profile_full_name': order.full_name,
-            'profile_email': order.email,
             'profile_phone_number': order.phone_number,
-            'profile_nationality': order.nationality,
             'profile_country': order.country,
             'profile_postcode': order.postcode,
             'profile_town_or_city': order.town_or_city,
             'profile_street_address1': order.street_address1,
             'profile_street_address2': order.street_address2,
-            'profile_county': order.country,
+            'profile_county': order.county,
         }
         user_profile_form = UserProfileForm(profile_data, instance=profile)
         if user_profile_form.is_valid():
             user_profile_form.save()
-
-        else:
-            messages.error(request, 'Something went wrong, please make sure everything is input correctly')
 
     context = {
         'order': order
