@@ -15,7 +15,6 @@ import json
 
 @require_POST
 def cache_checkout_data(request):
-    messages.success(request, ("Cache"))
 
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
@@ -26,8 +25,6 @@ def cache_checkout_data(request):
             'username': request.user,
         })
         
-        messages.success(request, ("Cache try"))
-
         return render(request, 'checkout/checkout.html')
     except Exception as e:
         messages.error(request, 'Sorry, your payment cannot be \
@@ -35,11 +32,8 @@ def cache_checkout_data(request):
         return render(request, 'checkout/checkout.html')
 
 
-def checkout(request):
-    messages.success(request, ("Beggining"))
-    
+def checkout(request):    
     if request.method == 'POST':
-        messages.success(request, ("POST"))
         
         bag = request.session.get('bag', {})
         
@@ -59,7 +53,6 @@ def checkout(request):
         order_form = OrderForm(form_data)
         if request.user.is_authenticated:
             profile = get_object_or_404(UserProfile, user=request.user)
-            messages.success(request, ("Authenticated!"))
 
         if order_form.is_valid:
             order = order_form.save(commit=False)
@@ -69,7 +62,6 @@ def checkout(request):
             if request.user.is_authenticated:
                 order.user_profile = profile
             order.save()          
-            messages.success(request, ("Order form good"))
 
             for item_id, item_quantity in bag.items():
                 try:
