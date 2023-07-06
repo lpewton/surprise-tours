@@ -31,7 +31,7 @@ class Order(models.Model):
         """
         Generate a random order number using UUID
         """
-        return uuid.uuid4().hex.upper()
+        return uuid.uuid4().hex.upper()[:30]
 
     def save(self, *args, **kwargs):
         """
