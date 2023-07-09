@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Allan&family=Dancing+Script:wght@700&display=swap');
 
-header {    
+/*header {    
     font-family: 'Dancing Script', cursive, sans-serif;
 }
 
@@ -11,7 +11,7 @@ header {
 footer {    
     font-family: 'Allan', cursive;
 }
-
+*/
 #index-container {
     height: 50vh;
     background: url('/media/index_bg.jpg') no-repeat center center fixed;
