@@ -14,7 +14,7 @@ footer {
 
 #index-container {
     height: 50vh;
-    background: url('/media/index_bg.jpg') no-repeat center center fixed;
+    background: url('https://res.cloudinary.com/dttlol6ik/image/upload/v1688945155/index-img.jpg') no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -23,7 +23,7 @@ footer {
 }
 
 #index-text-div {
-    background-color: rgba(228, 176, 33, 0.9);
+    background-color: rgba(228, 176, 33, 0.5);
 }
 
 .continent-div {
