@@ -9,7 +9,6 @@ class OrderForm(forms.ModelForm):
                     'nationality', 'street_address1', 'street_address2',
                     'town_or_city', 'postcode', 'country', 'county')
 
-
     def __init__(self, *args, **kwargs):
         """
         Add placeholders and classes, remove auto-generated
@@ -36,5 +35,5 @@ class OrderForm(forms.ModelForm):
                 else:
                     placeholder = placeholders[field]
             self.fields[field].widget.attrs['placeholder'] = placeholder
-            self.fields[field].widget.attrs['class'] = 'stripe-style-input'
+            self.fields[field].widget.attrs['class'] = 'form-control my-3'
             self.fields[field].label = False

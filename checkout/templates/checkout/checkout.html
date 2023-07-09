@@ -12,16 +12,16 @@
                 {% csrf_token %}
                 <fieldset>
                     <legend>Buyer Details:</legend>
-                    {{ form.full_name | as_crispy_field }}
-                    {{ form.email | as_crispy_field }}
-                    {{ form.phone_number | as_crispy_field }}
-                    {{ form.nationality | as_crispy_field }}
-                    {{ form.street_address1 | as_crispy_field }}
-                    {{ form.street_address2 | as_crispy_field }}
-                    {{ form.town_or_city | as_crispy_field }}
-                    {{ form.postcode | as_crispy_field }}
-                    {{ form.country | as_crispy_field }}
-                    {{ form.county | as_crispy_field }}
+                    {{ form.full_name }}
+                    {{ form.email }}
+                    {{ form.phone_number }}
+                    {{ form.nationality }}
+                    {{ form.street_address1 }}
+                    {{ form.street_address2 }}
+                    {{ form.town_or_city }}
+                    {{ form.postcode }}
+                    {{ form.country }}
+                    {{ form.county }}
                 </fieldset>
                 
                 <div class="form-check form-check-inline float-right mr-0">
