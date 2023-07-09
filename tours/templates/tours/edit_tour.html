@@ -3,13 +3,13 @@
 
 {% block content %}
 <div class="container">
-    <h4 class="text-center p-3">Editing {{ tour }}</h4>
+    <h4 class="text-center p-3">Edit {{ tour }} tour</h4>
     <div class="text-center">
-        <form class="d-flex justify-content-around flex-wrap" action="{% url 'edit_tour' tour.id %}" method="POST" enctype="multipart/form-data">
+        <form class="d-flex justify-content-around flex-wrap" action="{% url 'add_tour' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {% for field in form %}
             {% if field.name == 'start' or field.name == 'end' %}
-            <div class="col-md-4 col-lg-4 px-2 mb-3 mb-md-5">
+            <div class="col-md-4 col-lg-4 px-2 mb-5 mt-3 my-md-0 mb-md-5">
                 <p>{{ field.label }}:</p>
                 <input class="col-12 col-lg-7" type="date" name="{{ field.html_name }}"
                     value="{{ field.value|date:'Y-m-d' }}">
@@ -24,13 +24,12 @@
             <br>
             {% else %}
             <div class="row col-md-4 px-2 mb-3 mb-md-5">
-                <p>{{ field.label }}:</p>
-                <p class="mb-0">{{ field }}</p>
+                <p class="mb-0">{{ field | as_crispy_field }}</p>
             </div>
             {% endif %}
             {% endfor %}
             <div>
-                <button class="mt-3" type="submit">Edit Tour</button>
+                <button class="mt-3" type="submit"> Edit Tour</button>
             </div>
         </form>
     </div>
