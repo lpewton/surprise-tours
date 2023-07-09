@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.db.models import Q
 from django.contrib import messages
 from django.db.models.functions import Lower
+from django.utils import timezone
 
 from .models import Continent, Tour
 from .forms import TourForm
@@ -89,9 +90,17 @@ def add_tour(request):
     if request.method == 'POST':
         form = TourForm(request.POST, request.FILES)
         if form.is_valid():
-            tour = form.save()
-            messages.success(request, 'Tour added correctly')
-            return redirect(reverse('tour_detail', args=[tour.id]))
+            start_date = form.cleaned_data['start']
+            end_date = form.cleaned_data['end']
+
+            if start_date <= timezone.now().date():
+                messages.error(request, 'Start date must be later than today!')
+            elif end_date <= start_date:
+                    messages.error(request, 'End date cannot be sooner that start date!')
+            else:
+                tour = form.save()
+                messages.success(request, 'Tour added correctly')
+                return redirect(reverse('tour_detail', args=[tour.id]))
         else:
             error_message = form.errors.as_text()
             messages.error(request, error_message)
@@ -118,11 +127,19 @@ def edit_tour(request, tour_id):
     tour = get_object_or_404(Tour, pk=tour_id)
     
     if request.method == 'POST':
-        form = TourForm(request.POST, request.FILES, instance=tour)
+        form = TourForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            messages.success(request, 'Tour updated correctly')
-            return redirect(reverse('tour_detail', args=[tour.id]))
+            start_date = form.cleaned_data['start']
+            end_date = form.cleaned_data['end']
+
+            if start_date <= timezone.now().date():
+                messages.error(request, 'Start date must be later than today!')
+            elif end_date <= start_date:
+                    messages.error(request, 'End date cannot be sooner that start date!')
+            else:
+                tour = form.save()
+                messages.success(request, 'Tour updated correctly')
+                return redirect(reverse('tour_detail', args=[tour.id]))
         else:
             messages.error(request, 'Failed to update tour. Please ensure the form is valid.')
     

@@ -5,7 +5,7 @@
 <div class="container">
     <h4 class="text-center p-3">Edit {{ tour }} tour</h4>
     <div class="text-center">
-        <form class="d-flex justify-content-around flex-wrap" action="{% url 'add_tour' %}" method="POST" enctype="multipart/form-data">
+        <form class="d-flex justify-content-around flex-wrap" action="{% url 'edit_tour' tour.id %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {% for field in form %}
             {% if field.name == 'start' or field.name == 'end' %}
