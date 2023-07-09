@@ -7,7 +7,7 @@
     <div class="text-center">
         <form class="d-flex justify-content-around flex-wrap" action="{% url 'add_tour' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            {% for field in form %}
+            {% for field in form %} 
             {% if field.name == 'start' or field.name == 'end' %}
             <div class="col-md-4 col-lg-4 px-2 mb-5 mt-3 my-md-0 mb-md-5">
                 <p>{{ field.label }}:</p>

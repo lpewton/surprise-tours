@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Allan&family=Dancing+Script:wght@700&display=swap');
 
-/*header {    
+header {    
     font-family: 'Dancing Script', cursive, sans-serif;
 }
 
@@ -11,7 +11,7 @@
 footer {    
     font-family: 'Allan', cursive;
 }
-*/
+
 #index-container {
     height: 50vh;
     background: url('/media/index_bg.jpg') no-repeat center center fixed;
@@ -51,11 +51,11 @@ footer {
 }
 
 /* Checkout form */
-.form-control {
+.checkout-form {
     display: block;
     width: 100%;
     padding: 0.375rem 0.75rem;
-    margin: 80px;
+    margin: 80px 0px;
     font-size: 1rem;
     line-height: 1.5;
     color: #495057;

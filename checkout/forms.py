@@ -35,5 +35,5 @@ class OrderForm(forms.ModelForm):
                 else:
                     placeholder = placeholders[field]
             self.fields[field].widget.attrs['placeholder'] = placeholder
-            self.fields[field].widget.attrs['class'] = 'form-control my-3'
+            self.fields[field].widget.attrs['class'] = 'checkout-form my-3'
             self.fields[field].label = False
