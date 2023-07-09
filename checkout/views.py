@@ -102,8 +102,9 @@ def checkout(request):
             amount=stripe_total,
             currency=settings.STRIPE_CURRENCY,
         )
-        
-        profile = get_object_or_404(UserProfile, user=request.user)
+
+        if request.user.is_authenticated:
+            profile = get_object_or_404(UserProfile, user=request.user)
 
         if not bag:
             messages.error(request, "There's nothing in your bag at the moment")

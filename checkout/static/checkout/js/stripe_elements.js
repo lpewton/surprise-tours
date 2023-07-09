@@ -20,6 +20,7 @@ var style = {
 };
 var card = elements.create('card', { style: style });
 card.mount('#card-element');
+$('#payment-plane').fadeToggle(100);
 
 // Card Errors
 card.addEventListener('change', function (event) {
@@ -48,6 +49,7 @@ form.addEventListener('submit', function(ev) {
     card.update({ 'disabled': true});
     $('#submit-button').attr('disabled', true);
     $('#payment-form').fadeToggle(100);
+    $('#payment-plane').fadeToggle(100);
 
     var saveInfo = Boolean($('#id-save-info').attr('checked'));
 
