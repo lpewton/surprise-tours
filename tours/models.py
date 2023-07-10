@@ -11,7 +11,7 @@ class Continent(models.Model):
 
 class Tour(models.Model):
     name = models.CharField(max_length=200)
-    location = models.CharField(max_length=50)
+    meeting_location = models.CharField(max_length=50)
     continent = models.ForeignKey(Continent, on_delete=models.CASCADE)
     start = models.DateField()
     end = models.DateField()
@@ -34,6 +34,11 @@ class Tour(models.Model):
         length = self.end - self.start
 
         return length.days
+    
+    def upon_arrival(self):
+        upon_arrival = self.price * 9
+
+        return upon_arrival
 
     class Meta:
         ordering = ["name"]

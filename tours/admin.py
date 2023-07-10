@@ -8,7 +8,7 @@ class ContinentAdmin(admin.ModelAdmin):
 
 class TourAdmin(admin.ModelAdmin):
     list_display = (
-        'name', 'location', 'start', 'end', 'continent',
+        'name', 'meeting_location', 'start', 'end', 'continent',
     )
 
 admin.site.register(Continent, ContinentAdmin)

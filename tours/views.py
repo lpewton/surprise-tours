@@ -35,9 +35,9 @@ def tours(request):
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
             sort = sortkey
-            if sortkey == 'location':
-                sortkey = 'lower_location'
-                tours = tours.annotate(lower_location=Lower('location'))
+            if sortkey == 'meeting_location':
+                sortkey = 'lower_meeting_location'
+                tours = tours.annotate(lower_meeting_location=Lower('meeting_location'))
             if sortkey == 'continent':
                 sortkey = 'continent__name'
             
@@ -55,7 +55,7 @@ def tours(request):
                 messages.error(request, "Please enter a destination or date!")
                 return redirect(reverse('tours'))
             
-            queries = Q(name__icontains=query) | Q(location__icontains=query) | Q(start__icontains=query) | Q(end__icontains=query)
+            queries = Q(name__icontains=query) | Q(meeting_location__icontains=query) | Q(start__icontains=query) | Q(end__icontains=query)
             tours = tours.filter(queries)
 
     current_sorting = f'{sort}_{direction}'

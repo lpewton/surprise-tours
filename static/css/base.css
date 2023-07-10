@@ -32,7 +32,7 @@ footer {
 }
 
 #anywhere-div {
-    background: url('/media/world.png') no-repeat center center;
+    background: url('https://res.cloudinary.com/dttlol6ik/image/upload/v1688946879/anywhere-img.png') no-repeat center center;
     background-size: cover;
 }
 
