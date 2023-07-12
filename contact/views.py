@@ -22,3 +22,9 @@ def contact(request):
     }
 
     return render(request, 'contact/contact.html', context) 
+
+
+def newsletter(request):
+    """Returns the subscribe to newsletter page"""
+
+    return render(request, 'contact/newsletter.html') 
