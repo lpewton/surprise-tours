@@ -64,4 +64,11 @@ footer {
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  }
+}
+
+/* Chimpmail css */
+#mc_embed_signup {
+    background:#fff;
+    clear:left; 
+    font:14px Helvetica,Arial,sans-serif; 
+}
