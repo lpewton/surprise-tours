@@ -69,7 +69,6 @@ class StripeWH_Handler:
                 profile.profile_full_name=billing_details.name
                 profile.profile_email=billing_details.email
                 profile.profile_phone_number = billing_details.phone
-                profile.profile_nationality = billing_details.nationality
                 profile.profile_country = billing_details.address.country
                 profile.profile_postcode = billing_details.address.postcode
                 profile.profile_town_or_city = billing_details.address.city
