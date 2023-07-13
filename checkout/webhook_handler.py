@@ -50,14 +50,14 @@ class StripeWH_Handler:
         bag = intent.metadata.bag
         save_info = intent.metadata.save_info
 
-        billing_details = intent.charges.data[0].billing_details
-        shipping_details = intent.shipping
-        order_total = round(intent.charges.data[0].amount / 100, 2)
+        # Get the Charge object
+        stripe_charge = stripe.Charge.retrieve(
+            intent.latest_charge
+        )
 
-        # Clean data in the shipping details
-        for field, value in shipping_details.address.items():
-            if value == "":
-                shipping_details.address[field] = None
+        billing_details = stripe_charge.billing_details 
+
+        order_total = round(stripe_charge.amount / 100, 2)
 
         # Update profile information if save_info was checked
         profile = None
@@ -65,12 +65,16 @@ class StripeWH_Handler:
         if username != 'AnonymousUser':
             profile = UserProfile.objects.get(user__username=username)
             if save_info:
-                profile.default_phone_number = billing_details.phone
-                profile.default_country = billing_details.address.country
-                profile.default_town_or_city = billing_details.address.city
-                profile.default_street_address1 = billing_details.address.line1
-                profile.default_street_address2 = billing_details.address.line2
-                profile.default_county = billing_details.address.state
+                profile.profile_full_name=billing_details.name
+                profile.profile_email=billing_details.email
+                profile.profile_phone_number = billing_details.phone
+                profile.profile_nationality = billing_details.nationality
+                profile.profile_country = billing_details.address.country
+                profile.profile_postcode = billing_details.address.postcode
+                profile.profile_town_or_city = billing_details.address.city
+                profile.profile_street_address1 = billing_details.address.line1
+                profile.profile_street_address2 = billing_details.address.line2
+                profile.profile_county = billing_details.address.state
                 profile.save()
 
         order_exists = False
@@ -109,12 +113,10 @@ class StripeWH_Handler:
                     email=billing_details.email,
                     phone_number=billing_details.phone,
                     country=billing_details.address.country,
-                    postcode=billing_details.address.postal_code,
                     town_or_city=billing_details.address.city,
                     street_address1=billing_details.address.line1,
                     street_address2=billing_details.address.line2,
                     county=billing_details.address.state,
-                    nationality=billing_details.nationality,
                     original_bag=bag,
                     stripe_pid=pid,
                 )
@@ -131,7 +133,7 @@ class StripeWH_Handler:
                 if order:
                     order.delete()
                 return HttpResponse(
-                    content=f'Webhook received: {event["type"]} | ERROR: {e}',
+                    content=f'Webhook received: {event["type"]} | ERROR: {e} + {billing_details}',
                     status=500)
         self._send_confirmation_email(order)
         return HttpResponse(
