@@ -7,6 +7,7 @@ from .models import Order, OrderItem
 from tours.models import Tour
 from profiles.models import UserProfile
 
+import stripe
 import json
 import time
 
