@@ -1,3 +1,21 @@
-Hello There! 
+Dear {{ order.full_name }},
 
-This is a test for {{ order.full_name }}
+We are glad to inform you that your payment was successful and your order was issued!
+
+Pack your bags,you are now going to: {% for tour in order.lineitems.all %} 
+    - {{ tour.name. }}. Meeting at {{ tour.meeting_location }}.
+
+{% endfor %}
+
+
+Thank you for shopping with us, you will receive an email with more instructions on your reservation 2 weeks before your trip with detailed instructions on preparations. Please remember that the rest of the payment (US ${{ order.upon_arrival }}) is made in person upon meeting your guide.
+
+Please remember to always travel safe and, most importantly of all, have fun!
+
+Kind regards,
+
+The Surprise Tours Team
+
+
+
+
