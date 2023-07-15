@@ -1,108 +1,172 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Surprise Tours:
 
-Welcome USER_NAME,
+Surprise Tours is a fake travel agency that allows customers to pick  one of the featured tours at any of the locations shown. Once a tour is chosen, the cusomer can then purchase it in order to book their spot and will get a confirmation email so they know the payment was correct.
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+Aside from that, the customer is also able to log in to see their past purchases, save their information or send messages to the store owner.
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+You can find the live link for this website here: [https://lpewton-stock-controller.herokuapp.com.](https://lpewton-surprise-tours.herokuapp.com/)
 
-## Gitpod Reminders
+## TABLE OF CONTENTS:
+  * [User Experience (UX):](#user-experience-ux)
+    + [App purpose](#app-purpose)
+    + [App goals](#app-goals)
+    + [Target](#target)
+    + [Displays](#displays)
+    + [Colors and design](#colors-and-design)
+    + [User Stories](#user-stories)
+  * [Roles and Registration](#roles-and-registration)
+  * [Database Schema:](#database-schema)
+    + [Ingredient](#ingredient)
+    + [Recipe](#recipe)
+    + [Custom User](#custom-user)
+  * [Features](#features)
+  * [Requirements.txt](#requirementstxt)
+  * [Features left to implement](#features-left-to-implement)
+  * [Unfixed bugs](#unfixed-bugs)
+  * [Major Issues Found](#major-issues-found)
+  * [Manual Testing:](#manual-testing)
+    + [Ingredient](#ingredient-model)
+    + [Recipes](#recipes-model)
+    + [Website](#website)
+    + [User Stories Completion](#user-stories-completion)
+    + [Security Measures](#security-measures)
+  * [Validator Testing](#validator-testing)
+  * [Technologies Used](#technologies-used)
+  * [Deployment:](#deployment)
+    + [In the terminal](#in-the-terminal)
+    + [In settings.py](#in-settingspy)
+    + [In ElephantSQL](#in-elephantsql)
+    + [In the Heroku app](#in-the-heroku-app)
+    + [In the app](#in-the-app)
+  * [Credits](#credits)
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+## User Experience (UX):
 
-`python3 -m http.server`
+### App purpose:
+The purpose of the Surprise Tours agency is to provide tours for members and allow them to buy them. Since these tours are a surprise, the customers will not know exactly what they will do during the tour, but they do know where the meeting point is and when to meet.
 
-A blue button should appear to click: _Make Public_,
+This solves the issue of having to plan your whole trip, especially for people who don't like the hefty work of planning.
 
-Another blue button should appear to click: _Open Browser_.
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+### App goals:
+This site's goal is to create a website that allows customers to purchase the tours of their choosing.
 
-A blue button should appear to click: _Make Public_,
+Aside from that, the intention is also to permit users to log in to store their information for future purchases, to see their past trips and to be able to send messages to the store owners.
 
-Another blue button should appear to click: _Open Browser_.
+As an owner, they should be able to add new tors, remove them or edit them so that the tour list is always updated.
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+### Target:
+The target population for this app is anyone who is willing to travel, and wants to avoid the hassle of planning their entire trip.
 
-To log into the Heroku toolbelt CLI:
+As for the website administrator, that would be the store owner and their credentials are the following:
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+| Role  | Username | Password |
+| ------------- | ------------- | ------------- |
+| Superuser  | admin | casagelat |
+| Customer  | auri | brasileiro |
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+### Displays:
+The layout of the app is clear, communicative and there is an easy intuition on how to find the information.
 
-------
+### Colors and design:
+The colors of this website are consistent with the colors of the agency, blue and yellow (colours that are usually associated wth travelling). As for the rest, some other colors are expressed to make the website more intuitive. 
 
-## Release History
+### User Stories:
+The Agile methodology has been used during this app’s creation. This has been done by having several user stories created before the development of the project, and following them in order to create it. These can be found below:
+1. Tours:
+- As a **client**:
+  - I want to view all the available tours so that I can choose one
+  - I want to sort the products by prices, destination or dates so I can make an informed decision
+  - I want to see the tour’s details so I know how they are
+  - Be warned when a trip is almost sold out
+  - See all of the best deals easily
+  - Search for a particular country or city
+- As an **owner**:
+  - I want to be able to add, remove or edit tours so that the inventory is updated
+  - I want to be able to add reviews to each tour so clients can evaluate them
+2. Authorization:
+- As a **client**:
+  - I want to be able to log in
+  - I want to be able to see my past trips
+- As an **owner**:
+  - I want to stop people from entering the restricted pages without being logged in
+3. Purchasing:
+- As a **client**:
+  - I want to be able to buy an X quantity of the tours I want
+  - I want to be able to see the total of my purchases so I know how much I’m spending before I buy them
+  - I want to be reminded of what I am purchasing before I pay so I don’t purchase the wrong trip
+  - I want to receive an email with the product and the confirmation after purchasing a tour so I know that everything has been handled correctly
+- As an **owner**:
+  - I want to stop buyers from buying trips that are sold out
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+## Database Schema:
+### Tour:
+| Entry  | Type |
+| ------------- | ------------- | 
+| Name  | Char Field | 
+| Continent  | Foreign Key(Continent) | 
+| Start  | Date Field |
+| End  | Date Field | 
+| Slots  | Integer Field | 
+| Slots Left  | Integer Field | 
+| Rating | Float Field |
+| Price | Float Field | 
+| Image 1 | Image Field | 
+| Image 2 | Image Field | 
+| Image 3 | Image Field | 
+| Description | Char Field | 
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+### Order:
+| Entry  | Type |
+| ------------- | ------------- | 
+| Order Number  | Char Field | 
+| User Profile  | Foreign Key (UserProfile) | 
+| Full Name | Char Field |
+| Email  | Email | 
+| Phone Number  | Char Field |  CAMBIA QUAN I SI TOCA
+| Nationality  | Country Field | 
+| Country  | Country Field | 
+| Postcode  | Char Field | 
+| Town or City  | Char Field | 
+| Street Address 1  | Char Field | 
+| Street Address 2  | Char Field | 
+| County  | Char Field | 
+| Date  | Date Field | 
+| Show Date  | Date Field | 
+| Order Total  | Decimal Field | 
+| Original Bag  | Text Field | 
+| Stripe PID  | Char Field | 
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+### Order Item (each item within the Order):
+| Entry  | Type |
+| ------------- | ------------- | 
+| Order  | Foreign Key (Order) | 
+| Tour  | Foreign Key (Tour) | 
+| Quantity  | Integer Field |
+| Item Total  | Decimal Field |
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+### Message (to be sent to the store owners):
+| Entry  | Type |
+| ------------- | ------------- | 
+| Full name  | Char Field | 
+| Email  | Email Field | 
+| Subject  | Char Field |
+| Message | Char Field |
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+### User Profile:
+| Entry  | Type |
+| ------------- | ------------- | 
+| User | One to One Field (User) | 
+| Full Name | Char Field |
+| Email  | Email | 
+| Phone Number  | Char Field |  CAMBIA QUAN I SI TOCA
+| Nationality  | Country Field | 
+| Country  | Country Field | 
+| Postcode  | Char Field | 
+| Town or City  | Char Field | 
+| Street Address 1  | Char Field | 
+| Street Address 2  | Char Field | 
+| County  | Char Field | 
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
-
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
-
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
-
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
-
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
-
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
-------
-
-## FAQ about the uptime script
-
-**Why have you added this script?**
-
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
-
-**How will this affect me?**
-
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
-
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
-
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
-
-**So….?**
-
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
-
-**Can I opt out?**
-
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
-
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
-
-**Anything more?**
-
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
-
----
-
-Happy coding!
