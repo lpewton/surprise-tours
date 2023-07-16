@@ -35,7 +35,7 @@ def tours(request):
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
             sort = sortkey
-            if sortkey == 'meeting_location':
+            if sortkey == 'meeting_location': 
                 sortkey = 'lower_meeting_location'
                 tours = tours.annotate(lower_meeting_location=Lower('meeting_location'))
             if sortkey == 'continent':
@@ -134,21 +134,29 @@ def edit_tour(request, tour_id):
     tour = get_object_or_404(Tour, pk=tour_id)
     
     if request.method == 'POST':
-        form = TourForm(request.POST, request.FILES)
+        form = TourForm(request.POST, request.FILES, instance=tour)
         if form.is_valid():
             start_date = form.cleaned_data['start']
             end_date = form.cleaned_data['end']
+            slots = form.cleaned_data['slots']
+            slots_left = form.cleaned_data['slots_left']
 
             if start_date <= timezone.now().date():
                 messages.error(request, 'Start date must be later than today!')
             elif end_date <= start_date:
                     messages.error(request, 'End date cannot be sooner that start date!')
             else:
-                tour = form.save()
-                messages.success(request, 'Tour updated correctly')
-                return redirect(reverse('tour_detail', args=[tour.id]))
+                if slots_left > slots:
+                    messages.error(request, 'There are more slots left than slots available!')
+                else: 
+                    tour = form.save()
+                    messages.success(request, 'Tour edited correctly')
+                    return redirect(reverse('tour_detail', args=[tour.id]))
+            
         else:
-            messages.error(request, 'Failed to update tour. Please ensure the form is valid.')
+            error_message1 = form.errors.as_text().split('*')[1].title()
+            error_message2 = form.errors.as_text().split('*')[2]
+            messages.error(request, f'{error_message1}: {error_message2}')
     
     else:
         form = TourForm(instance=tour)
