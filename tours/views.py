@@ -55,7 +55,7 @@ def tours(request):
                 messages.error(request, "Please enter a destination or date!")
                 return redirect(reverse('tours'))
             
-            queries = Q(name__icontains=query) | Q(meeting_location__icontains=query) | Q(start__icontains=query) | Q(end__icontains=query)
+            queries = Q(name__icontains=query) | Q(meeting_location__icontains=query)
             tours = tours.filter(queries)
 
     current_sorting = f'{sort}_{direction}'
