@@ -125,7 +125,7 @@ def remove_tour(request, tour_id):
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
-        
+
     tour = get_object_or_404(Tour, pk=tour_id)
 
     tour.delete()

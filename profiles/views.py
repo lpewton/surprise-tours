@@ -7,6 +7,7 @@ from checkout.models import Order
 
 def MyProfile(request):
     """ Render the user profile page """
+    
     profile = get_object_or_404(UserProfile, user=request.user)
     if request.method == "GET":
         form = UserProfileForm(instance=profile)
@@ -30,7 +31,7 @@ def MyProfile(request):
     
 def pastOrders(request):
     """ Displays the user's past orders """
-    if request.user.is_authenticated:
+    if request.user.is_authenticated :
         profile = get_object_or_404(UserProfile, user=request.user)
         orders = profile.orders.all()
         context = {
@@ -46,8 +47,10 @@ def pastOrders(request):
 
 def orderDetail(request, order_id):
     """ Displays the user's past order details"""
-    if request.user.is_authenticated:
-        order = get_object_or_404(Order, pk=order_id)
+    
+    order = get_object_or_404(Order, pk=order_id)
+
+    if request.user.is_authenticated and order.user_profile.user == request.user:
 
         context = {
             'order': order,
@@ -55,6 +58,6 @@ def orderDetail(request, order_id):
         return render(request, "profiles/order-detail.html", context)
     
     else: 
-        messages.error(request, 'You are not logged in, please log in to see this information')
+        messages.error(request, 'You are not logged in with the correct user!')
         return render(request, "home/index.html")
     

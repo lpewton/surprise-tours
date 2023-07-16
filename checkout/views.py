@@ -15,7 +15,6 @@ import json
 
 @require_POST
 def cache_checkout_data(request):
-
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -32,7 +31,13 @@ def cache_checkout_data(request):
         return render(request, 'checkout/checkout.html')
 
 
-def checkout(request):    
+def checkout(request):
+    bag = request.session.get('bag', {})
+
+    if not bag:
+        messages.error(request, "There's nothing in your shopping bag!")
+        return redirect(reverse('home'))
+
     if request.method == 'POST':
         
         bag = request.session.get('bag', {})
@@ -136,31 +141,41 @@ def checkout(request):
 
 def checkoutSuccess(request, order_number):
     """ Rendered after order is successful """
+
     order = get_object_or_404(Order, order_number=order_number)
-    messages.success(request, f'Pack your bags! Your order has been successful')
+    if request.user.is_authenticated and order.user_profile.user == request.user:
 
-    if 'bag' in request.session:
-        del request.session['bag']
-    
-    save_info = request.session.get('save_info')
-    # Save the user's info
-    if save_info:
-        profile = UserProfile.objects.get(user=request.user)
-        profile_data = {
-            'profile_phone_number': order.phone_number,
-            'profile_country': order.country,
-            'profile_postcode': order.postcode,
-            'profile_town_or_city': order.town_or_city,
-            'profile_street_address1': order.street_address1,
-            'profile_street_address2': order.street_address2,
-            'profile_county': order.county,
+        messages.success(request, f'Pack your bags! Your order has been successful')
+
+        if 'bag' in request.session:
+            del request.session['bag']
+        
+        save_info = request.session.get('save_info')
+        # Save the user's info
+        if save_info:
+            profile = UserProfile.objects.get(user=request.user)
+            profile_data = {
+                'profile_phone_number': order.phone_number,
+                'profile_country': order.country,
+                'profile_postcode': order.postcode,
+                'profile_town_or_city': order.town_or_city,
+                'profile_street_address1': order.street_address1,
+                'profile_street_address2': order.street_address2,
+                'profile_county': order.county,
+            }
+            user_profile_form = UserProfileForm(profile_data, instance=profile)
+            if user_profile_form.is_valid():
+                user_profile_form.save()
+
+        context = {
+            'order': order,
+            'request': request,
         }
-        user_profile_form = UserProfileForm(profile_data, instance=profile)
-        if user_profile_form.is_valid():
-            user_profile_form.save()
 
-    context = {
-        'order': order
-    }
+        return render(request, 'checkout/checkout-success.html', context)
 
-    return render(request, 'checkout/checkout-success.html', context) 
+    else:
+        messages.error(request, 'You are not logged in with the correct user!')
+        return render(request, "home/index.html")
+
+ 
