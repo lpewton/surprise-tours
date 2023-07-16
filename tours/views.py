@@ -92,18 +92,25 @@ def add_tour(request):
         if form.is_valid():
             start_date = form.cleaned_data['start']
             end_date = form.cleaned_data['end']
+            slots = form.cleaned_data['slots']
+            slots_left = form.cleaned_data['slots_left']
 
             if start_date <= timezone.now().date():
                 messages.error(request, 'Start date must be later than today!')
             elif end_date <= start_date:
                     messages.error(request, 'End date cannot be sooner that start date!')
             else:
-                tour = form.save()
-                messages.success(request, 'Tour added correctly')
-                return redirect(reverse('tour_detail', args=[tour.id]))
+                if slots_left > slots:
+                    messages.error(request, 'There are more slots left than slots available!')
+                else: 
+                    tour = form.save()
+                    messages.success(request, 'Tour added correctly')
+                    return redirect(reverse('tour_detail', args=[tour.id]))
+            
         else:
-            error_message = form.errors.as_text()
-            messages.error(request, error_message)
+            error_message1 = form.errors.as_text().split('*')[1].title()
+            error_message2 = form.errors.as_text().split('*')[2]
+            messages.error(request, f'{error_message1}: {error_message2}')
             return redirect('add_tour')
 
     return render(request, 'tours/add_tour.html', context)

@@ -10,7 +10,7 @@ class Continent(models.Model):
         return self.continent
 
 class Tour(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, unique=True)
     meeting_location = models.CharField(max_length=50)
     continent = models.ForeignKey(Continent, on_delete=models.CASCADE)
     start = models.DateField()
@@ -19,9 +19,9 @@ class Tour(models.Model):
         validators=[MinValueValidator(1)], default=1)
     slots_left = models.PositiveIntegerField(default=1)
     rating = models.FloatField(
-        validators=[MinValueValidator(0)], default=0)
+        validators=[MinValueValidator(0), MaxValueValidator(10)], default=0)
     price = models.FloatField(
-        validators=[MinValueValidator(0)], default=100)
+        validators=[MinValueValidator(1)], default=100)
     image_1 = models.ImageField(null=True, blank=True)
     image_2 = models.ImageField(null=True, blank=True)
     image_3 = models.ImageField(null=True, blank=True)
