@@ -14,12 +14,11 @@ You can find the live link for this website here: [https://lpewton-stock-control
     + [Displays](#displays)
     + [Colors and design](#colors-and-design)
     + [User Stories](#user-stories)
-  * [Roles and Registration](#roles-and-registration)
   * [Database Schema:](#database-schema)
     + [Tour](#tour)
     + [Order](#order)
-    + [Order Item](#order-item)
-    + [Message](#message)
+    + [Order Item](#order-item-each-item-within-the-order)
+    + [Message](#message-to-be-sent-to-the-store-owners)
     + [User](#user-profile)
   * [Features](#features)
   * [Requirements.txt](#requirementstxt)
@@ -27,8 +26,7 @@ You can find the live link for this website here: [https://lpewton-stock-control
   * [Unfixed bugs](#unfixed-bugs)
   * [Major Issues Found](#major-issues-found)
   * [Manual Testing:](#manual-testing)
-    + [Ingredient](#ingredient-model)
-    + [Recipes](#recipes-model)
+    + [Tours](#tour-model)
     + [Website](#website)
     + [User Stories Completion](#user-stories-completion)
     + [Security Measures](#security-measures)
@@ -65,7 +63,6 @@ As for the website administrator, that would be the store owner and their creden
 | Role  | Username | Password |
 | ------------- | ------------- | ------------- |
 | Superuser  | admin | casagelat |
-| Customer  | auri | brasileiro |
 
 ### Displays:
 The layout of the app is clear, communicative and there is an easy intuition on how to find the information.
@@ -88,16 +85,16 @@ The Agile methodology has been used during this app’s creation. This has been 
   - I want to be able to add reviews to each tour so clients can evaluate them
 2. Authorization:
 - As a **client**:
-  - I want to be able to log in
-  - I want to be able to see my past trips
+  - I want to be able to log in so that I can create an account
+  - I want to be able to see my past trips so that I know what I have purchased
 - As an **owner**:
-  - I want to stop people from entering the restricted pages without being logged in
+  - I want to stop people from entering the restricted pages without being logged in so that I can protect the integrity of the website
 3. Purchasing:
 - As a **client**:
-  - I want to be able to buy an X quantity of the tours I want
-  - I want to be able to see the total of my purchases so I know how much I’m spending before I buy them
+  - I want to be able to buy an X quantity of the tours I want so that I can book one of them
+  - I want to be able to see the total of my purchases so I that know how much I’m spending before I buy them
   - I want to be reminded of what I am purchasing before I pay so I don’t purchase the wrong trip
-  - I want to receive an email with the product and the confirmation after purchasing a tour so I know that everything has been handled correctly
+  - I want to receive an email with the product and the confirmation after purchasing a tour so that I know that everything has been handled correctly
 - As an **owner**:
   - I want to stop buyers from buying trips that are sold out
 
@@ -223,6 +220,9 @@ All needed requirements.txt have been added to the app so it works properly. The
 ## Features left to implement:
 AIXÒ AL FINAL
 
+## Unfixed Bugs:
+AIXÒ AL FINAL
+
 ## Major Issues Found:
 1. Crispy forms not compatible with Stripe:
 - For some reason unknown, whenever I added crispy forms to the payment form, it stopped working. Hours of troubleshooting myself and with the Code Institute tutors did not provide a solution.
@@ -271,32 +271,102 @@ REVISA AIXÒ PER SI DE CAS
 
 ### USER STORIES COMPLETION:
 1. As a **client** I want to **view all the available tours** so that I **can choose one**:
-- The tour list is available for all members to see, as intended, and it's responsive to all devices.
+   - The tour list is available for all members to see, as intended, and it's responsive to all devices.
 2. As a **client** I want to **sort the products by prices, destination or dates** so I **can make an informed decision**:
-- Tours are sorted automatically by ascending price and the users can also sort them acording to other parameters
+   - Tours are sorted automatically by ascending price and the users can also sort them acording to other parameters.
 3. As a **client** I want to **see the tour’s details** so that I **know how they are**:
-- The details are shown correctly to all users 
+   - The details are shown correctly to all users.
 4. As a **client** I want to **be warned when a trip is almost sold out** so that I **don't miss out on it**:
-- This is shown in the tours page as a small message when there are less than 5 slots left on a tour
+   - This is shown in the tours page as a small message when there are less than 5 slots left on a tour.
 5. As a **client** I want to **see all of the best deals easily** so that I **know what to purchase**:
+ ENCARA NO
+6. As a **client** I want to **search for a particular country or city** so that I **can find tours more easily**:
+   - The searchbar works and it allows the user to search by name or location.
+7. As an **owner** I want to **be able to add, remove or edit tours** so that **the inventory is updated**:
+   - Store owners can add, remove or edit tours from the database successfully.
+8. As an **owner** I want to **be able to add reviews to each tour** so that **clients can evaluate them**:
+ENCARA NO
+9. As a **client** I want to **be able to log in** so that I **can create an account**:
+   - Customers can create accounts successfully and choose their own passwords and usernames.
+10. As a **client** I want to **be able to see my past trips** so that I **know what I have purchased**:
+   - Users can go into the "Previous trips" page to see past orders.
+11. As an **owner** I want to **stop people from entering the restricted pages without being logged in** so that I **can protect the integrity of the website**:
+   - Customers cannot access the pages that are only for store managers or that are private to other customers.
+12. As a **client** I want to **be able to buy an X quantity of the tours I want** so that I **can book one of them**:
+   - The customers can buy as many tour tickets as they want, so long as there are enough slots left.
+13. As a **client** I want to **be able to see the total of my purchases** so that I **know how much I’m spending before I buy them**:
+   - Customers can find the total of their purchase in the shopping bag and just before they're about to enter their credit card number
+14. As a **client** I want to **be reminded of what I am purchasing before I pay** so that **I don’t purchase the wrong trip**:
+   - The customer can see what they are about to purchase in the shopping bag and again in the checkout form, so they are reminded twice.
+15. As a **client** I want to **receive an email with the product and the confirmation after purchasing a tour** so that **I know that everything has been handled correctly**:
+   - After a purchase, customers are sent an email with the details of their order and instructions so they know everything went through properly.
+16. As an **owner** I want to **stop buyers from buying trips that are sold out** so that **they are not oversold**:
+   - Customers cannot buy tickets on trips that are sold out or purchase more tickets than slots left.
 
-  
-  - Search for a particular country or city so that I can find tours more easily
-- As an **owner**:
-  - I want to be able to add, remove or edit tours so that the inventory is updated
-  - I want to be able to add reviews to each tour so clients can evaluate them
-2. Authorization:
-- As a **client**:
-  - I want to be able to log in
-  - I want to be able to see my past trips
-- As an **owner**:
-  - I want to stop people from entering the restricted pages without being logged in
-3. Purchasing:
-- As a **client**:
-  - I want to be able to buy an X quantity of the tours I want
-  - I want to be able to see the total of my purchases so I know how much I’m spending before I buy them
-  - I want to be reminded of what I am purchasing before I pay so I don’t purchase the wrong trip
-  - I want to receive an email with the product and the confirmation after purchasing a tour so I know that everything has been handled correctly
-- As an **owner**:
-  - I want to stop buyers from buying trips that are sold out
+In conclusion, all completed user stories work properly and as intended, and the non-completed user stories will be finalised in the near future to make this app as useful as possible.
 
+### SECURITY MEASURES:
+All app functions were tested several times to make sure they worked under many conditions.
+
+The store owner needs to add double confirmation to delete any tours, so that none are deleted accidentally or by mistake.
+
+Users can only access their pages when they are logged in and in the correct user type. If not, they will be redirected to the home page.
+
+## Validator Testing:
+- All HTML 
+- All CSS 
+- The lighthouse test 
+- All python code 
+- The app could be opened from Mozzila Firefox, Chrome and Safari without any issues.
+
+## Technologies Used:
+- HTML5
+- CSS3
+- Bootstrap 5
+- Python
+- Django
+- ElephantSQL
+
+## Deployment:
+### In the terminal:
+1. Install Django and gunicorn: pip3 install 'django<4' gunicorn
+2. Install supporting libraries: pip3 install dj_database_url==0.5.0 psycopg2
+3. Install Cloudinary Libraries: pip3 install dj3-cloudinary-storage
+4. Create requirements file
+5. Create Project
+6. Create App 
+7. Create requirements file: pip3 freeze --local > requirements.txt
+8. Create Project: django-admin startproject STOCK-CONTROLLER 
+9. Create App: python3 manage.py startapp stock_controller_app
+10. Migrate Changes: python3 manage.py migrate
+
+### In settings.py:
+1. Add app to installed apps, at the bottom of the list
+2. Set DEBUG = True (For security reasons, it's important to set it back to False at the end of the project)
+
+### In ElephantSQL:
+1. Create an external database
+
+### In the Heroku app:
+1. Create a new Heroku app
+2. In config vars, add the following variables:
+- SECRET_KEY: Insert your secret key here
+- PORT: 8000
+- CLOUDINARY_URL: API environment variable
+- DATABASE_URL: value supplied by SQL
+
+### In the app:
+1. Create an env.py file in the root directory
+2. Link the database, cloudinary and secret key to the env.py file
+3. Add the database url, cloudinary url and secret key to the settings.py file, always through the env.py file for security
+4. Add the Heroku app to allowed hosts
+5. Create the Procfile file
+6. Push the project to Github
+7. Connect the heroku app to the github repository and click on deploy
+
+## Credits:
+A lot of this project was based on the projects shown at the Full Stack Software Developement Professional Diploma at Code Institute. Especially the *Boutique Ado* project.
+
+As for the Stripe payments, the code was extracted from the Stripe Documentation in order to make it work.
+
+Finally, I would also like to thank my tutor, Martina Terlevic, and the Code Institute student support team for helping me through the tough times while developing the app.
