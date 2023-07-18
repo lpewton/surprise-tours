@@ -2,13 +2,11 @@ Dear {{ order.full_name }},
 
 We are glad to inform you that your payment was successful and your order was issued!
 
-Pack your bags,you are now going to: {% for tour in order.lineitems.all %} 
-    - {{ tour.name. }}. Meeting at {{ tour.meeting_location }}.
+Pack your bags! You can find your order details in your members area in our website, under "My trips". 
 
-{% endfor %}
+Thank you for shopping with us, you will receive an email with more instructions on your reservation 2 weeks before your trip with detailed instructions on preparations. Bear in mind that the rest of the payment (US ${{ order.upon_arrival }}) is made in person upon meeting your guide.
 
-
-Thank you for shopping with us, you will receive an email with more instructions on your reservation 2 weeks before your trip with detailed instructions on preparations. Please remember that the rest of the payment (US ${{ order.upon_arrival }}) is made in person upon meeting your guide.
+For more information you can reach out to us at {{ contact_email }}.
 
 Please remember to always travel safe and, most importantly of all, have fun!
 
