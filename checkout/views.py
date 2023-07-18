@@ -143,7 +143,7 @@ def checkoutSuccess(request, order_number):
     """ Rendered after order is successful """
 
     order = get_object_or_404(Order, order_number=order_number)
-    if request.user.is_authenticated == False or order.user_profile.user == request.user:
+    if order.user_profile.user == request.user:
 
         messages.success(request, f'Pack your bags! Your order has been successful')
 

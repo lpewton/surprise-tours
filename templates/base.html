@@ -108,7 +108,9 @@
                     {% endif %}
                 </ul>
             </div>
-            </div>
+            {% if user.is_authenticated %}
+            <p class="d-flex justify-content-end me-5">Logged in as {{ request.user.username }}</p>
+            {% endif %}
         </nav>
     </header>
 
