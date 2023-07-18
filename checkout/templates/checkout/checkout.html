@@ -3,58 +3,61 @@
 
 {% block content %}
 <div class="container">
-    <h4 class="mt-3">CHECK OUT</h4> 
-    <div class="row">
-        <!-- Checkout Form -->
-        <div class="row col-md-6">
-            <h4 class="mt-4">PAYMENT:</h4>
-            <form id="payment-form" action="{% url 'checkout' %}" method="POST">
-                {% csrf_token %}
-                <fieldset>
-                    <legend>Buyer Details:</legend>
-                    {{ form.full_name }}
-                    {{ form.email }}
-                    {{ form.phone_number }}
-                    {{ form.nationality }}
-                    {{ form.street_address1 }}
-                    {{ form.street_address2 }}
-                    {{ form.town_or_city }}
-                    {{ form.postcode }}
-                    {{ form.country }}
-                    {{ form.county }}
-                </fieldset>
-                
-                <div class="form-check form-check-inline float-right mr-0">
-                    {% if user.is_authenticated %}
-                    <label class="form-check-label" for="id-save-info">Save this delivery information for my next
-                        purchase</label>
-                    <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info" name="save-info"
-                        checked>
-                    {% else %}
-                    <label class="form-check-label" for="id-save-info">
-                        <a class="text-decoration-none" href="{% url 'account_signup' %}">Register</a> or
-                        <a class="text-decoration-none" href="{% url 'account_login' %}">log in</a> to save this
-                        information for the next time!
-                    </label>
-                    {% endif %}
-                </div>
-                <hr>
-                <fieldset>
-                    <legend>Payment Details:</legend>
-                    <div id="card-element"></div>
-                    <div id="card-errors" class="text-danger"></div>
-                    <input type="hidden" value="{{ client_secret }}" name="client_secret">
-                </fieldset>
-                <p id="charge-quantity" class="text-danger">*You will now be charged US ${{ total|floatformat:2 }}</p>
-                <a class="btn bg-black text-light rounded p-2 text-decoration-none checkout-btn"
-                    href="{% url 'bag' %}">Adjust bag</a>
-                <button type="submit" id="submit-button" class="btn bg-black text-light rounded p-2 checkout-btn">
-                    Complete Order
-                </button>
-            </form>
+    <div id="payment-form-div">
+        <h4 class="mt-3">CHECK OUT</h4>
+        <div class="row">
+            <!-- Checkout Form -->
+            <div class="row col-md-6">
+                <h4 class="mt-4">PAYMENT:</h4>
+                <form id="payment-form" action="{% url 'checkout' %}" method="POST">
+                    {% csrf_token %}
+                    <fieldset>
+                        <legend>Buyer Details:</legend>
+                        {{ form.full_name }}
+                        {{ form.email }}
+                        {{ form.phone_number }}
+                        {{ form.nationality }}
+                        {{ form.street_address1 }}
+                        {{ form.street_address2 }}
+                        {{ form.town_or_city }}
+                        {{ form.postcode }}
+                        {{ form.country }}
+                        {{ form.county }}
+                    </fieldset>
+
+                    <div class="form-check form-check-inline float-right mr-0">
+                        {% if user.is_authenticated %}
+                        <label class="form-check-label" for="id-save-info">Save this delivery information for my next
+                            purchase</label>
+                        <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info" name="save-info"
+                            checked>
+                        {% else %}
+                        <label class="form-check-label" for="id-save-info">
+                            <a class="text-decoration-none" href="{% url 'account_signup' %}">Register</a> or
+                            <a class="text-decoration-none" href="{% url 'account_login' %}">log in</a> to save this
+                            information for the next time!
+                        </label>
+                        {% endif %}
+                    </div>
+                    <hr>
+                    <fieldset>
+                        <legend>Payment Details:</legend>
+                        <div id="card-element"></div>
+                        <div id="card-errors" class="text-danger"></div>
+                        <input type="hidden" value="{{ client_secret }}" name="client_secret">
+                    </fieldset>
+                    <p id="charge-quantity" class="text-danger">*You will now be charged US ${{ total|floatformat:2 }}
+                    </p>
+                    <a class="btn bg-black text-light rounded p-2 text-decoration-none checkout-btn"
+                        href="{% url 'bag' %}">Adjust bag</a>
+                    <button type="submit" id="submit-button" class="btn bg-black text-light rounded p-2 checkout-btn">
+                        Complete Order
+                    </button>
+                </form>
+            </div>
         </div>
 
-        <div class="col-md-6 mt-4">
+        <div id="tours-purchased" class="col-md-6 mt-4">
             <h4>PURCHASE:</h4>
 
             {% for tour in bag_items %}
@@ -66,7 +69,8 @@
                     <p class="text-uppercase mb-0">{{ tour.tour.start }} - {{ tour.tour.end }}</p>
                 </div>
                 <div class="col-md-4 my-auto">
-                    <p class="py-md-4 py-2 mb-0 d-xl-none">x{{ tour.quantity }} = US ${{ tour.tour_total|floatformat:2 }}
+                    <p class="py-md-4 py-2 mb-0 d-xl-none">x{{ tour.quantity }} = US ${{ tour.tour_total|floatformat:2
+                        }}
                     </p>
                     <h5 class="py-md-4 py-2 mb-0 d-none d-xl-block">
                         x{{ tour.quantity }} = US ${{tour.tour_total|floatformat:2 }}</h5>
@@ -75,7 +79,13 @@
             {% endfor %}
         </div>
     </div>
-    <h1 id="payment-plane"><i class="fa-sharp fa-solid fa-plane-departure fa-beat fa-2xl"></i></h1>
+    <div id="payment-plane">
+        <h1 class="w-75 mx-auto my-5 d-flex justify-content-center">
+            <i class="fa-sharp fa-solid fa-plane-departure fa-beat fa-2xl m-2 w-25"></i>
+            <i class="fa-sharp fa-solid fa-plane-departure fa-beat fa-2xl m-2 w-25"></i>
+            <i class="fa-sharp fa-solid fa-plane-departure fa-beat fa-2xl m-2 w-25"></i>
+        </h1>
+    </div>
 </div>
 
 {% endblock %}
