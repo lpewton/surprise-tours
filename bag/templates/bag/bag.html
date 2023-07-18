@@ -8,15 +8,6 @@
     {% for tour in bag_items %}
     <div class="row col-12">
         <div class="row border border-dark m-1 p-0">
-            <div class="col-4 p-0">
-                {% if tour.image_1 %}
-                <img class="col-12 tour-img" src="{{tour.image_1.url}}" alt="Nice photograph">
-                {% else %}
-                <img class="col-12 tour-img"
-                    src="https://res.cloudinary.com/dttlol6ik/image/upload/v1688944519/default-img-1.png"
-                    alt="Airplane Wing">
-                {% endif %}
-            </div>
             <div class="row col-md-8">
                 <div class="col-md-8 mt-auto">
                     <p class="text-uppercase mb-0 my-md-4">

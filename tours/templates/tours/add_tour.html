@@ -9,7 +9,7 @@
             {% csrf_token %}
             {% for field in form %} 
             {% if field.name == 'start' or field.name == 'end' %}
-            <div class="col-md-4 col-lg-4 px-2 mb-5 mt-3 my-md-0 mb-md-5">
+            <div class="col-8 col-md-4 col-lg-4 px-2 mb-5 mt-3 my-md-0 mb-md-5">
                 <p>{{ field.label }}:</p>
                 <input class="col-12 col-lg-7" type="date" name="{{ field.html_name }}"
                     value="{{ field.value|date:'Y-m-d' }}">
