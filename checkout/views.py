@@ -101,7 +101,7 @@ def checkout(request):
                         order=order,
                         tour=tour,
                         quantity=item_quantity,
-                    )
+                    ) 
                     tour.slots_left -= item_quantity
                     tour.save()
                     order_item.save()
@@ -169,7 +169,7 @@ def checkoutSuccess(request, order_number):
     """ Rendered after order is successful """
 
     order = get_object_or_404(Order, order_number=order_number)
-    if order.user_profile.user == request.user:
+    if request.user.is_authenticated == False or order.user_profile.user == request.user:
         messages.success(request, f'Pack your bags! Your order has been successful')
 
         if 'bag' in request.session:
