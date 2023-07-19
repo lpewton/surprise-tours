@@ -53,11 +53,37 @@ def checkout(request):
             'street_address1': request.POST['street_address1'],
             'street_address2': request.POST['street_address2'],
             'county': request.POST['county'],
-        }
+        }        
 
         order_form = OrderForm(form_data)
         if request.user.is_authenticated:
             profile = get_object_or_404(UserProfile, user=request.user)
+
+            save_info = request.POST.get('save-info', 'off')            
+            # Save the user's info
+            if save_info == 'on':
+                full_name = request.POST['full_name']
+                email = request.POST['email']
+                phone_number = request.POST['phone_number']
+                nationality = request.POST['nationality']
+                country = request.POST['country']
+                postcode = request.POST['postcode']
+                town_or_city = request.POST['town_or_city']
+                street_address1 = request.POST['street_address1']
+                street_address2 = request.POST['street_address2']
+                county = request.POST['county']
+                
+                profile.profile_full_name = full_name
+                profile.profile_email = email
+                profile.profile_phone_number = phone_number
+                profile.profile_nationality = nationality
+                profile.profile_country = country
+                profile.profile_postcode = postcode
+                profile.profile_town_or_city = town_or_city
+                profile.profile_street_address1 = street_address1
+                profile.profile_street_address2 = street_address1
+                profile.profile_county = county
+                profile.save()
 
         if order_form.is_valid:
             order = order_form.save(commit=False)
@@ -144,28 +170,10 @@ def checkoutSuccess(request, order_number):
 
     order = get_object_or_404(Order, order_number=order_number)
     if order.user_profile.user == request.user:
-
         messages.success(request, f'Pack your bags! Your order has been successful')
 
         if 'bag' in request.session:
             del request.session['bag']
-        
-        save_info = request.session.get('save_info')
-        # Save the user's info
-        if save_info:
-            profile = UserProfile.objects.get(user=request.user)
-            profile_data = {
-                'profile_phone_number': order.phone_number,
-                'profile_country': order.country,
-                'profile_postcode': order.postcode,
-                'profile_town_or_city': order.town_or_city,
-                'profile_street_address1': order.street_address1,
-                'profile_street_address2': order.street_address2,
-                'profile_county': order.county,
-            }
-            user_profile_form = UserProfileForm(profile_data, instance=profile)
-            if user_profile_form.is_valid():
-                user_profile_form.save()
 
         context = {
             'order': order,
