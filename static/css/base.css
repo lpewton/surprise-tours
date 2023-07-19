@@ -6,6 +6,7 @@ header {
 
 #block-content { 
     font-family: 'Allan', cursive;
+    min-height: 50vh;
 }
 
 footer {    
@@ -16,10 +17,6 @@ footer {
     height: 50vh;
     background: url('https://res.cloudinary.com/dttlol6ik/image/upload/v1688945155/index-img.jpg') no-repeat center center fixed;
     background-size: cover;
-}
-
-#block-content {
-    min-height: 50vh;
 }
 
 #index-text-div {
@@ -71,4 +68,17 @@ footer {
     background:#fff;
     clear:left; 
     font:14px Helvetica,Arial,sans-serif; 
+}
+
+/* Media Queries */
+@media screen and (max-width: 1024px) {
+    #block-content { 
+        min-height: 60vh;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    #block-content { 
+        min-height: 20vh;
+    }
 }

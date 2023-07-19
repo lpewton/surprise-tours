@@ -61,7 +61,10 @@ class StripeWH_Handler:
         order_total = round(stripe_charge.amount / 100, 2)
 
         # Update profile information if save_info was checked
-        
+        profile = None
+        username = intent.metadata.username
+        if username != 'AnonymousUser':
+            profile = UserProfile.objects.get(user__username=username)
 
         order_exists = False
         attempt = 1
