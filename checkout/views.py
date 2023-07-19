@@ -105,10 +105,6 @@ def checkout(request):
                     tour.slots_left -= item_quantity
                     tour.save()
                     order_item.save()
-
-                    request.session['save_info'] = 'save-info' in request.POST
-                    
-                    return redirect(reverse('checkout_success', args=[order.order_number]))
                     
                 except Tour.DoesNotExist:
                     messages.error(request, (
@@ -120,6 +116,9 @@ def checkout(request):
         else:
             messages.error(request, "Something went wrong")
             return render(request, 'checkout/checkout.html')
+        
+        return redirect(reverse('checkout_success', args=[order.order_number]))
+
 
     if request.method == 'GET':
         stripe_public_key = settings.STRIPE_PUBLIC_KEY
@@ -169,7 +168,7 @@ def checkoutSuccess(request, order_number):
     """ Rendered after order is successful """
 
     order = get_object_or_404(Order, order_number=order_number)
-    if request.user.is_authenticated == False or order.user_profile.user == request.user:
+    if order.user_profile.user == request.user:
         messages.success(request, f'Pack your bags! Your order has been successful')
 
         if 'bag' in request.session:
