@@ -1,11 +1,11 @@
-from django.conf import settings
 from django.shortcuts import get_object_or_404
 
 from tours.models import Tour
 
 
-def bag_contents(request): 
-    
+def bag_contents(request):
+    """ Create the contents of the bag """
+
     bag_items = []
     bag = request.session.get('bag', {})
     total = 0

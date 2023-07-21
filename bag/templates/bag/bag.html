@@ -2,43 +2,39 @@
 {% load static %}
 
 {% block content %}
-<div class="container container-div">
-    <h4 class="mt-3">SHOPPING BAG</h4>
-    {% if bag_items %}
-    {% for tour in bag_items %}
-    <div class="row col-12">
-        <div class="row border border-dark m-1 p-0">
-            <div class="row col-md-8">
-                <div class="col-md-8 mt-auto">
-                    <p class="text-uppercase mb-0 my-md-4">
-                        <strong>{{ tour.tour.length }} nights in {{tour.tour.name}}</strong></p>
-                    <p class="text-uppercase mb-0">{{ tour.tour.start }} - {{ tour.tour.end }}</p>
-                </div>
-                <div class="col-md-4 mt-auto">
-                    <p class="py-4 mb-0 d-xl-none">x{{ tour.quantity }} = US ${{ tour.tour_total|floatformat:2 }}</p>
-                    <h3 class="py-4 mb-0 d-none d-xl-block">x{{ tour.quantity }} = US ${{ tour.tour_total|floatformat:2 }}
-                    </h3>
-                </div>
-                <div class="text-md-end mb-2 mt-auto">
-                    <a href="{% url 'add_passenger' tour.tour.id %}" class="text-success">Add a passenger</a>
-                    <a href="{% url 'remove_passenger' tour.tour.id %}" class="text-success"> | Remove a passenger</a>
-                    <a href="{% url 'remove_from_bag' tour.tour.id %}" class="text-danger"> | Remove from bag</a>
-                </div>
-            </div>
-        </div>
+<h4 class="mt-3">SHOPPING BAG</h4>
+{% if bag_items %}
+{% for tour in bag_items %}
+<div class="row col-12 border border-dark m-1 p-0">
+    <div class="col-md-8 text-uppercase">
+        <p class="mb-0 my-md-4">
+            <strong>{{ tour.tour.length }} nights in {{tour.tour.name}}</strong>
+        </p>
+        <p class="mb-0">{{ tour.tour.start }} - {{ tour.tour.end }}</p>
     </div>
-    {% endfor %}
-    <div class="row">
-        <h3 class="m-2 col-md-4">TOTAL: US ${{ total|floatformat:2 }}</h3>
-        <div class="col-md-6 text-center mt-2">
-            <a href="{% url 'tours' %}" class="btn text-light bg-dark">Book more Tours!</a>
-            <a href="{% url 'checkout' %}" class="btn text-light bg-dark">Check Out</a>
-        </div>
+    <div class="col-md-4 mt-auto py-4 mb-0 ">
+        <p class="d-xl-none">x{{ tour.quantity }} = US ${{ tour.tour_total|floatformat:2 }}</p>
+        <h3 class="d-none d-xl-block">
+            x{{ tour.quantity }} = US ${{ tour.tour_total|floatformat:2 }}
+        </h3>
     </div>
-    {% else %}
-    <h5 class="mt-3">Nothing to see here...</h5>
-    <h6>Let's fill this up with amazing adventures!</h6>
-    <a href="{% url 'tours' %}" class="btn text-light bg-dark mt-3">Book some Tours!</a>
-    {% endif %}
+    <div class="text-md-end mb-2">
+        <a href="{% url 'add_passenger' tour.tour.id %}" class="text-success">Add a passenger</a>
+        <a href="{% url 'remove_passenger' tour.tour.id %}" class="text-success"> | Remove a passenger</a>
+        <a href="{% url 'remove_from_bag' tour.tour.id %}" class="text-danger"> | Remove from bag</a>
+    </div>
 </div>
+{% endfor %}
+<div class="row">
+    <h3 class="m-2 col-md-4">TOTAL: US ${{ total|floatformat:2 }}</h3>
+    <div class="col-md-6 text-center mt-2">
+        <a href="{% url 'tours' %}" class="btn text-light bg-dark">Book more Tours!</a>
+        <a href="{% url 'checkout' %}" class="btn text-light bg-dark">Check Out</a>
+    </div>
+</div>
+{% else %}
+<h5 class="mt-3">Nothing to see here...</h5>
+<h6>Let's fill this up with amazing adventures!</h6>
+<a href="{% url 'tours' %}" class="btn text-light bg-dark mt-3">Book some Tours!</a>
+{% endif %}
 {% endblock %}
