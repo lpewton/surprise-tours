@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django_countries.fields import CountryField
+from django.core.validators import MinValueValidator, MaxValueValidator
+
+from tours.models import Tour
 
 
 class UserProfile(models.Model):
@@ -41,3 +44,12 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
         UserProfile.objects.create(user=instance)
     # Existing users: just save the profile
     instance.userprofile.save()
+
+
+class review(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    tour = models.ForeignKey(Tour, on_delete=models.CASCADE)
+    rating = models.FloatField(
+        validators=[MinValueValidator(0), MaxValueValidator(10)], default=0)
+    review = models.CharField(
+        max_length=150, null=False, blank=False)

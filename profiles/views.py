@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 
-from .forms import UserProfileForm
+from .forms import UserProfileForm, reviewForm
 from .models import UserProfile
 from checkout.models import Order
 
@@ -60,7 +60,9 @@ def pastOrders(request):
 
 
 def orderDetail(request, order_id):
-    """ Displays the user's past order details"""
+    """
+    Displays the user's past order details
+    """
 
     order = get_object_or_404(Order, pk=order_id)
 
@@ -75,3 +77,13 @@ def orderDetail(request, order_id):
         messages.error(request, 'You are not logged in with the correct user!')
 
         return render(request, "home/index.html")
+
+
+def review(request,):
+
+    form = reviewForm()
+    context = {
+            'form': form,
+        }
+
+    return render(request, "profiles/review.html", context)
