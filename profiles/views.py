@@ -86,4 +86,17 @@ def review(request,):
             'form': form,
         }
 
+    if request.method == "POST":
+        form = reviewForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Review sent successfully!')
+
+            return render(request, "profiles/review.html", context)
+
+        else:
+            messages.error(
+                request, "Couldn't sent review failed, please try again")
+
     return render(request, "profiles/review.html", context)
