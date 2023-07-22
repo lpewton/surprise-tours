@@ -35,7 +35,7 @@ class UserProfile(models.Model):
 @receiver(post_save, sender=User)
 def create_or_update_user_profile(sender, instance, created, **kwargs):
     """
-    Creates or update the user profile when checkbox is clicked
+    Creates or update the user profile
     """
     if created:
         UserProfile.objects.create(user=instance)

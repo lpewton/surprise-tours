@@ -3,14 +3,24 @@
 
 {% block content %}
 <h4>PAST TRIPS</h4>
-<ul>
+<table class="table table-striped">
+    <tr>
+        <th class="col-3 border border-black px-2">Tour(s)</th>
+        <th class="col-2 border border-black px-2">Date Booked</th>
+        <th class="col-3 border border-black px-2 d-none d-md-table-cell">Name</th>
+        <th class="col-2 border border-black px-2">Total price</th>
+        <th class="col-1 border border-black px-2"></th>
+    </tr>
     {% for order in orders %}
-    <li>
-        <a href="{% url 'order_detail' order.id %}">Order booked on: {{ order.show_date }}
-            {% for tour in order.lineitems.all %}
-            ({{ tour.tour }})
-            {% endfor %}</a>
-    </li>
+    <tr>
+        <td class="col-2 border border-black px-2">{% for tour in order.lineitems.all %}
+            {{ tour.tour }},
+            {% endfor %}</a></td>
+        <td class="border border-black px-2">{{ order.show_date }}</td>
+        <td class="border border-black px-2 d-none d-md-table-cell">{{ order.full_name }}</td>
+        <td class="border border-black px-2">US ${{ order.order_total }}</td>
+        <td class="border border-black px-2 justify-content-center"><a href="{% url 'order_detail' order.id %}" class="btn rounded bg-info">DETAILS</a></td>
+    </tr>
     {% endfor %}
-</ul>
+</table>
 {% endblock %}
