@@ -63,8 +63,14 @@ def tours(request):
                 return redirect(reverse('tours'))
 
             queries = Q(name__icontains=query) | Q(
-                meeting_location__icontains=query)
+                meeting_location__icontains=query) | Q(
+                    description__icontains=query)
+
             tours = tours.filter(queries)
+
+            context = {
+                'q': query,
+            }
 
     current_sorting = f'{sort}_{direction}'
 
