@@ -2,6 +2,9 @@ from django.db import models
 
 
 class message(models.Model):
+    """
+    Stores the message and its details
+    """
     full_name = models.CharField(max_length=50, null=False, blank=False)
     email = models.EmailField(max_length=50, null=False, blank=False)
     subject = models.CharField(max_length=100, null=False, blank=False)

@@ -9,6 +9,9 @@ from profiles.models import UserProfile
 
 
 class Order(models.Model):
+    """
+    Saves order details during purchase
+    """
     order_number = models.CharField(max_length=30, null=False, editable=False)
     user_profile = models.ForeignKey(
         UserProfile, on_delete=models.SET_NULL,
@@ -63,6 +66,9 @@ class Order(models.Model):
 
 
 class OrderItem(models.Model):
+    """
+    Saves each tour within the total purchase
+    """
     order = models.ForeignKey(
         Order, null=False, blank=False, on_delete=models.CASCADE,
         related_name='lineitems')

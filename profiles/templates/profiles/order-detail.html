@@ -2,29 +2,28 @@
 {% load static %}
 
 {% block content %}
-<div class="container">
-    <h4>ORDER DETAILS:</h4>
-    <div class="row col-md-6 col-xl-4 border border-black p-2 m-1">
-        <p class="p-0 mb-0"><strong>ORDER DETAILS: {{ order }}</strong></p>
-        <hr class="mb-1">
-        <p class="p-0 mb-0">Customer Details:</p>
-        <ul class="ps-4">
-            <li><strong>Name:</strong> {{ order.full_name }}</li>
-            <li><strong>Email:</strong> {{ order.email }}</li>
-            <li><strong>Phone Number:</strong> {{ order.phone_number }}</li>
-            <li><strong>Nationality:</strong> {{ order.nationality }}</li>
-            <li><strong>Postal Address:</strong> {{ order.street_address1 }}{% if street_address2 %}{{
-                order.street_address2 }}{% endif %}. {{ order.town_or_city }}, {{order.postcode}}. {{order.country}}
-            </li>
-            <li><strong>Purchased on:</strong> {{ order.show_date }}</li>
-        </ul>
-        <p class="p-0 mb-0">Purchase Details:</p>
-        <ul class="ps-4">{% for tour in order.lineitems.all %}
-            <li>{{ tour.quantity}} ticket{% if tour.quantity > 1 %}s{% endif %} for {{ tour.tour }}
-                (US ${{tour.item_total }})</li>
-            {% endfor %}
-        </ul>
-        <p class="ps-0"><strong>TOTAL:</strong> US ${{ order.order_total }} (10% deposit)</p>
-    </div>
+<h4>ORDER DETAILS:</h4>
+<div class="row col-md-6 col-xl-4 border border-black p-2 m-1">
+    <p class="p-0 mb-0"><strong>ORDER DETAILS: {{ order }}</strong></p>
+    <hr class="mb-1">
+    <p class="p-0 mb-0">Customer Details:</p>
+    <ul class="ps-4">
+        <li><strong>Name:</strong> {{ order.full_name }}</li>
+        <li><strong>Email:</strong> {{ order.email }}</li>
+        <li><strong>Phone Number:</strong> {{ order.phone_number }}</li>
+        <li><strong>Nationality:</strong> {{ order.nationality }}</li>
+        <li><strong>Postal Address:</strong> {{ order.street_address1 }}{% if street_address2 %}{{
+            order.street_address2 }}{% endif %}. {{ order.town_or_city }}, {{order.postcode}}. {{order.country}}
+        </li>
+        <li><strong>Purchased on:</strong> {{ order.show_date }}</li>
+    </ul>
+    <p class="p-0 mb-0">Purchase Details:</p>
+    <ul class="ps-4">
+        {% for tour in order.lineitems.all %}
+        <li>{{ tour.quantity}} ticket{% if tour.quantity > 1 %}s{% endif %} for {{ tour.tour }}
+            (US ${{tour.item_total }})</li>
+        {% endfor %}
+    </ul>
+    <p class="ps-0"><strong>TOTAL:</strong> US ${{ order.order_total }} (10% deposit)</p>
 </div>
 {% endblock %}

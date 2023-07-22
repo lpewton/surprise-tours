@@ -9,4 +9,5 @@ class UserProfileAdmin(admin.ModelAdmin):
         'user',
     )
 
+
 admin.site.register(UserProfile, UserProfileAdmin)

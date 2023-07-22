@@ -2,14 +2,15 @@
 {% load static %}
 
 {% block content %}
-<div class="container">
-    <h4>PAST TRIPS</h4>
-    <ul>
+<h4>PAST TRIPS</h4>
+<ul>
     {% for order in orders %}
     <li>
-    <a href="{% url 'order_detail' order.id %}">Order booked on: {{ order.show_date }} {% for tour in order.lineitems.all %} ({{ tour.tour }}) {% endfor %}</a>
-</li>
+        <a href="{% url 'order_detail' order.id %}">Order booked on: {{ order.show_date }}
+            {% for tour in order.lineitems.all %}
+            ({{ tour.tour }})
+            {% endfor %}</a>
+    </li>
     {% endfor %}
 </ul>
-</div>
 {% endblock %}
