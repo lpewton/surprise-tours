@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,16 +14,17 @@
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Allan&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Allan&family=Dancing+Script:wght@700&display=swap"
+        rel="stylesheet">
     {% block extracss %}
     {% endblock %}
 </head>
 
 <body>
     <header>
-        <div class="bg-info">
-            <h1 class="text-center pt-2 text-success display-1">SURPRISE TOURS</h1>
-            <h3 class="text-center pb-2 text-success">Don't waste one more minute</h3>
+        <div class="bg-info text-success">
+            <h1 class="text-center pt-2 display-1">SURPRISE TOURS</h1>
+            <h3 class="text-center pb-2 ">Don't waste one more minute</h3>
         </div>
 
         <!-- Messages -->
@@ -85,8 +87,10 @@
                             My account
                         </btn>
                         <ul class="dropdown-menu ps-3">
-                            <li><a class="dropdown-item nav-link text-dark" href="{% url 'my_profile' %}">My Profile</a></li>
-                            <li><a class="dropdown-item nav-link text-dark" href="{% url 'past_orders' %}?user_profile=aui">Past
+                            <li><a class="dropdown-item nav-link text-dark" href="{% url 'my_profile' %}">My Profile</a>
+                            </li>
+                            <li><a class="dropdown-item nav-link text-dark"
+                                    href="{% url 'past_orders' %}?user_profile=aui">Past
                                     Trips</a></li>
                         </ul>
                     </li>
@@ -148,13 +152,18 @@
                         <a href="{% url 'contact' %}" class="nav-link"><strong>Contact us!</strong></a>
                     </div>
                     <div class="col-4 p-0 text-center">
-                        <a href="{% url 'newsletter' %}" class="text-dark text-decoration-none"><strong>Subscribe to our Newsletter</a> |
-                        <a href="https://www.privacypolicygenerator.info/live.php?token=xA0OVd2ZvJCFvyGjAVCjmi8bb8GlmoA9" target="_blank" class="text-decoration-none text-dark">Privacy Policy</strong></a>
+                        <a href="{% url 'newsletter' %}" class="text-dark text-decoration-none"><strong>Subscribe to our
+                                Newsletter</a> |
+                        <a href="https://www.privacypolicygenerator.info/live.php?token=xA0OVd2ZvJCFvyGjAVCjmi8bb8GlmoA9"
+                            target="_blank" class="text-decoration-none text-dark">Privacy Policy</strong></a>
                     </div>
                     <div class="col-4 p-0 text-end">
-                        <a href="https://www.facebook.com/profile.php?viewas=100000686899395&id=100094405940742" target="_blank" class="text-dark"><i class="fa-brands fa-facebook px-2 fa-xl-2x"></i></a>
-                        <a href="https://www.instagram.com/" target="_blank" class="text-dark"><i class="fa-brands fa-instagram px-xl-2 fa-xl-2x"></i></a>
-                        <a href="https://twitter.com" target="_blank" class="text-dark"><i class="fa-brands fa-twitter px-2 fa-xl-2x"></i></a>
+                        <a href="https://www.facebook.com/profile.php?viewas=100000686899395&id=100094405940742"
+                            target="_blank" class="text-dark"><i class="fa-brands fa-facebook px-2 fa-xl-2x"></i></a>
+                        <a href="https://www.instagram.com/" target="_blank" class="text-dark"><i
+                                class="fa-brands fa-instagram px-xl-2 fa-xl-2x"></i></a>
+                        <a href="https://twitter.com" target="_blank" class="text-dark"><i
+                                class="fa-brands fa-twitter px-2 fa-xl-2x"></i></a>
                     </div>
                 </div>
             </div>
@@ -181,6 +190,7 @@
 
     {% block postloadjs %}
     {% endblock %}
+
 </body>
 
 </html>

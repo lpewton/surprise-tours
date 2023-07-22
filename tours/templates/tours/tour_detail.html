@@ -2,112 +2,112 @@
 {% load static %}
 
 {% block content %}
-<div class="container">
-    <div class="row mt-3">
-        <h1 class="col-4">{{ tour }}</h1>
-        <span class="col-4">
-            <hr>
-        </span>
-        <h1 class="col-4 text-end">{{ tour.rating }}/10</h1>
-        <hr>
-    </div>
-    <div class="row d-flex">
-        <div class="col-md-7 pt-md-5">
-            <h5>START/END: {{ tour.meeting_location }}</h5>
-            <h5>DATES: {{ tour.start }} - {{ tour.end }}</h5>
-            <div class="row">
-                <h5 class="col-6">SLOTS LEFT: <span id="slots_left">{{ tour.slots_left }}</span>/{{ tour.slots }}</h5>
-                {% if user.is_staff %}
-                <p class="text-end col-6 ps-0">
-                    <a href="{% url 'edit_tour' tour.id %}" class="btn text-success bg-light p-0">Edit tour</a> | <button type="button" class="btn bg-light text-danger p-0" data-bs-toggle="modal"
+<div class="row mt-3">
+    <h1 class="col-4">{{ tour }}</h1>
+    <hr class="mt-4 col-4">
+    <h1 class="col-4 text-end">{{ tour.rating }}/10</h1>
+    <hr>
+</div>
+<div class="row d-flex">
+    <div class="col-md-7 pt-md-5">
+        <h5>START/END: {{ tour.meeting_location }}</h5>
+        <h5>DATES: {{ tour.start }} - {{ tour.end }}</h5>
+        <div class="row">
+            <h5 class="col-6">SLOTS LEFT: <span id="slots_left">{{ tour.slots_left }}</span>/{{ tour.slots }}</h5>
+            {% if user.is_staff %}
+            <p class="text-end col-6 ps-0">
+                <a href="{% url 'edit_tour' tour.id %}" class="btn text-success bg-white p-0">Edit tour</a> | <button
+                    type="button" class="btn bg-white text-danger p-0" data-bs-toggle="modal"
                     data-bs-target="#deletes_tour-{{tour.id}}">
                     Remove Tour
                 </button>
-                </p>
-                {% endif %}
-            </div>
-            <p class="border border-black p-2">{{ tour.description }}</p>
-            <h5 class="text-end">US $<span id="tour_price">{{ tour.price|floatformat:2 }}</span>/pp</h5>
-            <hr>
-            <div class="col-xl-8 mb-3 mx-auto">
-                <h5 class="mt-md-3 text-center">BOOK YOUR SPOT!</h5>
-                {% if tour.slots_left > 0 %}
-                <form action="{% url 'add_to_bag' tour.id %}" method="POST">
-                    {% csrf_token %}
-                    <div class="border border-black p-2">
-                        <h5>{{ tour }} x
-                            <input type="text" readonly class="border-0 w-25 text-dark" id="tour_quantity"
-                                name="tour_quantity" value="1">
-                            <span class="float-end">
-                                (US $<span id="added_price">{{ tour.price|floatformat:2 }}</span>)
-                            </span>
-                        </h5>
-                        <div class="row d-flex justify-content-around">
-                            <button type="button" id="add_passenger" class="btn bg-info mx-2 col-5 rounded">Add a
-                                passenger</button>
-                            <button type="button" id="remove_passenger" class="btn bg-info mx-2 col-5 rounded">Remove a
-                                passenger</button>
-                        </div>
-                        <div class="row">
-                            <button id="add_to_bag_btn" type="submit" class="btn bg-success mt-3 mx-auto col-5">Add to
-                                bag</button>
-                        </div>
-                        <p class="mt-2 mb-0">* Please be aware that all passengers need to be over 18</p>
-                        <p>* Bear in mind that a 10% deposit is required to book your spot, the rest of the payment (US ${{ tour.upon_arrival|floatformat:2 }} pp) is made in person</p>
-                    </div>
-                </form>
-                {% else %}
-                <div class="text-center border border-black p-2">
-                    <h5>{{ tour }} is fully booked!</h5>
-                </div>
-                {% endif %}
-            </div>
-            <div class="text-center mb-3">
-                <a href="{% url 'tours' %}" class="btn text-light bg-dark">Book more Tours!</a>
-                <a href="{% url 'bag' %}" class="btn text-light bg-dark">Check Out</a>
-            </div>
+            </p>
+            {% endif %}
         </div>
-        <aside class="col-md-5">
-            {% if tour.image_1 %}
-            <img class="col-12 tour-img" src="{{tour.image_1.url}}" alt="Nice photograph">
+        <p class="border border-black p-2">{{ tour.description }}</p>
+        <h5 class="text-end">US $<span id="tour_price">{{ tour.price|floatformat:2 }}</span>/pp</h5>
+        <hr>
+        <div class="col-xl-8 mb-3 mx-auto">
+            <h5 class="mt-md-3 text-center">BOOK YOUR SPOT!</h5>
+            {% if tour.slots_left > 0 %}
+            <form action="{% url 'add_to_bag' tour.id %}" method="POST">
+                {% csrf_token %}
+                <div class="border border-black p-2">
+                    <h5>{{ tour }} x
+                        <input type="text" readonly class="border-0 w-25 text-dark" id="tour_quantity"
+                            name="tour_quantity" value="1">
+                        <span class="float-end">
+                            (US $<span id="added_price">{{ tour.price|floatformat:2 }}</span>)
+                        </span>
+                    </h5>
+                    <div class="row d-flex justify-content-around">
+                        <button type="button" id="add_passenger" class="btn bg-info mx-2 col-5 rounded">Add a
+                            passenger</button>
+                        <button type="button" id="remove_passenger" class="btn bg-info mx-2 col-5 rounded">Remove a
+                            passenger</button>
+                    </div>
+                    <div class="row">
+                        <button id="add_to_bag_btn" type="submit" class="btn bg-success mt-3 mx-auto col-5">Add to
+                            bag</button>
+                    </div>
+                    <p class="mt-2 mb-0">* Please be aware that all passengers need to be over 18</p>
+                    <p>* Bear in mind that a 10% deposit is required to book your spot, the rest of the payment (US ${{
+                        tour.upon_arrival|floatformat:2 }} pp) is made in person</p>
+                </div>
+            </form>
             {% else %}
-            <img class="col-12 tour-img" src="https://res.cloudinary.com/dttlol6ik/image/upload/v1688944519/default-img-1.png" alt="Airplane Wing">
+            <div class="text-center border border-black p-2">
+                <h5>{{ tour }} is fully booked!</h5>
+            </div>
             {% endif %}
-            <br>
-            {% if tour.image_2 %}
-            <img class="col-12 tour-img" src="{{tour.image_2.url}}" alt="Nice photograph">
-            {% else %}
-            <img class="col-12 tour-img" src="https://res.cloudinary.com/dttlol6ik/image/upload/v1688944870/default-img-2.jpg" alt="Suitcases">
-            {% endif %} <br>
-            {% if tour.image_3 %}
-            <img class="col-12 tour-img" src="{{tour.image_3.url}}" alt="Nice photograph">
-            {% else %}
-            <img class="col-12 tour-img" src="https://res.cloudinary.com/dttlol6ik/image/upload/v1688944977/default-img-3.jpg" alt="International Food">
-            {% endif %}
-        </aside>
+        </div>
+        <div class="text-center mb-3">
+            <a href="{% url 'tours' %}" class="btn text-light bg-dark">Book more Tours!</a>
+            <a href="{% url 'bag' %}" class="btn text-light bg-dark">Check Out</a>
+        </div>
     </div>
+    <aside class="col-md-5">
+        {% if tour.image_1 %}
+        <img class="col-12 tour-img" src="{{tour.image_1.url}}" alt="Nice photograph">
+        {% else %}
+        <img class="col-12 tour-img"
+            src="https://res.cloudinary.com/dttlol6ik/image/upload/v1688944519/default-img-1.png" alt="Airplane Wing">
+        {% endif %}
+        <br>
+        {% if tour.image_2 %}
+        <img class="col-12 tour-img" src="{{tour.image_2.url}}" alt="Nice photograph">
+        {% else %}
+        <img class="col-12 tour-img"
+            src="https://res.cloudinary.com/dttlol6ik/image/upload/v1688944870/default-img-2.jpg" alt="Suitcases">
+        {% endif %} <br>
+        {% if tour.image_3 %}
+        <img class="col-12 tour-img" src="{{tour.image_3.url}}" alt="Nice photograph">
+        {% else %}
+        <img class="col-12 tour-img"
+            src="https://res.cloudinary.com/dttlol6ik/image/upload/v1688944977/default-img-3.jpg"
+            alt="International Food">
+        {% endif %}
+    </aside>
+</div>
 
-    <!-- Tour deleting modal -->
-    <div class="modal" tabindex="-1" role="dialog" id="deletes_tour-{{ tour.id }}">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header justify-content-center">
-                    <h5 class="modal-title">Delete tour</h5>
-                </div>
-                <div class="modal-body">
-                    <p>Are you sure you want to delete {{tour}} tour?</p>
-                </div>
-                <div class="modal-footer justify-content-center">
-                    <form action="{% url 'remove_tour' tour.id %}" method="POST">
-                        {% csrf_token %}
-                        <button type="submit" value="{{tour.id}}"
-                            class="btn btn-primary border-none">
-                            DELETE
-                        </button>
-                    </form>
-                    <button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal">BACK</button>
-                </div>
+<!-- Tour deleting modal -->
+<div class="modal" tabindex="-1" role="dialog" id="deletes_tour-{{ tour.id }}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header justify-content-center">
+                <h5 class="modal-title">Delete tour</h5>
+            </div>
+            <div class="modal-body text-center">
+                <p>Are you sure you want to delete {{tour}} tour?</p>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <form action="{% url 'remove_tour' tour.id %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" value="{{tour.id}}" class="btn btn-primary border-none">
+                        DELETE
+                    </button>
+                </form>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">BACK</button>
             </div>
         </div>
     </div>

@@ -1,4 +1,5 @@
 from django import forms
+
 from .models import Tour
 
 
@@ -10,6 +11,4 @@ class TourForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['continent'].label_from_instance = lambda obj: obj.friendly_name if obj.friendly_name else obj.continent
-
-
+        self.fields['continent'].label_from_instance = lambda obj: obj.friendly_name
