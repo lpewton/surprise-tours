@@ -2,7 +2,8 @@
 {% load static %}
 
 {% block content %}
-<div class="container row col-12 mt-3 mx-auto">
+<div class="row col-12 mt-3">
+    <!-- Contact info -->
     <div class="row col-md-6 pb-md-5 mb-3 mb-md-5">
         <h4>CONTACT DETAILS:</h4>
         <ul class="border border-black py-2 py-md-0 px-4 ms-3">
@@ -12,7 +13,8 @@
             <li class="py-2"><strong>Working Hours:</strong> Monday-Saturday: 9am-6pm</li>
         </ul>
     </div>
-    <div class="row col-md-6 ps-md-5">
+    <!-- Message div -->
+    <div class="col-md-6 ps-md-5">
         <h4>OR MESSAGE US:</h4>
         <form action="{% url 'contact' %}" method="POST">
             {% csrf_token %}

@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class message(models.Model):
     full_name = models.CharField(max_length=50, null=False, blank=False)
     email = models.EmailField(max_length=50, null=False, blank=False)

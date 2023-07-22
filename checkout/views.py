@@ -177,21 +177,15 @@ def checkoutSuccess(request, order_number):
 
     order = get_object_or_404(Order, order_number=order_number)
 
-    if order.user_profile.user == request.user:
-        messages.success(
-            request, f'Pack your bags! Your order has been successful')
+    messages.success(
+        request, f'Pack your bags! Your order has been successful')
 
-        if 'bag' in request.session:
-            del request.session['bag']
+    if 'bag' in request.session:
+        del request.session['bag']
 
-        context = {
-            'order': order,
-            'request': request,
-        }
+    context = {
+        'order': order,
+        'request': request,
+    }
 
-        return render(request, 'checkout/checkout-success.html', context)
-
-    else:
-        messages.error(request, 'You are not logged in with the correct user!')
-
-        return render(request, "home/index.html")
+    return render(request, 'checkout/checkout-success.html', context)
