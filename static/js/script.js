@@ -6,6 +6,7 @@ let passengers = document.getElementById("tour_quantity");
 
 passenger_quantity = 1
 
+// Disable passenger button when there are zero passengers
 function disableAddPassengerBtn() {
     let passengers = document.getElementById("tour_quantity").value;
     let slotsLeft = document.getElementById("slots_left").innerHTML;
@@ -16,8 +17,8 @@ function disableAddPassengerBtn() {
         document.getElementById('add_passenger').disabled = false;
     }
 }
-// Add a passenger to the tour detail
 
+// Add a passenger to the tour detail
 function addPassenger() {
     passenger_quantity += 1
     passengers.value = `${passenger_quantity}`;
@@ -46,7 +47,6 @@ function updatePrice() {
     let tour_price = document.getElementById("tour_price").innerText;
     let price = document.getElementById("added_price");
     addToBagBtn = document.getElementById('add_to_bag_btn');
-
 
     let total_price = passenger_quantity * tour_price;
     price.innerHTML = parseFloat(total_price).toFixed(2);
