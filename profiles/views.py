@@ -90,6 +90,8 @@ def review(request,):
         form = reviewForm(request.POST)
 
         if form.is_valid():
+            form_review = form.save(commit=False)
+            form_review.user = request.user
             form.save()
             messages.success(request, 'Review sent successfully!')
 
