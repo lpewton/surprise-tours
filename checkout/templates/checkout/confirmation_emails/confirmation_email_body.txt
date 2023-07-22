@@ -4,7 +4,7 @@ We are glad to inform you that your payment was successful and your order was is
 
 Pack your bags! You can find your order details in your members area in our website, under "My trips". 
 
-Thank you for shopping with us, you will receive an email with more instructions on your reservation 2 weeks before your trip with detailed instructions on preparations. Bear in mind that the rest of the payment (US ${{ order.upon_arrival }}) is made in person upon meeting your guide.
+Thank you for shopping with us, you will receive an email with more information on your reservation 2 weeks before your trip with detailed instructions on preparations. Bear in mind that the rest of the payment (US ${{ order.upon_arrival }}) is made in person upon meeting your guide.
 
 For more information you can reach out to us at {{ contact_email }}.
 

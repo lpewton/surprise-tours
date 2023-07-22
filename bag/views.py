@@ -7,13 +7,17 @@ from .contexts import *
 
 
 def bag(request):
-    """Renders the bag page"""
+    """
+    Renders the bag page
+    """
 
     return render(request, 'bag/bag.html')
 
 
 def add_to_bag(request, tour_id):
-    """Add a product and its quantity to the bag"""
+    """
+    Add a product and its quantity to the bag
+    """
 
     tour = get_object_or_404(Tour, pk=tour_id)
     quantity = int(request.POST.get('tour_quantity'))
@@ -36,7 +40,9 @@ def add_to_bag(request, tour_id):
 
 
 def remove_from_bag(request, tour_id):
-    """ Removes product from bag completely"""
+    """
+    Removes product from bag completely
+    """
 
     tour = get_object_or_404(Tour, pk=tour_id)
     bag_items = request.session['bag']
@@ -48,7 +54,9 @@ def remove_from_bag(request, tour_id):
 
 
 def addPassenger(request, tour_id):
-    """ Adds a passenger to the specific tour within the bag"""
+    """
+    Adds a passenger to the specific tour within the bag
+    """
 
     tour = get_object_or_404(Tour, pk=tour_id)
     bag_items = request.session['bag']
@@ -67,7 +75,9 @@ def addPassenger(request, tour_id):
 
 
 def removePassenger(request, tour_id):
-    """ Removes a passenger to the specific tour within the bag"""
+    """
+    Removes a passenger to the specific tour within the bag
+    """
 
     tour = get_object_or_404(Tour, pk=tour_id)
     bag_items = request.session['bag']

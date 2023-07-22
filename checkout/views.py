@@ -3,15 +3,15 @@ from django.contrib import messages
 from django.conf import settings
 from django.views.decorators.http import require_POST
 
-from.models import Order, OrderItem
+from .models import Order, OrderItem
 from tours.models import Tour
 from profiles.models import UserProfile
-from profiles.forms import UserProfileForm
 from .forms import OrderForm
 from bag.contexts import bag_contents
 
 import stripe
 import json
+
 
 @require_POST
 def cache_checkout_data(request):
@@ -23,25 +23,30 @@ def cache_checkout_data(request):
             'save_info': request.POST.get('save_info'),
             'username': request.user,
         })
-        
+
         return render(request, 'checkout/checkout.html')
+
     except Exception as e:
         messages.error(request, 'Sorry, your payment cannot be \
             processed right now. Please try again later.')
+
         return render(request, 'checkout/checkout.html')
 
 
 def checkout(request):
+    """
+    Allow user to purchase their products
+    """
     bag = request.session.get('bag', {})
+    if request.user.is_authenticated:
+        profile = get_object_or_404(UserProfile, user=request.user)
 
     if not bag:
         messages.error(request, "There's nothing in your shopping bag!")
+
         return redirect(reverse('home'))
 
     if request.method == 'POST':
-        
-        bag = request.session.get('bag', {})
-        
         form_data = {
             'full_name': request.POST['full_name'],
             'email': request.POST['email'],
@@ -53,13 +58,12 @@ def checkout(request):
             'street_address1': request.POST['street_address1'],
             'street_address2': request.POST['street_address2'],
             'county': request.POST['county'],
-        }        
+        }
 
         order_form = OrderForm(form_data)
         if request.user.is_authenticated:
-            profile = get_object_or_404(UserProfile, user=request.user)
+            save_info = request.POST.get('save-info', 'off')
 
-            save_info = request.POST.get('save-info', 'off')            
             # Save the user's info
             if save_info == 'on':
                 full_name = request.POST['full_name']
@@ -72,7 +76,7 @@ def checkout(request):
                 street_address1 = request.POST['street_address1']
                 street_address2 = request.POST['street_address2']
                 county = request.POST['county']
-                
+
                 profile.profile_full_name = full_name
                 profile.profile_email = email
                 profile.profile_phone_number = phone_number
@@ -92,7 +96,7 @@ def checkout(request):
             order.original_bag = json.dumps(bag)
             if request.user.is_authenticated:
                 order.user_profile = profile
-            order.save()          
+            order.save()
 
             for item_id, item_quantity in bag.items():
                 try:
@@ -101,29 +105,30 @@ def checkout(request):
                         order=order,
                         tour=tour,
                         quantity=item_quantity,
-                    ) 
+                    )
                     tour.slots_left -= item_quantity
                     tour.save()
                     order_item.save()
-                    
+
                 except Tour.DoesNotExist:
                     messages.error(request, (
-                        "One of the tours is not available anymore! Order cancelled!")
+                        "One of the tours is not available anymore!"
+                        "Order cancelled!")
                     )
                     order.delete()
+
                     return redirect(reverse('bag'))
-        
+
         else:
             messages.error(request, "Something went wrong")
-            return render(request, 'checkout/checkout.html')
-        
-        return redirect(reverse('checkout_success', args=[order.order_number]))
 
+            return render(request, 'checkout/checkout.html')
+
+        return redirect(reverse('checkout_success', args=[order.order_number]))
 
     if request.method == 'GET':
         stripe_public_key = settings.STRIPE_PUBLIC_KEY
         stripe_secret_key = settings.STRIPE_SECRET_KEY
-        bag = request.session.get('bag', {})
         current_bag = bag_contents(request)
         total = current_bag['total']
         stripe_total = round(total * 100)
@@ -133,15 +138,14 @@ def checkout(request):
             currency=settings.STRIPE_CURRENCY,
         )
 
-        if request.user.is_authenticated:
-            profile = get_object_or_404(UserProfile, user=request.user)
-
         if not bag:
-            messages.error(request, "There's nothing in your bag at the moment")
+            messages.error(
+                request, "There's nothing in your bag at the moment")
+
             return redirect(reverse('tours'))
+
         else:
             if request.user.is_authenticated:
-                profile = UserProfile.objects.get(user=request.user)
                 form = OrderForm(initial={
                         'full_name': profile.profile_full_name,
                         'email': profile.profile_email,
@@ -153,7 +157,7 @@ def checkout(request):
                         'street_address1': profile.profile_street_address1,
                         'street_address2': profile.profile_street_address2,
                         'county': profile.profile_county,
-                    })  
+                    })
             else:
                 form = OrderForm()
 
@@ -162,14 +166,20 @@ def checkout(request):
                 'stripe_public_key': stripe_public_key,
                 'client_secret': intent.client_secret,
             }
+
             return render(request, 'checkout/checkout.html', context)
 
+
 def checkoutSuccess(request, order_number):
-    """ Rendered after order is successful """
+    """
+    Rendered after order is successful
+    """
 
     order = get_object_or_404(Order, order_number=order_number)
+
     if order.user_profile.user == request.user:
-        messages.success(request, f'Pack your bags! Your order has been successful')
+        messages.success(
+            request, f'Pack your bags! Your order has been successful')
 
         if 'bag' in request.session:
             del request.session['bag']
@@ -183,6 +193,5 @@ def checkoutSuccess(request, order_number):
 
     else:
         messages.error(request, 'You are not logged in with the correct user!')
-        return render(request, "home/index.html")
 
- 
+        return render(request, "home/index.html")

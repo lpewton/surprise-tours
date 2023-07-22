@@ -4,7 +4,9 @@ from tours.models import Tour
 
 
 def bag_contents(request):
-    """ Create the contents of the bag """
+    """
+    Create the contents of the bag
+    """
 
     bag_items = []
     bag = request.session.get('bag', {})
