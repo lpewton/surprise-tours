@@ -4,6 +4,8 @@ Surprise Tours is a fake travel agency that allows customers to pick  one of the
 
 Aside from that, the customer is also able to log in to see their past purchases, save their information, send messages to the store owner or even rate the tours for other users to see.
 
+As per the type of buisness that this is, this is a Business to Customer company (B2C), as the products are sold directly from the store to the customers, without intermediaries. These products are not physical products, but services(tours given by tours guides at a certain date) and are paid off in a single payment (although initially a deposit is paid to secure a spot).
+
 You can find the live link for this website here: [https://lpewton-stock-controller.herokuapp.com.](https://lpewton-surprise-tours.herokuapp.com/)
 
 ## TABLE OF CONTENTS:
@@ -24,8 +26,7 @@ You can find the live link for this website here: [https://lpewton-stock-control
   * [Features](#features)
   * [Marketing Features](#marketing-features)
   * [Requirements.txt](#requirementstxt)
-  * [Features left to implement](#features-left-to-implement)
-  * [Unfixed bugs](#unfixed-bugs)
+  * [Unfixed bugs and features left to implement](#unfixed-bugs-and-features-left-to-implement)
   * [Major Issues Found](#major-issues-found)
   * [Manual Testing:](#manual-testing)
     + [Tours](#tour-model)
@@ -202,57 +203,122 @@ Before beggining this project, a few wireframes were created as guidelines to fo
 ### Home page:
 First page the customer sees with a description of the site's purpose and what they'll find in it:
 
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/f52ec9d3-5a76-4b97-b214-b5f6e35768e9)
+
+
 ### Contintents page:
 Where the customer will choose which continent he wants to purchase their tour in:
+
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/b2081574-5ce0-4e66-b810-170fa087eeb7)
+
 
 ### Tours page:
 All the tours are shown here:
 
-### Tour detail:
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/9ce809f3-9129-408b-99d5-5896f3e7efc2)
+
+
+### Tour detail page:
 Where the tour details are shown, such as price, rating, description, images...
+
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/a4fe2845-99b6-4cc8-9c1b-a40382eca6a5)
+
 
 ### Shopping bag:
 Where the customer can see their shopping bag to confirm everything is correct before they check out:
 
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/f76ea726-9508-4a88-a3c7-1783ad3f2e83)
+
+
 ### Check out page:
 Where the checkout form is to create the Order and the payments are made. The customer is also reminded of what he is about to purchase:
+
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/df41e121-8060-4719-825c-b586b0a8b165)
+
 
 ### Check out successful page:
 Where the customer is told they payment was successful, they are given an order number and all its details:
 
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/8a0490c1-197d-4be6-9447-1192c31ebe6c)
+
+
 ### Log in page:
 Where the customer can log in:
+
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/77b90984-2ff7-485f-bdd1-43cdbaaa2eee)
+
 
 ### Log out page:
 Where the customer can log out:
 
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/2edb8cda-44ea-4e86-bd98-a294cff3396f)
+
 ### My profile page:
 Where the use can input and update their details:
+
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/ced37088-dffd-484e-aa85-ff32c4c4024f)
+
 
 ### Past trips page:
 The past orders the customer made are shown here:
 
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/685f7608-b6df-4f94-ae1c-54ea5440b64c)
+
+
 ### Past trips details page:
 The details of each past order is shown here:
+
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/6af2e5d1-34ac-41c8-819a-fb858ad7a572)
+
+### Leave a review page:
+Where members can leave reviews for one of the trips:
+
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/fc773799-df54-4f2a-9f45-3501931c06a9)
 
 ### Add a tour page:
 Where the store owner can add tours to the store:
 
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/ade99a28-950b-4879-88e9-7f352d6b985c)
+
 ### Edit a tour page:
 Where the store owner can edit one of the tours:
+
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/06530f6a-ed54-4f48-86e7-cc0ae0280b61)
+
+### Pending reviews page:
+Where the store owner can see revies left for tours and approve or reject them:
+
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/d32573a5-d075-4d10-a78f-4f1140856461)
+
+### Contact us page:
+Where the user can send messages to the administrator or see the page's contact details:
+
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/6d0bc741-c68b-4bf2-817c-a2f9420e3c7d)
+
+
+### MailChimp page:
+Where the user can subscribe to receive emails and updates:
+
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/c4a5f183-5650-4103-b090-768215c7eedc)
+
 
 ### Page not found:
 Where the customer is directed when the page doesn't exist:
 
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/bc5f78b0-5945-4150-93c0-7396edcbcbea)
+
 ## Marketing Features:
 Every online store needs deigital marketing. For that reason, a Facebook page has been created for this website to reach out to new customers (https://www.facebook.com/profile.php?viewas=100000686899395&id=100094405940742) and a MailChimp account has bee created to maintain the existing customers. It can be found at the bottom of the page: "Subscribe to our Newsletter!"
 
-As per the type of buisness that this is, this is a 
+A screenshot of the Facebook page can be found below:
+
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/805a0150-6378-4c68-b60d-7c51e7b28067)
+
 
 ## Requirements.txt:
 All needed requirements.txt have been added to the app so it works properly. The main vital ones and also the ones added to improve the functionality of the website. 
 
-## Unfixed Bugs and features left to implement:
+## Unfixed bugs and features left to implement:
 One of the features of this store is that the users can review a tour. However, an issue found was that the star system was not working and there was no time to fix it. However, a progress bar was set up in its stead. This can be fixed with more time, in the future.
 
 Another implementation to add in the future is the ability to search a tour by its dates. At the moment it would be posible to do so but using numerals instead of the month's name. As this seemed confusing, it was removed from the site to be implemented correctly in the future.
