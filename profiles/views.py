@@ -2,7 +2,6 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 
-
 from .forms import UserProfileForm, ReviewForm
 from .models import UserProfile, Review
 from checkout.models import Order
@@ -110,7 +109,8 @@ def review(request):
 
         else:
             messages.error(
-                request, "Couldn't sent review failed, please try again")
+                request, "Couldn't send review,"
+                         "please make sure rating is between 0 and 10")
 
     return render(request, "profiles/review.html", context)
 
