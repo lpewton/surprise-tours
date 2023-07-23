@@ -2,5 +2,26 @@
 {% load static %}
 
 {% block content %}
-<p>HELLO</p>
+<h4 class="text-center">Pending Reviews:</h4>
+{% for review in reviews %}
+{% if review.approved == False %}
+<div class="row border col-lg-8 border-black mx-auto mb-3">
+    <p class="col-5 text-capitalize"><strong>{{ review.user }}:</strong></p>
+    <p class="col-7 text-end">{{ review.date }}</p>
+    <div class="row">
+        <div class="progress px-0 mx-2 mt-1 col-10">
+            <div class="bg-warning" role="progressbar" aria-valuenow="{{ review.rating }}" aria-valuemin="0"
+                aria-valuemax="10" style="width: {{ review.percentage_rating }}%;">
+            </div>
+        </div>
+        <p class="col-1">{{ review.rating }}/10</p>
+    </div>
+    <p>{{ review.review }}<span class="star-rating"></span></p>
+    <div class="d-flex justify-content-around">
+        <a href="" class="col-5 col-md-3 btn bg-success mb-1">Approve & Post</a>
+        <a href="" class="col-5 col-md-3 btn bg-danger mb-1">Reject & Delete</a>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
 {% endblock %}

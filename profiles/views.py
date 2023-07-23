@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 
 from .forms import UserProfileForm, ReviewForm
-from .models import UserProfile
+from .models import UserProfile, Review
 from checkout.models import Order
 
 
@@ -80,14 +80,16 @@ def orderDetail(request, order_id):
 
 
 def review(request):
-
+    """
+    Where the user can submit a review for a tour
+    """
     form = ReviewForm()
     context = {
             'form': form,
         }
 
     if request.method == "GET":
-        if request.user.is_authenticated == False:
+        if request.user.is_authenticated is False:
             messages.error(
                 request, "Please log in to access this page")
 
@@ -112,5 +114,12 @@ def review(request):
 
 
 def pendingReviews(request,):
+    """
+    Where the admin sees the submitted reviews and can approve them
+    """
+    reviews = Review.objects.all()
 
-    return render(request, "profiles/pending-reviews.html")
+    context = {
+        'reviews': reviews,
+    }
+    return render(request, "profiles/pending-reviews.html", context)
