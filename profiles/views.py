@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+
 
 from .forms import UserProfileForm, ReviewForm
 from .models import UserProfile, Review
@@ -118,34 +119,53 @@ def pendingReviews(request):
     """
     Where the admin sees the submitted reviews and can approve them
     """
-    reviews = Review.objects.all()
+    if request.user.is_superuser:
+        reviews = Review.objects.filter(approved=False)
 
-    context = {
-        'reviews': reviews,
-    }
-    return render(request, "profiles/pending-reviews.html", context)
+        context = {
+            'reviews': reviews,
+        }
+
+        return render(request, "profiles/pending-reviews.html", context)
+
+    else:
+        messages.error(request, 'Sorry, only store owners can do that.')
+
+        return redirect(reverse('home'))
 
 
 def approveReview(request, review_id):
     """
     Allow admin to approve review
     """
-    review = get_object_or_404(Review, pk=review_id)
-    review.approved = True
-    review.save()
-    messages.success(
-        request, "Review posted correctly")
+    if request.user.is_superuser:
+        review = get_object_or_404(Review, pk=review_id)
+        review.approved = True
+        review.save()
+        messages.success(
+            request, "Review posted correctly")
 
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+    else:
+        messages.error(request, 'Sorry, only store owners can do that.')
+
+        return redirect(reverse('home'))
 
 
 def rejectReview(request, review_id):
     """
     Allow admin to reject and delete review
     """
-    review = get_object_or_404(Review, pk=review_id)
-    review.delete()
-    messages.success(
-        request, "Review not approved and deleted")
+    if request.user.is_superuser:
+        review = get_object_or_404(Review, pk=review_id)
+        review.delete()
+        messages.success(
+            request, "Review not approved and deleted")
 
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+    else:
+        messages.error(request, 'Sorry, only store owners can do that.')
+
+        return redirect(reverse('home'))

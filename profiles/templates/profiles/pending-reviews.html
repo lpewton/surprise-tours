@@ -3,8 +3,8 @@
 
 {% block content %}
 <h4 class="text-center">Pending Reviews:</h4>
+{% if reviews %}
 {% for review in reviews %}
-{% if review.approved == False %}
 <div class="row border col-lg-8 border-black mx-auto mb-3">
     <p class="col-5 text-capitalize"><strong>{{ review.user }} - {{ review.tour }}</strong></p>
     <p class="col-7 text-end">{{ review.date }}</p>
@@ -22,7 +22,10 @@
         <a href="{% url 'reject_review' review.id %}" class="col-5 col-md-3 btn bg-danger mb-1">Reject & Delete</a>
     </div>
 </div>
-{% endif %}
 {% endfor %}
+{% else %}
+<hr>
+<h4 class="text-center">No reviews yet...</h4>
+{% endif %}
 
 {% endblock %}
