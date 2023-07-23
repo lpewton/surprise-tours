@@ -6,7 +6,7 @@
 {% for review in reviews %}
 {% if review.approved == False %}
 <div class="row border col-lg-8 border-black mx-auto mb-3">
-    <p class="col-5 text-capitalize"><strong>{{ review.user }}:</strong></p>
+    <p class="col-5 text-capitalize"><strong>{{ review.user }} - {{ review.tour }}</strong></p>
     <p class="col-7 text-end">{{ review.date }}</p>
     <div class="row">
         <div class="progress px-0 mx-2 mt-1 col-10">
@@ -18,7 +18,7 @@
     </div>
     <p>{{ review.review }}<span class="star-rating"></span></p>
     <div class="d-flex justify-content-around">
-        <a href="" class="col-5 col-md-3 btn bg-success mb-1">Approve & Post</a>
+        <a href="{% url 'approve_review' review.id %}" class="col-5 col-md-3 btn bg-success mb-1">Approve & Post</a>
         <a href="" class="col-5 col-md-3 btn bg-danger mb-1">Reject & Delete</a>
     </div>
 </div>

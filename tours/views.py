@@ -89,7 +89,7 @@ def tour_detail(request, tour_id):
     Returns the detailed tour page
     """
     tour = get_object_or_404(Tour, pk=tour_id)
-    reviews = Review.objects.all()
+    reviews = Review.objects.filter(tour=tour, approved=True)
 
     context = {
         'tour': tour,

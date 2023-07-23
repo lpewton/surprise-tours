@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 
 from .forms import UserProfileForm, ReviewForm
 from .models import UserProfile, Review
@@ -113,7 +114,7 @@ def review(request):
     return render(request, "profiles/review.html", context)
 
 
-def pendingReviews(request,):
+def pendingReviews(request):
     """
     Where the admin sees the submitted reviews and can approve them
     """
@@ -123,3 +124,17 @@ def pendingReviews(request,):
         'reviews': reviews,
     }
     return render(request, "profiles/pending-reviews.html", context)
+
+
+def approveReview(request, review_id):
+    """
+    Allow admin to approve review
+    """
+
+    review = get_object_or_404(Review, pk=review_id)
+    review.approved = True
+    review.save()
+    messages.success(
+        request, "Review posted correctly")
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

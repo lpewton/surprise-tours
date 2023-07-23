@@ -66,11 +66,11 @@
             <a href="{% url 'bag' %}" class="btn text-light bg-dark">Check Out</a>
         </div>
 
-        {% for review in reviews %}
-        {% if review.tour == tour and review.approved == True %}
-        {% if forloop.first %}
+        {% if reviews %}
         <h4>Reviews:</h4>
         {% endif %}
+        {% for review in reviews %}
+        {% if review.tour == tour and review.approved == True %}
         <div class="row border col-lg-8 border-black m-1 mx-auto mx-lg-1">
             <p class="col-5 text-capitalize"><strong>{{ review.user }}:</strong></p>
             <p class="col-7 text-end">{{ review.date }}</p>
