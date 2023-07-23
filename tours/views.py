@@ -6,6 +6,7 @@ from django.utils import timezone
 
 from .models import Continent, Tour
 from .forms import TourForm
+from profiles.models import Review
 
 
 def continents(request):
@@ -88,9 +89,11 @@ def tour_detail(request, tour_id):
     Returns the detailed tour page
     """
     tour = get_object_or_404(Tour, pk=tour_id)
+    reviews = Review.objects.all()
 
     context = {
         'tour': tour,
+        'reviews': reviews,
     }
 
     return render(request, 'tours/tour_detail.html', context)

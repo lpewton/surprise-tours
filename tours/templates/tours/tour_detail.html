@@ -112,6 +112,21 @@
         </div>
     </div>
 </div>
+<h4>Reviews:</h4>
+{% for review in reviews %}
+{% if review.tour == tour %}
+<div class="row col-md-7 border border-black">
+    <p class="col-6"><strong>{{ review.user }}:</strong></p>
+    <p class="col-6 text-end">{{ review.date }}</p>
+<p>{{ review.review }} - <span class="star-rating">
+    {% for i in range(review.rating) %}
+      &#9733;
+    {% endfor %}
+  </span></p>
+</div>
+
+{% endif %}
+{% endfor %}
 {% endblock %}
 
 {% block postloadjs %}

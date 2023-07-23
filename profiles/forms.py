@@ -1,5 +1,5 @@
 from django import forms
-from .models import UserProfile, review
+from .models import UserProfile, Review
 
 
 class UserProfileForm(forms.ModelForm):
@@ -12,7 +12,7 @@ class UserProfileForm(forms.ModelForm):
                   'profile_country', 'profile_county',)
 
 
-class reviewForm(forms.ModelForm):
+class ReviewForm(forms.ModelForm):
     class Meta:
-        model = review
+        model = Review
         fields = ('tour', 'rating', 'review',)

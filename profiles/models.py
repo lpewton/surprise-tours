@@ -46,7 +46,7 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
     instance.userprofile.save()
 
 
-class review(models.Model):
+class Review(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     tour = models.ForeignKey(Tour, on_delete=models.CASCADE)
     rating = models.FloatField(
