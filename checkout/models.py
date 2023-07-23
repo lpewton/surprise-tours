@@ -64,6 +64,9 @@ class Order(models.Model):
     def __str__(self):
         return self.order_number
 
+    class Meta:
+        ordering = ["-date"]
+
 
 class OrderItem(models.Model):
     """
