@@ -130,11 +130,22 @@ def approveReview(request, review_id):
     """
     Allow admin to approve review
     """
-
     review = get_object_or_404(Review, pk=review_id)
     review.approved = True
     review.save()
     messages.success(
         request, "Review posted correctly")
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+def rejectReview(request, review_id):
+    """
+    Allow admin to reject and delete review
+    """
+    review = get_object_or_404(Review, pk=review_id)
+    review.delete()
+    messages.success(
+        request, "Review not approved and deleted")
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

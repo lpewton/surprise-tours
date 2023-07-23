@@ -19,9 +19,10 @@
     <p>{{ review.review }}<span class="star-rating"></span></p>
     <div class="d-flex justify-content-around">
         <a href="{% url 'approve_review' review.id %}" class="col-5 col-md-3 btn bg-success mb-1">Approve & Post</a>
-        <a href="" class="col-5 col-md-3 btn bg-danger mb-1">Reject & Delete</a>
+        <a href="{% url 'reject_review' review.id %}" class="col-5 col-md-3 btn bg-danger mb-1">Reject & Delete</a>
     </div>
 </div>
 {% endif %}
 {% endfor %}
+
 {% endblock %}
