@@ -76,8 +76,18 @@
                     </li>
                     {% if user.is_authenticated %}
                     {% if user.is_superuser %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'add_tour' %}">Add a tour</a>
+                    <li class="nav-item dropdown">
+                        <btn class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Admin Functions
+                        </btn>
+                        <ul class="dropdown-menu ps-3">
+                            <li><a class="dropdown-item nav-link text-dark" href="{% url 'add_tour' %}">Add Tour</a>
+                            </li>
+                            <li><a class="dropdown-item nav-link text-dark" href="{% url 'pending_reviews' %}">Pending
+                                    Reviews</a>
+                            </li>
+                        </ul>
                     </li>
                     {% endif %}
                     <li>
@@ -92,8 +102,8 @@
                             <li><a class="dropdown-item nav-link text-dark"
                                     href="{% url 'past_orders' %}?user_profile">Past
                                     Trips</a></li>
-                            <li><a class="dropdown-item nav-link text-dark"
-                                        href="{% url 'review' %}?user_profile">Leave a review</a></li>
+                            <li><a class="dropdown-item nav-link text-dark" href="{% url 'review' %}?user_profile">Leave
+                                    a review</a></li>
                         </ul>
                     </li>
                     {% else %}
@@ -101,7 +111,6 @@
                         <a class="nav-link" href="{% url 'account_login' %}">Log in or
                             Register</a>
                     </li>
-
                     {% endif %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'bag' %}">Shopping bag <i

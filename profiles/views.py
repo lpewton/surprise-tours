@@ -79,7 +79,7 @@ def orderDetail(request, order_id):
         return render(request, "home/index.html")
 
 
-def review(request,):
+def review(request):
 
     form = ReviewForm()
     context = {
@@ -92,7 +92,6 @@ def review(request,):
                 request, "Please log in to access this page")
 
             return render(request, "home/index.html")
-
 
     if request.method == "POST":
         form = ReviewForm(request.POST)
@@ -110,3 +109,8 @@ def review(request,):
                 request, "Couldn't sent review failed, please try again")
 
     return render(request, "profiles/review.html", context)
+
+
+def pendingReviews(request,):
+
+    return render(request, "profiles/pending-reviews.html")

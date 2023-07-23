@@ -6,4 +6,5 @@ urlpatterns = [
     path('past_orders', views.pastOrders, name='past_orders'),
     path('<int:order_id>/', views.orderDetail, name='order_detail'),
     path('review/', views.review, name='review'),
+    path('pending-reviews/', views.pendingReviews, name='pending_reviews'),
 ]
