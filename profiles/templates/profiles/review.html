@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<div class="col-5">
+<div class="row col-md-6 col-lg-5">
     <h4>Enjoyed your trip?</h4>
     <h5>Leave a review!</h5>
     <form action="{% url 'review' %}" method="POST">
@@ -11,8 +11,7 @@
         {% if field.name == 'review' %}
         <div class="row px-2">
             <p>{{ field.label }}:</p>
-            <textarea name="{{ field.html_name }}"
-            style="height: 150px;"></textarea>
+            <textarea name="{{ field.html_name }}" style="height: 150px;"></textarea>
             <hr class="w-100">
         </div>
         {% else %}

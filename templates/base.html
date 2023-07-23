@@ -90,8 +90,10 @@
                             <li><a class="dropdown-item nav-link text-dark" href="{% url 'my_profile' %}">My Profile</a>
                             </li>
                             <li><a class="dropdown-item nav-link text-dark"
-                                    href="{% url 'past_orders' %}?user_profile=aui">Past
+                                    href="{% url 'past_orders' %}?user_profile">Past
                                     Trips</a></li>
+                            <li><a class="dropdown-item nav-link text-dark"
+                                        href="{% url 'review' %}?user_profile">Leave a review</a></li>
                         </ul>
                     </li>
                     {% else %}
