@@ -86,6 +86,14 @@ def review(request,):
             'form': form,
         }
 
+    if request.method == "GET":
+        if request.user.is_authenticated == False:
+            messages.error(
+                request, "Please log in to access this page")
+
+            return render(request, "home/index.html")
+
+
     if request.method == "POST":
         form = ReviewForm(request.POST)
 
