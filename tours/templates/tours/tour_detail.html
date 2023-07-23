@@ -51,8 +51,8 @@
                             bag</button>
                     </div>
                     <p class="mt-2 mb-0">* Please be aware that all passengers need to be over 18</p>
-                    <p>* Bear in mind that a 10% deposit is required to book your spot, the rest of the payment (US ${{
-                        tour.upon_arrival|floatformat:2 }} pp) is made in person</p>
+                    <p>* Bear in mind that a 10% deposit is required to book your spot, the rest of the payment (
+                        US ${{ tour.upon_arrival|floatformat:2 }} pp) is made in person</p>
                 </div>
             </form>
             {% else %}
@@ -65,6 +65,27 @@
             <a href="{% url 'tours' %}" class="btn text-light bg-dark">Book more Tours!</a>
             <a href="{% url 'bag' %}" class="btn text-light bg-dark">Check Out</a>
         </div>
+
+        {% for review in reviews %}
+        {% if review.tour == tour and review.approved == True %}
+        {% if forloop.first %}
+        <h4>Reviews:</h4>
+        {% endif %}
+        <div class="row border col-lg-8 border-black m-1 mx-auto mx-lg-1">
+            <p class="col-5 text-capitalize"><strong>{{ review.user }}:</strong></p>
+            <p class="col-7 text-end">{{ review.date }}</p>
+            <div class="row">
+                <div class="progress px-0 mx-2 mt-1 col-10">
+                    <div class="bg-warning" role="progressbar" aria-valuenow="{{ review.rating }}" aria-valuemin="0"
+                        aria-valuemax="10" style="width: {{ review.percentage_rating }}%;">
+                    </div>
+                </div>
+                <p class="col-1">{{ review.rating }}/10</p>
+            </div>
+            <p>{{ review.review }}<span class="star-rating"></span></p>
+        </div>
+        {% endif %}
+        {% endfor %}
     </div>
     <aside class="col-md-5">
         {% if tour.image_1 %}
@@ -112,21 +133,7 @@
         </div>
     </div>
 </div>
-<h4>Reviews:</h4>
-{% for review in reviews %}
-{% if review.tour == tour %}
-<div class="row col-md-7 border border-black">
-    <p class="col-6"><strong>{{ review.user }}:</strong></p>
-    <p class="col-6 text-end">{{ review.date }}</p>
-<p>{{ review.review }} - <span class="star-rating">
-    {% for i in range(review.rating) %}
-      &#9733;
-    {% endfor %}
-  </span></p>
-</div>
 
-{% endif %}
-{% endfor %}
 {% endblock %}
 
 {% block postloadjs %}

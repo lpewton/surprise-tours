@@ -47,10 +47,16 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
 
 
 class Review(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     tour = models.ForeignKey(Tour, on_delete=models.CASCADE)
     rating = models.FloatField(
         validators=[MinValueValidator(0), MaxValueValidator(10)], default=0)
     review = models.CharField(
         max_length=150, null=False, blank=False)
     date = models.DateTimeField(auto_now_add=True)
+    approved = models.BooleanField(default=False)
+
+    def percentage_rating(self):
+        percentage_rating = self.rating * 10
+
+        return percentage_rating

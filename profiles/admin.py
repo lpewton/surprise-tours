@@ -12,7 +12,7 @@ class UserProfileAdmin(admin.ModelAdmin):
 
 class ReviewAdmin(admin.ModelAdmin):
     list_display = (
-        'user', 'tour', 'rating', 'review', 'date',
+        'user', 'tour', 'rating', 'review', 'date', 'approved',
     )
 
 

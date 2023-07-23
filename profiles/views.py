@@ -81,13 +81,13 @@ def orderDetail(request, order_id):
 
 def review(request,):
 
-    form = reviewForm()
+    form = ReviewForm()
     context = {
             'form': form,
         }
 
     if request.method == "POST":
-        form = reviewForm(request.POST)
+        form = ReviewForm(request.POST)
 
         if form.is_valid():
             form_review = form.save(commit=False)
