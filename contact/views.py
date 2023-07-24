@@ -8,7 +8,6 @@ def contact(request):
     """
     Returns the contact page
     """
-
     form = messageForm()
 
     if request.method == 'POST':

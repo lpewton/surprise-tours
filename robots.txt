@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /accounts/
+Disallow: /profiles/
+Sitemap: https://lpewton-surprise-tours.herokuapp.com/sitemap.xml

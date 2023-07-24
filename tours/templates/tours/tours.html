@@ -76,7 +76,7 @@
             <p class="bg-dark p-2 me-3 tour-characteristic text-light">Sold Out</p>
             {% elif tour.slots_left < 5 %} <p class="bg-danger p-2 me-3 tour-characteristic">Only
                 {{ tour.slots_left}} slots left!</p>
-                {% elif tour.rating > 9 %}
+                {% elif tour.rating > 9.5 %}
                 <p class="bg-success p-2 me-3 tour-characteristic">Customer favourite!</p>
                 {% endif %}
         </div>

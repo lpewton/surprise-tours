@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/tours/tours/?continent=europe</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/tours/tours/?continent=africa</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/tours/tours/?continent=asia</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/tours/tours/?continent=oceania</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/tours/tours/?continent=north_america</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/tours/tours/?continent=south_and_central_america</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/tours/tours/?sort=price&amp;direction=asc</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/accounts/login/</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/bag/bag/</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/tours/continents/</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/contact/</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/contact/newsletter</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/tours/28/</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/tours/30/</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/tours/29/</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/tours/35/</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/tours/36/</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/tours/34/</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/tours/52/</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/tours/31/</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/tours/32/</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/tours/33/</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/tours/54/</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/tours/55/</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/tours/53/</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/tours/57/</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/tours/58/</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/tours/56/</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/tours/59/</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/tours/16/</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/tours/60/</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/accounts/signup/</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/accounts/password/reset/</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://lpewton-surprise-tours.herokuapp.com/tours/tours/</loc>
+  <lastmod>2023-07-24T22:22:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>

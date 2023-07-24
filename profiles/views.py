@@ -11,31 +11,37 @@ def MyProfile(request):
     """
     Render the user profile page
     """
-    profile = get_object_or_404(UserProfile, user=request.user)
+    if request.user.is_authenticated:
+        profile = get_object_or_404(UserProfile, user=request.user)
 
-    if request.method == "GET":
-        form = UserProfileForm(instance=profile)
-        context = {
-            'form': form
-        }
-
-        return render(request, "profiles/my-profile.html", context)
-
-    if request.method == "POST":
-        form = UserProfileForm(request.POST, instance=profile)
-
-        if form.is_valid():
-            profile = form.save(commit=False)
-            profile.user_id = request.user.id
-            profile.save()
+        if request.method == "GET":
+            form = UserProfileForm(instance=profile)
             context = {
                 'form': form
             }
 
             return render(request, "profiles/my-profile.html", context)
 
-        else:
-            messages.error(request, 'Form failed, please try again')
+        if request.method == "POST":
+            form = UserProfileForm(request.POST, instance=profile)
+
+            if form.is_valid():
+                profile = form.save(commit=False)
+                profile.user_id = request.user.id
+                profile.save()
+                context = {
+                    'form': form
+                }
+
+                return render(request, "profiles/my-profile.html", context)
+
+            else:
+                messages.error(request, 'Form failed, please try again')
+
+    else:
+        messages.error(request, 'You are not logged in')
+
+        return render(request, "home/index.html")
 
 
 def pastOrders(request):
@@ -64,7 +70,6 @@ def orderDetail(request, order_id):
     """
     Displays the user's past order details
     """
-
     order = get_object_or_404(Order, pk=order_id)
 
     if order.user_profile.user == request.user:
