@@ -72,17 +72,24 @@ def orderDetail(request, order_id):
     """
     order = get_object_or_404(Order, pk=order_id)
 
-    if order.user_profile.user == request.user:
-        context = {
-            'order': order,
-        }
+    if order.user_profile:
+        if order.user_profile.user == request.user:
+            context = {
+                'order': order,
+            }
 
-        return render(request, "profiles/order-detail.html", context)
+            return render(request, "profiles/order-detail.html", context)
+
+        else:
+            messages.error(
+                request, 'You are not logged in with the correct user!')
+
+            return render(request, "home/index.html")
 
     else:
-        messages.error(request, 'You are not logged in with the correct user!')
-
-        return render(request, "home/index.html")
+        messages.error(
+            request, 'Sorry, you are not logged in with the correct user')
+        return redirect(reverse('home'))
 
 
 def review(request):
