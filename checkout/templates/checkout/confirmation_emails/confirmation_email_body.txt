@@ -5,7 +5,7 @@ We are glad to inform you that your payment was successful and your order was is
 Pack your bags! Your booked tours are the following:
 
 {% for tour in order.lineitems.all %}
-- {{ tour.tour }} x{{ tour.quantity }}
+- {{ tour.tour }} (x{{ tour.quantity }})
 {% endfor %}
 
 You can also find your order details in your members area in our website, under "My trips". 
@@ -16,7 +16,9 @@ For more information you can reach out to us at {{ contact_email }}.
 
 Please remember to always travel safe and, most importantly of all, have fun!
 
+
 Kind regards,
+
 
 The Surprise Tours Team
 
