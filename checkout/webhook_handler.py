@@ -66,15 +66,10 @@ class StripeWH_Handler:
         )
         billing_details = stripe_charge.billing_details
         order_total = round(stripe_charge.amount / 100, 2)
-        profile = None
-        username = intent.metadata.username
-
-        if username != 'AnonymousUser':
-            profile = UserProfile.objects.get(user__username=username)
 
         order_exists = False
         attempt = 1
-        while attempt <= 15:
+        while attempt <= 5:
             try:
                 order = Order.objects.get(
                     full_name__iexact=billing_details.name,
