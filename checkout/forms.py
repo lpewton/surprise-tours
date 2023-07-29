@@ -7,7 +7,7 @@ class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
         fields = ('full_name', 'email', 'phone_number',
-                  'nationality', 'street_address1', 'street_address2',
+                  'street_address1', 'street_address2',
                   'town_or_city', 'postcode', 'country', 'county')
 
     def __init__(self, *args, **kwargs):
@@ -19,7 +19,6 @@ class OrderForm(forms.ModelForm):
         placeholders = {
             'full_name': 'Full Name',
             'email': 'Email Address',
-            'nationality': 'Nationality',
             'phone_number': 'Phone Number',
             'postcode': 'Postal Code',
             'town_or_city': 'Town or City',

@@ -20,7 +20,7 @@ def cache_checkout_data(request):
         stripe.api_key = settings.STRIPE_SECRET_KEY
         stripe.PaymentIntent.modify(pid, metadata={
             'bag': json.dumps(request.session.get('bag', {})),
-            #'save_info': request.POST.get('save_info'),
+            'save_info': request.POST.get('save_info'),
             'username': request.user,
         })
 
@@ -51,7 +51,6 @@ def checkout(request):
             'full_name': request.POST['full_name'],
             'email': request.POST['email'],
             'phone_number': request.POST['phone_number'],
-            'nationality': request.POST['nationality'],
             'country': request.POST['country'],
             'postcode': request.POST['postcode'],
             'town_or_city': request.POST['town_or_city'],
@@ -61,33 +60,6 @@ def checkout(request):
         }
 
         order_form = OrderForm(form_data)
-        if request.user.is_authenticated:
-            save_info = request.POST.get('save-info', 'off')
-
-            # Save the user's info
-            if save_info == 'on':
-                full_name = request.POST['full_name']
-                email = request.POST['email']
-                phone_number = request.POST['phone_number']
-                nationality = request.POST['nationality']
-                country = request.POST['country']
-                postcode = request.POST['postcode']
-                town_or_city = request.POST['town_or_city']
-                street_address1 = request.POST['street_address1']
-                street_address2 = request.POST['street_address2']
-                county = request.POST['county']
-
-                profile.profile_full_name = full_name
-                profile.profile_email = email
-                profile.profile_phone_number = phone_number
-                profile.profile_nationality = nationality
-                profile.profile_country = country
-                profile.profile_postcode = postcode
-                profile.profile_town_or_city = town_or_city
-                profile.profile_street_address1 = street_address1
-                profile.profile_street_address2 = street_address1
-                profile.profile_county = county
-                profile.save()
 
         if order_form.is_valid:
             order = order_form.save(commit=False)
@@ -124,6 +96,32 @@ def checkout(request):
 
             return render(request, 'checkout/checkout.html')
 
+        if request.user.is_authenticated:
+            save_info = request.POST.get('save-info', 'off')
+
+            # Save the user's info
+            if save_info == 'on':
+                full_name = request.POST['full_name']
+                email = request.POST['email']
+                phone_number = request.POST['phone_number']
+                country = request.POST['country']
+                postcode = request.POST['postcode']
+                town_or_city = request.POST['town_or_city']
+                street_address1 = request.POST['street_address1']
+                street_address2 = request.POST['street_address2']
+                county = request.POST['county']
+
+                profile.profile_full_name = full_name
+                profile.profile_email = email
+                profile.profile_phone_number = phone_number
+                profile.profile_country = country
+                profile.profile_postcode = postcode
+                profile.profile_town_or_city = town_or_city
+                profile.profile_street_address1 = street_address1
+                profile.profile_street_address2 = street_address1
+                profile.profile_county = county
+                profile.save()
+
         return redirect(reverse('checkout_success', args=[order.order_number]))
 
     if request.method == 'GET':
@@ -150,7 +148,6 @@ def checkout(request):
                         'full_name': profile.profile_full_name,
                         'email': profile.profile_email,
                         'phone_number': profile.profile_phone_number,
-                        'nationality': profile.profile_nationality,
                         'country': profile.profile_country,
                         'postcode': profile.profile_postcode,
                         'town_or_city': profile.profile_town_or_city,
