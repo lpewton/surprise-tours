@@ -61,11 +61,7 @@ As an owner, they should be able to add new tors, remove them or edit them so th
 ### Target:
 The target population for this app is anyone who is willing to travel, and wants to avoid the hassle of planning their entire trip.
 
-As for the website administrator, that would be the store owner and their credentials are the following:
-
-| Role  | Username | Password |
-| ------------- | ------------- | ------------- |
-| Superuser  | admin | casagelat |
+As for the website administrator, that would be the store owner or anyone responsible for the shop.
 
 ### Displays:
 The layout of the app is clear, communicative and there is an easy intuition on how to find the information.
@@ -308,7 +304,7 @@ Where the customer is directed when the page doesn't exist:
 ![image](https://github.com/lpewton/surprise-tours/assets/114712846/bc5f78b0-5945-4150-93c0-7396edcbcbea)
 
 ## Marketing Features:
-Every online store needs deigital marketing. For that reason, a Facebook page has been created for this website to reach out to new customers (https://www.facebook.com/profile.php?viewas=100000686899395&id=100094405940742) and a MailChimp account has bee created to maintain the existing customers. It can be found at the bottom of the page: "Subscribe to our Newsletter!"
+Every online store needs deigital marketing. For that reason, a Facebook page has been created for this website to reach out to new customers ([https://www.facebook.com/profile.php?viewas=100000686899395&id=100094405940742](https://www.facebook.com/profile.php?id=100094405940742&viewas=&show_switched_toast=false&show_switched_tooltip=false&is_tour_dismissed=false&is_tour_completed=false&show_podcast_settings=false&show_community_review_changes=false&should_open_composer=false&badge_type=NEW_MEMBER&show_community_rollback_toast=false&show_community_rollback=false&show_follower_visibility_disclosure=false&bypass_exit_warning=true)) and a MailChimp account has bee created to maintain the existing customers. It can be found at the bottom of the page: "Subscribe to our Newsletter!"
 
 A screenshot of the Facebook page can be found below:
 
@@ -322,6 +318,8 @@ All needed requirements.txt have been added to the app so it works properly. The
 One of the features of this store is that the users can review a tour. However, an issue found was that the star system was not working and there was no time to fix it. However, a progress bar was set up in its stead. This can be fixed with more time, in the future.
 
 Another implementation to add in the future is the ability to search a tour by its dates. At the moment it would be posible to do so but using numerals instead of the month's name. As this seemed confusing, it was removed from the site to be implemented correctly in the future.
+
+Finally, an unfixed bug found in this app is the "Uncaught TypeError: P.trigger(...) is null" found in the console bar in the deployed website. However, this error comes directly from Bootstrap therefore cannot be fixed or removed. It does not affect the functionalityor distribution of the website in any way.
 
 ## Major Issues Found:
 1. Crispy forms not compatible with Stripe:
