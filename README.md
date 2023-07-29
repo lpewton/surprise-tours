@@ -199,117 +199,122 @@ Before beggining this project, a few wireframes were created as guidelines to fo
 ### Home page:
 First page the customer sees with a description of the site's purpose and what they'll find in it:
 
-![image](https://github.com/lpewton/surprise-tours/assets/114712846/f52ec9d3-5a76-4b97-b214-b5f6e35768e9)
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/0f91668b-3b88-4c15-9034-6848a2e8791e)
 
 
 ### Contintents page:
 Where the customer will choose which continent he wants to purchase their tour in:
 
-![image](https://github.com/lpewton/surprise-tours/assets/114712846/b2081574-5ce0-4e66-b810-170fa087eeb7)
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/4ad9694b-8f74-4a7c-848c-b5cf4028372a)
 
 
 ### Tours page:
 All the tours are shown here:
 
-![image](https://github.com/lpewton/surprise-tours/assets/114712846/9ce809f3-9129-408b-99d5-5896f3e7efc2)
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/5cb2fc3e-1470-4db0-a83c-78fe0719d4df)
 
 
 ### Tour detail page:
 Where the tour details are shown, such as price, rating, description, images...
 
-![image](https://github.com/lpewton/surprise-tours/assets/114712846/a4fe2845-99b6-4cc8-9c1b-a40382eca6a5)
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/10ce4fdd-6fe2-4c28-9362-59b5d2a29716)
 
 
 ### Shopping bag:
 Where the customer can see their shopping bag to confirm everything is correct before they check out:
 
-![image](https://github.com/lpewton/surprise-tours/assets/114712846/f76ea726-9508-4a88-a3c7-1783ad3f2e83)
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/82b96abb-01fa-4120-a36e-dcfc0e29cf96)
 
 
 ### Check out page:
 Where the checkout form is to create the Order and the payments are made. The customer is also reminded of what he is about to purchase:
 
-![image](https://github.com/lpewton/surprise-tours/assets/114712846/df41e121-8060-4719-825c-b586b0a8b165)
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/416f97e6-0586-4556-a920-230cf3df02b9)
 
 
 ### Check out successful page:
 Where the customer is told they payment was successful, they are given an order number and all its details:
 
-![image](https://github.com/lpewton/surprise-tours/assets/114712846/8a0490c1-197d-4be6-9447-1192c31ebe6c)
 
 
 ### Log in page:
 Where the customer can log in:
 
-![image](https://github.com/lpewton/surprise-tours/assets/114712846/77b90984-2ff7-485f-bdd1-43cdbaaa2eee)
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/8c6500b9-0d88-4164-b9d5-301ac61766d6)
 
 
 ### Log out page:
 Where the customer can log out:
 
-![image](https://github.com/lpewton/surprise-tours/assets/114712846/2edb8cda-44ea-4e86-bd98-a294cff3396f)
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/1089380e-0bee-437f-a92b-d3431cbd3e5d)
+
 
 ### My profile page:
 Where the use can input and update their details:
 
-![image](https://github.com/lpewton/surprise-tours/assets/114712846/ced37088-dffd-484e-aa85-ff32c4c4024f)
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/13ce5be6-4231-47ed-839b-b962facd3777)
 
 
 ### Past trips page:
 The past orders the customer made are shown here:
 
-![image](https://github.com/lpewton/surprise-tours/assets/114712846/685f7608-b6df-4f94-ae1c-54ea5440b64c)
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/7b2128f7-a8f4-4e1d-8566-36fb83accca5)
 
 
 ### Past trips details page:
 The details of each past order is shown here:
 
-![image](https://github.com/lpewton/surprise-tours/assets/114712846/6af2e5d1-34ac-41c8-819a-fb858ad7a572)
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/05da9fa2-c710-433e-92b8-5b5e74d7bbd5)
+
 
 ### Leave a review page:
 Where members can leave reviews for one of the trips:
 
-![image](https://github.com/lpewton/surprise-tours/assets/114712846/fc773799-df54-4f2a-9f45-3501931c06a9)
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/d3833b94-590c-4b71-9f93-22e912bef8e8)
+
 
 ### Add a tour page:
 Where the store owner can add tours to the store:
 
-![image](https://github.com/lpewton/surprise-tours/assets/114712846/ade99a28-950b-4879-88e9-7f352d6b985c)
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/fda21484-e829-4016-a3ad-654b7855f0c1)
+
 
 ### Edit a tour page:
 Where the store owner can edit one of the tours:
 
-![image](https://github.com/lpewton/surprise-tours/assets/114712846/06530f6a-ed54-4f48-86e7-cc0ae0280b61)
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/472d282b-707e-44ce-b9ed-b1d9818c007e)
+
 
 ### Pending reviews page:
 Where the store owner can see revies left for tours and approve or reject them:
 
-![image](https://github.com/lpewton/surprise-tours/assets/114712846/d32573a5-d075-4d10-a78f-4f1140856461)
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/95d86553-de6d-46c4-9fa1-c118dc258407)
+
 
 ### Contact us page:
 Where the user can send messages to the administrator or see the page's contact details:
 
-![image](https://github.com/lpewton/surprise-tours/assets/114712846/6d0bc741-c68b-4bf2-817c-a2f9420e3c7d)
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/0d945774-e1d0-4f3a-b8bb-737d47780cc5)
 
 
 ### MailChimp page:
 Where the user can subscribe to receive emails and updates:
 
-![image](https://github.com/lpewton/surprise-tours/assets/114712846/c4a5f183-5650-4103-b090-768215c7eedc)
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/7fb10aff-dcce-4cce-9f0d-8a13eea30d06)
 
 
 ### Page not found:
 Where the customer is directed when the page doesn't exist:
 
-![image](https://github.com/lpewton/surprise-tours/assets/114712846/bc5f78b0-5945-4150-93c0-7396edcbcbea)
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/14917502-e534-48f1-b37a-f627205cdcb3)
+
 
 ## Marketing Features:
 Every online store needs deigital marketing. For that reason, a Facebook page has been created for this website to reach out to new customers ([https://www.facebook.com/profile.php?viewas=100000686899395&id=100094405940742](https://www.facebook.com/profile.php?id=100094405940742&viewas=&show_switched_toast=false&show_switched_tooltip=false&is_tour_dismissed=false&is_tour_completed=false&show_podcast_settings=false&show_community_review_changes=false&should_open_composer=false&badge_type=NEW_MEMBER&show_community_rollback_toast=false&show_community_rollback=false&show_follower_visibility_disclosure=false&bypass_exit_warning=true)) and a MailChimp account has bee created to maintain the existing customers. It can be found at the bottom of the page: "Subscribe to our Newsletter!"
 
 A screenshot of the Facebook page can be found below:
 
-![image](https://github.com/lpewton/surprise-tours/assets/114712846/805a0150-6378-4c68-b60d-7c51e7b28067)
-
+![image](https://github.com/lpewton/surprise-tours/assets/114712846/aeb8ba48-2fad-4dc5-9af2-ecfbfd39dfc6)
 
 ## Requirements.txt:
 All needed requirements.txt have been added to the app so it works properly. The main vital ones and also the ones added to improve the functionality of the website. 
