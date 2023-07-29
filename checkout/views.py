@@ -20,7 +20,7 @@ def cache_checkout_data(request):
         stripe.api_key = settings.STRIPE_SECRET_KEY
         stripe.PaymentIntent.modify(pid, metadata={
             'bag': json.dumps(request.session.get('bag', {})),
-            'save_info': request.POST.get('save_info'),
+            #'save_info': request.POST.get('save_info'),
             'username': request.user,
         })
 
@@ -176,30 +176,15 @@ def checkoutSuccess(request, order_number):
     """
     order = get_object_or_404(Order, order_number=order_number)
 
-    if order.user_profile:
-        if order.user_profile.user == request.user:
+    messages.success(
+        request, f'Pack your bags! Your order has been successful')
 
-            messages.success(
-                request, f'Pack your bags! Your order has been successful')
+    if 'bag' in request.session:
+        del request.session['bag']
 
-            if 'bag' in request.session:
-                del request.session['bag']
+    context = {
+        'order': order,
+        'request': request,
+    }
 
-            context = {
-                'order': order,
-                'request': request,
-            }
-
-            return render(request, 'checkout/checkout-success.html', context)
-
-        else:
-            messages.error(
-                request, 'Sorry, you are not logged in with the correct user')
-
-            return redirect(reverse('home'))
-
-    else:
-        messages.error(
-            request, 'Sorry, you are not logged in with the correct user')
-
-        return redirect(reverse('home'))
+    return render(request, 'checkout/checkout-success.html', context)
