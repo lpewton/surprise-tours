@@ -5,7 +5,6 @@ from django.conf import settings
 
 from .models import Order, OrderItem
 from tours.models import Tour
-from profiles.models import UserProfile
 
 import stripe
 import json
