@@ -23,25 +23,25 @@
 <div class="sort-select-wrapper mt-2">
     <select id="sort-selector"
         class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
-        <option value="name_asc" {% if current_sorting=='name_asc' %}selected{% endif %}>Sorted by name (A-Z)
+        <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Sorted by name (A-Z)
         </option>
-        <option value="name_desc" {% if current_sorting=='name_desc' %}selected{% endif %}>Sorted by name (Z-A)
+        <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Sorted by name (Z-A)
         </option>
-        <option value="price_asc" {% if current_sorting=='price_asc' %}selected{% endif %}>Sorted by price (low to
+        <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Sorted by price (low to
             high)</option>
-        <option value="price_desc" {% if current_sorting=='price_desc' %}selected{% endif %}>Sorted by price (high
+        <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Sorted by price (high
             to low)
         </option>
-        <option value="start_asc" {% if current_sorting=='start_asc' %}selected{% endif %}>Sorted by date (Closer to
+        <option value="start_asc" {% if current_sorting == 'start_asc' %}selected{% endif %}>Sorted by date (Closer to
             further)
         </option>
-        <option value="start_desc" {% if current_sorting=='start_desc' %}selected{% endif %}>Sorted by date (Further
+        <option value="start_desc" {% if current_sorting == 'start_desc' %}selected{% endif %}>Sorted by date (Further
             to closer)
         </option>
-        <option value="rating_asc" {% if current_sorting=='rating_asc' %}selected{% endif %}>Sorted by rating (low
+        <option value="rating_asc" {% if current_sorting == 'rating_asc' %}selected{% endif %}>Sorted by rating (low
             to high)
         </option>
-        <option value="rating_desc" {% if current_sorting=='rating_desc' %}selected{% endif %}>Sorted by rating
+        <option value="rating_desc" {% if current_sorting == 'rating_desc' %}selected{% endif %}>Sorted by rating
             (high to low)
         </option>
     </select>
