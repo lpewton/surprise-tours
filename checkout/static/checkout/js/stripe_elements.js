@@ -92,6 +92,7 @@ form.addEventListener('submit', function(ev) {
                 $(errorDiv).html(html);
                 $('#payment-form-div').fadeToggle(100);
                 $('#tours-purchased').fadeToggle(100);
+                $('#payment-plane').fadeToggle(100);
                 card.update({ 'disabled': false});
                 $('#submit-button').attr('disabled', false);
             } else {
