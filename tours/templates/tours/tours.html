@@ -9,7 +9,7 @@
             <input class="border border-black rounded col-10 col-md-6" type="text" name="q"
                 placeholder="Search by location or description">
             <div>
-                <button class="btn" type="submit">
+                <button class="btn" type="submit" aria-label="Search a tour">
                     <span class="icon">
                         <i class="fas fa-search"></i>
                     </span>
@@ -67,19 +67,19 @@
     <div class="card mb-2" style="width: 18rem;">
         <div>
             {% if tour.image_1 %}
-            <img class="col-12 tour-img pt-1" src="{{tour.image_1.url}}" alt="Nice photograph">
+            <img class="col-12 tour-img pt-1 rounded" src="{{tour.image_1.url}}" alt="Nice photograph">
             {% else %}
-            <img class="col-12 tour-img"
+            <img class="col-12 tour-img rounded"
                 src="https://res.cloudinary.com/dttlol6ik/image/upload/v1688944519/default-img-1.png"
                 alt="Airplane Wing">
             {% endif %}
 
             {% if tour.slots_left == 0 %}
             <p class="bg-dark p-2 me-3 tour-characteristic text-light rounded">Sold Out</p>
-            {% elif tour.slots_left < 5 %} <p class="bg-danger p-2 me-3 tour-characteristic rounded">Only
+            {% elif tour.slots_left < 5 %} <p class="bg-warning p-2 me-3 tour-characteristic rounded">Only
                 {{ tour.slots_left}} slots left!</p>
                 {% elif tour.rating > 9.5 %}
-                <p class="bg-success p-2 me-3 tour-characteristic rounded">Customer favourite!</p>
+                <p class="bg-info p-2 me-3 tour-characteristic rounded">Customer favourite!</p>
                 {% endif %}
         </div>
         <div class="card-body">
