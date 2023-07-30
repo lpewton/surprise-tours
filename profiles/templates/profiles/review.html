@@ -3,8 +3,8 @@
 
 {% block content %}
 <div class="row col-md-6 col-lg-5">
-    <h4>Enjoyed your trip?</h4>
-    <h5>Leave a review!</h5>
+    <h3>Enjoyed your trip?</h3>
+    <h4>Leave a review!</h4>
     <form action="{% url 'review' %}" method="POST">
         {% csrf_token %}
         {% for field in form %}

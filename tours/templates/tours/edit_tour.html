@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<h4 class="text-center p-3">Edit {{ tour }} tour</h4>
+<h3 class="text-center p-3">Edit {{ tour }} tour</h3>
 <div class="text-center">
     <form class="d-flex justify-content-around flex-wrap" action="{% url 'edit_tour' tour.id %}" method="POST"
         enctype="multipart/form-data">
