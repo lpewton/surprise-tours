@@ -88,15 +88,21 @@ def tour_detail(request, tour_id):
     """
     Returns the detailed tour page
     """
-    tour = get_object_or_404(Tour, pk=tour_id)
-    reviews = Review.objects.filter(tour=tour, approved=True)
+    if not request.user.is_superuser and tour.price < 1:
+        messages.error(request, 'Sorry, only store owners can do that.')
 
-    context = {
-        'tour': tour,
-        'reviews': reviews,
-    }
+        return redirect(reverse('home'))
 
-    return render(request, 'tours/tour_detail.html', context)
+    else:
+        tour = get_object_or_404(Tour, pk=tour_id)
+        reviews = Review.objects.filter(tour=tour, approved=True)
+
+        context = {
+            'tour': tour,
+            'reviews': reviews,
+        }
+
+        return render(request, 'tours/tour_detail.html', context)
 
 
 def add_tour(request):
@@ -214,3 +220,5 @@ def edit_tour(request, tour_id):
             error_message1 = form.errors.as_text().split('*')[1].title()
             error_message2 = form.errors.as_text().split('*')[2]
             messages.error(request, f'{error_message1}: {error_message2}')
+
+    return render(request, 'tours/edit_tour.html', context)

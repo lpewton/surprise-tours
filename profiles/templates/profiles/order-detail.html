@@ -20,8 +20,12 @@
     <p class="p-0 mb-0">Purchase Details:</p>
     <ul class="ps-4">
         {% for tour in order.lineitems.all %}
+        {% if tour.tour.id != 61 %}
         <li>{{ tour.quantity}} ticket{% if tour.quantity > 1 %}s{% endif %} for {{ tour.tour }}
             (US ${{tour.item_total }})</li>
+        {% else %}
+        <li>{{ tour.tour }}</li>
+        {% endif %}
         {% endfor %}
     </ul>
     <p class="ps-0"><strong>TOTAL:</strong> US ${{ order.order_total }} (10% deposit)</p>

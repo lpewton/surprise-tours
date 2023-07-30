@@ -74,7 +74,7 @@ class OrderItem(models.Model):
         Order, null=False, blank=False, on_delete=models.CASCADE,
         related_name='lineitems')
     tour = models.ForeignKey(
-        Tour, null=False, blank=False, on_delete=models.CASCADE)
+        Tour, null=False, blank=False, on_delete=models.SET(61))
     quantity = models.IntegerField(null=False, blank=False, default=0)
     item_total = models.DecimalField(
         max_digits=6, decimal_places=2, null=False,
