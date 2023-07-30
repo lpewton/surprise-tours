@@ -88,13 +88,14 @@ def tour_detail(request, tour_id):
     """
     Returns the detailed tour page
     """
+    tour = get_object_or_404(Tour, pk=tour_id)
+
     if not request.user.is_superuser and tour.price < 1:
         messages.error(request, 'Sorry, only store owners can do that.')
 
         return redirect(reverse('home'))
 
     else:
-        tour = get_object_or_404(Tour, pk=tour_id)
         reviews = Review.objects.filter(tour=tour, approved=True)
 
         context = {
