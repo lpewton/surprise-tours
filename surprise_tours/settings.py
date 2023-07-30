@@ -110,7 +110,6 @@ TEMPLATES = [
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
-    'django.core.mail.backends.console.EmailBackend',
 )
 
 SITE_ID = 1
@@ -198,6 +197,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     DEFAULT_FROM_EMAIL = 'surprise-tours@example.com'
+
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_USE_TLS = True
