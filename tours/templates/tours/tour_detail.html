@@ -71,9 +71,9 @@
         {% endif %}
         {% for review in reviews %}
         {% if review.tour == tour and review.approved == True %}
-        <div class="row border col-lg-8 border-black m-1 mx-auto mx-lg-1">
-            <p class="col-5 text-capitalize"><strong>{{ review.user }}:</strong></p>
-            <p class="col-7 text-end">{{ review.date }}</p>
+        <div class="row border col-lg-8 border-black mx-1 mx-auto mx-lg-1 rounded">
+            <p class="col-5 text-capitalize mb-1"><strong>{{ review.user }}:</strong></p>
+            <p class="col-7 text-end mb-0">{{ review.date }}</p>
             <div class="row">
                 <div class="progress px-0 mx-2 mt-1 col-10">
                     <div class="bg-warning" role="progressbar" aria-valuenow="{{ review.rating }}" aria-valuemin="0"
@@ -89,22 +89,22 @@
     </div>
     <aside class="col-md-5">
         {% if tour.image_1 %}
-        <img class="col-12 tour-img" src="{{tour.image_1.url}}" alt="Nice photograph">
+        <img class="col-12 tour-img rounded" src="{{tour.image_1.url}}" alt="Nice photograph">
         {% else %}
-        <img class="col-12 tour-img"
+        <img class="col-12 tour-img rounded"
             src="https://res.cloudinary.com/dttlol6ik/image/upload/v1688944519/default-img-1.png" alt="Airplane Wing">
         {% endif %}
         <br>
         {% if tour.image_2 %}
-        <img class="col-12 tour-img" src="{{tour.image_2.url}}" alt="Nice photograph">
+        <img class="col-12 tour-img rounded" src="{{tour.image_2.url}}" alt="Nice photograph">
         {% else %}
-        <img class="col-12 tour-img"
+        <img class="col-12 tour-img rounded"
             src="https://res.cloudinary.com/dttlol6ik/image/upload/v1688944870/default-img-2.jpg" alt="Suitcases">
         {% endif %} <br>
         {% if tour.image_3 %}
-        <img class="col-12 tour-img" src="{{tour.image_3.url}}" alt="Nice photograph">
+        <img class="col-12 tour-img rounded" src="{{tour.image_3.url}}" alt="Nice photograph">
         {% else %}
-        <img class="col-12 tour-img"
+        <img class="col-12 tour-img rounded"
             src="https://res.cloudinary.com/dttlol6ik/image/upload/v1688944977/default-img-3.jpg"
             alt="International Food">
         {% endif %}
