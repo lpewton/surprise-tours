@@ -5,7 +5,7 @@ Aside from that, the customer is also able to log in to see their past purchases
 
 As per the type of buisness that this is, this is a Business to Customer company (B2C), as the products are sold directly from the store to the customers, without intermediaries. These products are not physical products, but services(tours given by tours guides at a certain date) and are paid off in a single payment (although initially a deposit is paid to secure a spot).
 
-You can find the live link for this website here: [https://lpewton-stock-controller.herokuapp.com.](https://lpewton-surprise-tours.herokuapp.com/)
+You can find the live link for this website here: [https://lpewton-surprise-tours.herokuapp.com](https://lpewton-surprise-tours.herokuapp.com/)
 
 ## TABLE OF CONTENTS:
   * [User Experience (UX):](#user-experience-ux)
